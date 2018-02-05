@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start":"cd react app & npm start",
+    "prestart":"cd react-app && npm run build",
+    "start":"node server.js",
     "test": "cd react-app && npm test"
   },
   "dependencies": {
