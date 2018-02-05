@@ -1,0 +1,25 @@
+{
+  "name": "co-creation-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start":"node server.js",
+    "test": "cd react-app && npm test"
+  },
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m2ftl/co-creation-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/m2ftl/co-creation-app/issues"
+  },
+  "homepage": "https://github.com/m2ftl/co-creation-app#readme"
+}
