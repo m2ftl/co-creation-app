@@ -3,14 +3,32 @@ import './App.css';
 import Profile from "./modules/profile/profile.js";
 import Header from './modules/header/Header';
 import Dashboard from './modules/dashboard/Dashboard';
+import CreateIdea from "./modules/ideas/Createidea";
+import { Route, Switch } from "react-router-dom";
+import Insertidea from "./modules/ideas/actions";
+
 
 class App extends Component {
+
+  submit = values => {
+    // print the form values to the console
+      Insertidea(values);
+  }
+
   render() {
     return (
       <div className="App">
-        <Header />
-        <Profile />
-        <Dashboard />
+
+      <Switch>
+      <Route path="/profile" render={() => <Profile />} />
+      <Route path="/dashboard" render={() => <Dashboard />} />
+      <Route path="/createidea" render={() => <CreateIdea onSubmit={this.submit}/>} />
+      <Route render={() =>
+          <div>
+          <Header />
+          </div>
+      } />
+      </Switch>
       </div>
     );
   }
