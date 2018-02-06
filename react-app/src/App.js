@@ -9,7 +9,6 @@ import Insertidea from "./modules/ideas/actions";
 import { connect } from 'react-redux';
 import User from "./modules/user/User";
 
-
 class App extends Component {
 
   submit = values => {

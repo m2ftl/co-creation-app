@@ -16,7 +16,7 @@ window.googleConnectCallback = function(googleUser) {
     familyName: profile.getFamilyName(),
     avatar: profile.getImageUrl(),
     email: profile.getEmail()
-  });
+  }); 
 
   // The ID token you'd need to pass to your backend:
   const id_token = googleUser.getAuthResponse().id_token;
