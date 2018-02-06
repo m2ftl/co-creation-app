@@ -7,6 +7,8 @@ import CreateIdea from "./modules/ideas/Createidea";
 import { Route, Switch, withRouter } from "react-router-dom";
 import Insertidea from "./modules/ideas/actions";
 import { connect } from 'react-redux';
+import User from "./modules/user/User";
+
 
 class App extends Component {
 
@@ -18,16 +20,17 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <Switch>
-      <Route path="/profile" render={() => <Profile />} />
-      <Route path="/dashboard" render={() => <Dashboard />} />
-      <Route path="/createidea" render={() => <CreateIdea onSubmit={this.submit}/>} />
-      <Route render={() =>
-          <div>
-          <Header />
-          </div>
-      } />
-      </Switch>
+        <Switch>
+          <Route path="/profile" render={() => <Profile />} />
+          <Route path="/dashboard" render={() => <Dashboard />} />
+          <Route path="/createidea" render={() => <CreateIdea onSubmit={this.submit}/>} />
+          <Route render={() =>
+              <div>
+                <div><Header /></div>
+                <div><User /></div>
+              </div>
+          } />
+        </Switch>
       </div>
     );
   }
