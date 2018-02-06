@@ -1,6 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
+import { connect } from "react-redux";
+import { profileActions } from "../../store/profile/actions";
 
-export default class Profile extends React.Component {
+class Profile extends React.Component {
   render() {
     return (
       <div>
@@ -9,59 +11,76 @@ export default class Profile extends React.Component {
         </span>
         <form>
           <div>
-            <div class="row">
+            <div className="row">
               <div>
                 <input
                   placeholder="First Name"
                   name="firstName"
                   type="text"
-                  value="John"
+                  onChange={this.props.updateFirstName}
                 />
                 <input
                   placeholder="Last Name"
                   name="lastName"
                   type="text"
-                  value="Doe"
+                  onChange={this.props.updateLastName}
                 />
-                <input placeholder="Gender" name="gender" type="text" />
-                <input placeholder="Birthdate" name="birthdate" type="text" />
+                <select name="Gender" id="Gender" onChange={this.props.updateGender}>
+                  <option value="">Select your Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+                <input
+                  placeholder="Birthdate"
+                  name="birthdate"
+                  type="text"
+                  onChange={this.props.updateBirthdate}
+                />
               </div>
               <div>
                 <input
                   placeholder="Email"
                   name="email"
                   type="text"
-                  value="john.doe@toto.com"
+                  onChange={this.props.updateEmail}
                 />
-                <input placeholder="Phone Number" name="phone" type="text" />
+                <input
+                  placeholder="Phone Number"
+                  name="phone"
+                  type="text"
+                  onChange={this.props.updatePhone}
+                />
               </div>
             </div>
-            <div class="row">
-              <text>Level</text>
-              <select name="Level">
+            <div className="row">
+              <select name="Level" onChange={this.props.updateLevel}>
+                <option value="">Select your Level</option>
                 <option value="beginner">Beginner</option>
                 <option value="advanced">Advanced</option>
                 <option value="expert">Expert</option>
               </select>
-              <input placeholder="Index" name="index" type="text" />
-              <form method="post" action="ton_action">
-                <p>
-                  Weather Conditions :<br />
-                  <input type="checkbox" name="rain" />{" "}
-                  <label for="rain">Rain</label>
-                  <input type="checkbox" name="cold" />{" "}
-                  <label for="cold">Cold</label>
-                  <input type="checkbox" name="mild" />{" "}
-                  <label for="mild">Mild</label>
-                  <input type="checkbox" name="sunny" />{" "}
-                  <label for="sunny">Sunny</label>
-                </p>
-              </form>
+              <input
+                placeholder="Index"
+                name="index"
+                type="text"
+                onChange={this.props.updateIndex}
+              />
+              <p>
+                Weather Conditions :<br />
+                <input onClick={this.props.updateRain} type="checkbox" name="rain" value="rain"/>Rain
+                <input onClick={this.props.updateCold} type="checkbox" name="cold" value="cold"/>Cold
+                <input onClick={this.props.updateMild} type="checkbox" name="mild" value="mild"/>Mild
+                <input onClick={this.props.updateSunny} type="checkbox" name="sunny" value="sunny"/>Sunny
+              </p>
             </div>
           </div>
         </form>
-        <button>Validate your registration</button>
+        <button onClick={this.props.createUser}>
+          Validate your registration
+        </button>
       </div>
     );
   }
 }
+
+export default connect(null, profileActions)(Profile);
