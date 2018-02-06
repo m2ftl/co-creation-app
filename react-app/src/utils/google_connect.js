@@ -7,6 +7,7 @@ import store from "../store/store";
  */
 window.googleConnectCallback = function(googleUser) {
   // Useful data for your client-side scripts:
+  console.log("toto : ",googleUser);
   const profile = googleUser.getBasicProfile();
   store.dispatch({
     type: "LOGGED_IN",
@@ -16,7 +17,7 @@ window.googleConnectCallback = function(googleUser) {
     familyName: profile.getFamilyName(),
     avatar: profile.getImageUrl(),
     email: profile.getEmail()
-  }); 
+  });
 
   // The ID token you'd need to pass to your backend:
   const id_token = googleUser.getAuthResponse().id_token;
