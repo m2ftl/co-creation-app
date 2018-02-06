@@ -21,10 +21,23 @@ const renderField = ({
   type,
   meta: { touched, error }
 }) => (
-
   <div>
-    <label className="col-md-auto topTitle">{label}</label>
-    <input {...input} type={type} className="form-control" />
+    <label className="topTitle">{label}</label>
+    <input {...input} type={type} className="form-control formset" />
+    {touched &&
+      (error && <span className="errorForm">*{error}</span>)}
+  </div>
+)
+
+const renderText = ({
+  input,
+  label,
+  type,
+  meta: { touched, error }
+}) => (
+  <div>
+    <label className="topTitle">{label}</label>
+    <textarea rows="4" cols="120" className="form-control formset" />
     {touched &&
       (error && <span className="errorForm">*{error}</span>)}
   </div>
@@ -36,7 +49,7 @@ class ContactForm extends Component{
     return (
     <div>
       <form onSubmit={handleSubmit}>
-        <div className="ml-5 mr-5 mb-5">
+        <div>
             <div>
               <Field
                 name="title"
@@ -52,7 +65,7 @@ class ContactForm extends Component{
               />
             </div>
         </div>
-        <button type="submit" className="btn-primary mt-1" disabled={invalid || pristine || submitting}>
+        <button type="submit" className="btn-primary submitset" disabled={invalid || pristine || submitting}>
             Submit
         </button>
       </form>
