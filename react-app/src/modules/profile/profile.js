@@ -33,7 +33,7 @@ export default class Profile extends React.Component {
                   type="text"
                   value="john.doe@toto.com"
                 />
-                <input placeholder="Birthdate" name="birthdate" type="text" />
+                <input placeholder="Phone Number" name="phone" type="text" />
               </div>
             </div>
             <div class="row">
