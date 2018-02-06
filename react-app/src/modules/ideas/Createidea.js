@@ -43,6 +43,7 @@ const renderText = ({
   </div>
 )
 
+
 class ContactForm extends Component{
   render() {
     const { handleSubmit, pristine, submitting, invalid } = this.props;
@@ -60,7 +61,7 @@ class ContactForm extends Component{
               <Field
                 name="description"
                 type="textarea"
-                component={renderField}
+                component={renderText}
                 label="Idea Description:"
               />
             </div>
