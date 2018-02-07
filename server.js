@@ -31,7 +31,7 @@ app.post('/createideanew', function(req, res) {
   client.connect();
   client.query("INSERT INTO ideas (id, title, description) VALUES (uuid_generate_v4(),$1,$2)", [req.body.title, req.body.description])
   .then(res => {
-    client.end();
+    client.end()})
   .catch(error => {
       console.warn(error);
   });

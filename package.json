@@ -32,5 +32,6 @@
   "bugs": {
     "url": "https://github.com/m2ftl/co-creation-app/issues"
   },
-  "homepage": "https://github.com/m2ftl/co-creation-app#readme"
+  "homepage": "https://github.com/m2ftl/co-creation-app#readme",
+  "proxy": "http://localhost:4000"
 }
