@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import getUseruuid from "../../store/ideas/selectors"
 import { retrieveIdeas } from './actions';
 
+
 class ViewIdeas extends Component {
   constructor(props) {
     super(props);
@@ -30,7 +31,7 @@ class ViewIdeas extends Component {
           <div className="idea_item">
             <h3><a href={"#quest"+index}>+</a> {idea.title}</h3>
             <div id={"quest"+index} className="idea_description">
-              <p>{idea.description}</p>
+              <div>{idea.description}</div>
               <span>submitted by {idea.first_name} {idea.last_name}</span>
             </div>
           </div>
