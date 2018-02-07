@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import User from "./modules/user/User";
 import SignOut from "./modules/user/SignOut";
 import { getUserState } from "./store/user/selectors";
+import ViewIdeas from "./modules/ideas/Viewideas";
 
 class App extends Component {
 
@@ -31,6 +32,7 @@ class App extends Component {
           <Route path="/dashboard" render={() => <Dashboard />} />
           <Route path="/createidea" render={() => <CreateIdea />} />
           <Route path="/createquestion" render={() => <Createquestion />} />
+          Route path="/viewideas" render={() => <ViewIdeas />} />
           <Route path="/sign-out" render={() => (
             this.props.googleUser.loggedIn
               ? <SignOut />

@@ -16,10 +16,6 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get("*", (request, result) => {
-  result.sendFile(path.join(__dirname, "react-app/build/index.html"));
-});
-
 // Listen to POST requests to /users.
 app.post('/createideanew', function(req, res) {
   const client = new PG.Client({
@@ -51,6 +47,28 @@ app.post('/createquestionnew', function(req, res) {
     res.send({result:"failed"})
     console.warn(error);
   });
+});
+
+app.get('/viewideasall', function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
+  client.connect();
+  client.query("SELECT title, description FROM ideas")
+  .then(res1 => {
+    console.log(res1);
+    client.end();
+    res.send(res1.rows);
+  })
+  .catch(error => {
+    console.warn(error);
+  });
+});
+
+
+app.get("*", (request, result) => {
+  result.sendFile(path.join(__dirname, "react-app/build/index.html"));
 });
 
 app.listen(port, function listening() {
