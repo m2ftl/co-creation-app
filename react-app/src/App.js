@@ -18,7 +18,7 @@ class App extends Component {
         <Switch>
           <Route path="/profile" render={() => <Profile />} />
           <Route path="/dashboard" render={() => <Dashboard />} />
-          <Route path="/createidea" render={() => <CreateIdea onSubmit={this.submit}/>} />
+          <Route path="/createidea" render={() => <Createidea onSubmit={this.submit}/>} />
           <Route render={() =>
               <div>
                 <div><Header /></div>
