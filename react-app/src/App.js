@@ -18,18 +18,10 @@ class App extends Component {
 
   render() {
     let profile;
-    console.log(this.props.user)
-    console.log(this.props.user.loggedIn)
-    console.log(this.props.user.completedProfile)
     if (this.props.user.loggedIn
       && !this.props.user.completedProfile
       ) {
       profile = <Redirect to = "/complete-profile" />
-    } else if (this.props.user.loggedIn
-      && this.props.user.completedProfile
-      ){
-      profile = <Redirect to = "/dashboard" />
-      console.log(profile)
     }
       else{
         profile= <User />
@@ -39,7 +31,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <Switch>
-          <Route path="/complete-profile" render={(routerProps) => <Profile {...routerProps} />} />
+          <Route path="/complete-profile" render={(routerProps) => <Profile {...routerProps} completedProfile={this.props.user.completedProfile}/>} />
           <Route path="/dashboard" render={() => <Dashboard />} />
           <Route path="/createidea" render={() => <CreateIdea />} />
           <Route path="/createquestion" render={() => <Createquestion />} />

@@ -2,11 +2,16 @@ import React from "react";
 import { connect } from "react-redux";
 import { profileActions } from "../../store/profile/actions";
 import { getUserState } from "../../store/user/selectors";
+import { Redirect} from "react-router-dom";
 
 
 class Profile extends React.Component {
   render() {
-    return (
+    let content;
+    if (this.props.completedProfile){
+      content = <Redirect to = "/dashboard" />
+    }else{
+      content =
       <div>
       <div className="signout" onClick={() => this.props.history.replace("/sign-out")}>
         Sign out
@@ -83,7 +88,9 @@ class Profile extends React.Component {
         <button onClick={this.props.createUser}>
           Validate your registration
         </button>
-      </div>
+      </div>}
+    return (
+      content
     );
   }
 }
