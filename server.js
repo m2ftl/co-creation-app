@@ -37,6 +37,22 @@ app.post('/createideanew', function(req, res) {
   });
 });
 
+app.post('/createquestionnew', function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
+  client.connect();
+  client.query("INSERT INTO questions (id, title, description,status,date,id_owner) VALUES (uuid_generate_v4(),$1,$2,'open',Now(),$3)", [req.body.title, req.body.description,req.body.uuid])
+  .then(res1 => {
+    res.send({result:"success"})
+    client.end()})
+  .catch(error => {
+    res.send({result:"failed"})
+    console.warn(error);
+  });
+});
+
 app.listen(port, function listening() {
   console.log("Listening on port ", port);
 });

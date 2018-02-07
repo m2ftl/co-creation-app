@@ -22,7 +22,7 @@ const renderField = ({
 }) => (
   <div>
     <label className="topTitle">{label}</label>
-    <input {...input} type={type} placeholder="Your Idea Title" className="form-control formset" />
+    <input {...input} type={type} placeholder="Your question Title" className="form-control formset" />
     {touched &&
       (error && <span className="errorForm">*{error}</span>)}
   </div>
@@ -32,13 +32,13 @@ const renderTextArea = ({input,label, meta: { touched, error, warning }}) => (
     <div>
         <label className="topTitle">{label}</label>
         <div>
-            <textarea {...input} className="form-control formset" placeholder="Describe your Idea" />
+            <textarea {...input} className="form-control formset" placeholder="Write your question" />
             {touched && ((error && <span>*{error}</span>) || (warning && <span>{warning}</span>))}
         </div>
     </div>
 );
 
-class Createideaform extends Component{
+class Createquestionform extends Component{
   render() {
     const { handleSubmit, pristine, submitting, invalid } = this.props;
     return (
@@ -50,12 +50,12 @@ class Createideaform extends Component{
                 name="title"
                 type="text"
                 component={renderField}
-                label="Idea Title:"
+                label="Question Title:"
               />
               <Field
               name="description"
               component={renderTextArea}
-              label="Idea Description:"
+              label="Question:"
               />
             </div>
         </div>
@@ -69,10 +69,10 @@ class Createideaform extends Component{
 }
 
 let createReduxForm = reduxForm({
-  form: 'createidea',
+  form: 'createquestion',
   validate
 })
 
-Createideaform = createReduxForm(Createideaform)
+Createquestionform = createReduxForm(Createquestionform)
 
-export default Createideaform;
+export default Createquestionform;
