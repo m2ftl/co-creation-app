@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prestart": "cd react-app && npm run build",
+    "prestart": "npm run build",
     "start": "node server.js",
-    "test": "cd react-app && npm test"
+    "test": "cd react-app && react-scripts test --env=jsdom",
+    "build": "cd react-app && react-scripts build",
+    "dev": "cd react-app && react-scripts start",
+    "eject": "cd react-app && react-scripts eject"
   },
   "dependencies": {
     "express": "^4.16.2",
@@ -24,7 +27,7 @@
     "type": "git",
     "url": "git+https://github.com/m2ftl/co-creation-app.git"
   },
-  "author": "",
+  "author": "m2ftl",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/m2ftl/co-creation-app/issues"
