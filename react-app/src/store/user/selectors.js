@@ -1,5 +1,4 @@
 export function getUserState(state) {
-  console.log(state);
   return {
     googleUser: {
       id: state.googleUserReducer.id,

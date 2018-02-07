@@ -22,14 +22,12 @@ app.get("*", (request, result) => {
 
 // Listen to POST requests to /users.
 app.post('/createideanew', function(req, res) {
-  console.log(req.body);
   const client = new PG.Client({
     connectionString: process.env.DATABASE_URL,
     ssl: true,
   });
-  console.log(process.env.DATABASE_URL);
   client.connect();
-  client.query("INSERT INTO ideas (id, title, description,status,date) VALUES (uuid_generate_v4(),$1,$2,'open',Now())", [req.body.title, req.body.description])
+  client.query("INSERT INTO ideas (id, title, description,status,date,id_owner) VALUES (uuid_generate_v4(),$1,$2,'open',Now(),$3)", [req.body.title, req.body.description,req.body.uuid])
   .then(res1 => {
     res.send({result:"success"})
     client.end()})
