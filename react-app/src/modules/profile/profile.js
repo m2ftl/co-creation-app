@@ -3,10 +3,14 @@ import { connect } from "react-redux";
 import { profileActions } from "../../store/profile/actions";
 import { getUserState } from "../../store/user/selectors";
 
+
 class Profile extends React.Component {
   render() {
     return (
       <div>
+      <div className="signout" onClick={() => this.props.history.replace("/sign-out")}>
+        Sign out
+      </div>
         <span style={{ textAlign: "left" }}>
           <h1>Complete your Profile</h1>
         </span>
@@ -25,6 +29,7 @@ class Profile extends React.Component {
                   placeholder="Last Name"
                   name="lastName"
                   type="text"
+                  value={this.props.googleUser.familyName}
                   onChange={this.props.updateLastName}
                 />
                 <select name="Gender" id="Gender" onChange={this.props.updateGender}>
@@ -44,6 +49,7 @@ class Profile extends React.Component {
                   placeholder="Email"
                   name="email"
                   type="text"
+                  value={this.props.googleUser.email}
                   onChange={this.props.updateEmail}
                 />
                 <input

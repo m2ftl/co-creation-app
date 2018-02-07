@@ -7,7 +7,6 @@ import store from "../store/store";
  */
 window.googleConnectCallback = function(googleUser) {
   // Useful data for your client-side scripts:
-  console.log("toto : ",googleUser);
   const profile = googleUser.getBasicProfile();
   store.dispatch({
     type: "LOGGED_IN",

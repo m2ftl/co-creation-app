@@ -4,10 +4,11 @@ const initialState = {
   givenName: null,
   familyName: null,
   avatar: null,
-  email: null
+  email: null,
+  loggedIn: false
 };
 
-export default function userReducer(state = initialState, action) {
+export default function googleUserReducer(state = initialState, action) {
   switch (action.type) {
     case "LOGGED_IN":
       return {
@@ -16,7 +17,8 @@ export default function userReducer(state = initialState, action) {
         givenName: action.givenName,
         familyName: action.familyName,
         avatar: action.avatar,
-        email: action.email
+        email: action.email,
+        loggedIn: true,
       };
     case "SIGN_OUT":
       return initialState;
