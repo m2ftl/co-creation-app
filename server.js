@@ -60,7 +60,7 @@ app.get('/viewideasall', function(req, res) {
     ssl: true,
   });
   client.connect();
-  client.query("SELECT title, description FROM ideas")
+  client.query("SELECT title, description, users.first_name, users.last_name FROM ideas INNER JOIN users ON ideas.id_owner=users.id")
   .then(res1 => {
     console.log(res1);
     client.end();
