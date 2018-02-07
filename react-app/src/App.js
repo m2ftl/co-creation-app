@@ -32,7 +32,7 @@ class App extends Component {
           <Route path="/dashboard" render={() => <Dashboard />} />
           <Route path="/createidea" render={() => <CreateIdea />} />
           <Route path="/createquestion" render={() => <Createquestion />} />
-          Route path="/viewideas" render={() => <ViewIdeas />} />
+          <Route path="/viewideas" render={() => <ViewIdeas />} />
           <Route path="/sign-out" render={() => (
             this.props.googleUser.loggedIn
               ? <SignOut />

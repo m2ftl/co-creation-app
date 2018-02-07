@@ -13,6 +13,7 @@ class ViewIdeas extends Component {
   }
 
   componentDidMount() {
+    console.log("Kikoo")
     retrieveIdeas()
     .then((response) => {
       console.log(response);
