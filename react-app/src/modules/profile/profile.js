@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { profileActions } from "../../store/profile/actions";
+import { getUserState } from "../../store/user/selectors";
 
 class Profile extends React.Component {
   render() {
@@ -17,6 +18,7 @@ class Profile extends React.Component {
                   placeholder="First Name"
                   name="firstName"
                   type="text"
+                  value={this.props.googleUser.givenName}
                   onChange={this.props.updateFirstName}
                 />
                 <input
@@ -83,4 +85,4 @@ class Profile extends React.Component {
   }
 }
 
-export default connect(null, profileActions)(Profile);
+export default connect(getUserState, profileActions)(Profile);
