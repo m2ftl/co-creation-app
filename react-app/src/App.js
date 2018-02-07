@@ -4,9 +4,9 @@ import Profile from "./modules/profile/profile.js";
 import Header from './modules/header/Header';
 import Dashboard from './modules/dashboard/Dashboard';
 import CreateIdea from "./modules/ideas/Createidea";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import Insertidea from "./modules/ideas/actions";
-
+import { connect } from 'react-redux';
 
 class App extends Component {
 
@@ -34,4 +34,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
