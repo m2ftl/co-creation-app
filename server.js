@@ -5,6 +5,11 @@ const path = require('path');
 const PG = require('pg');
 const bodyParser = require('body-parser');
 
+if (!process.env.DATABASE_URL) {
+  console.error("environment variables not sourced");
+  exit();
+}
+
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
@@ -29,10 +34,10 @@ app.post('/createideanew', function(req, res) {
   client.connect();
   client.query("INSERT INTO ideas (id, title, description,status,date,id_owner) VALUES (uuid_generate_v4(),$1,$2,'open',Now(),$3)", [req.body.title, req.body.description,req.body.uuid])
   .then(res1 => {
-    res.send({result:"success"})
+    res.json({result:"success"})
     client.end()})
   .catch(error => {
-    res.send({result:"failed"})
+    res.json({result:"failed"})
     console.warn(error);
   });
 });
