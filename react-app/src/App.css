@@ -148,14 +148,24 @@
   border: 1px solid #CECECE;
 }
 
-.idea_item span {
+.idea_description {
+  margin-left: 25px;
+  border: 1px solid #ffdf00;
+  display: none;
+}
+
+.idea_description:target {
+  display: block;
+}
+
+.idea_description span {
   font-style: italic;
   color: #CECECE;
   float:right;
   padding-right: 20px;
 }
 
-.italic {
+.subtitle_listIdeas {
   font-style: italic;
   color: grey;
 }
