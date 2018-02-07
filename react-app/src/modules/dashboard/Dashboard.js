@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import '../../App.css';
 import inesis_logo from '../../images/inesis-logo.png';
+import { Link } from "react-router-dom";
+
 
 export default class Dashboard extends Component {
   render() {
@@ -13,7 +15,9 @@ export default class Dashboard extends Component {
             <div>
               <h5>New Idea</h5>
               <p>Lorem Ipsum dolor sit amet</p>
+              <Link to="/createidea">
                 <a className="btn btn-dash">I have an idea!</a>
+              </Link>
             </div>
           </div>
           <div className="item_dash">

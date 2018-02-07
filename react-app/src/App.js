@@ -3,18 +3,14 @@ import './App.css';
 import Profile from "./modules/profile/profile.js";
 import Header from './modules/header/Header';
 import Dashboard from './modules/dashboard/Dashboard';
-import CreateIdea from "./modules/ideas/Createidea";
+import Createidea from "./modules/ideas/Createidea";
 import { Route, Switch, withRouter } from "react-router-dom";
-import Insertidea from "./modules/ideas/actions";
 import { connect } from 'react-redux';
 import User from "./modules/user/User";
 
 class App extends Component {
 
-  submit = values => {
-    // print the form values to the console
-      Insertidea(values);
-  }
+
 
   render() {
     return (
