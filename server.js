@@ -34,10 +34,10 @@ app.post('/createideanew', function(req, res) {
   client.connect();
   client.query("INSERT INTO ideas (id, title, description,status,date,id_owner) VALUES (uuid_generate_v4(),$1,$2,'open',Now(),$3)", [req.body.title, req.body.description,req.body.uuid])
   .then(res1 => {
-    res.json({result:"success"})
+    res.send({result:"success"})
     client.end()})
   .catch(error => {
-    res.json({result:"failed"})
+    res.send({result:"failed"})
     console.warn(error);
   });
 });
