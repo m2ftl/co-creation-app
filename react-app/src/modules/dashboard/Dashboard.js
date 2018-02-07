@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../../App.css';
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import inesis_logo from '../../images/inesis-logo.png';
 
 class Dashboard extends Component {
@@ -59,4 +59,4 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+export default withRouter(Dashboard);

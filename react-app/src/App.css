@@ -41,9 +41,9 @@
 .burger-menu button {
   margin-top: 7px;
   background-color: #363636;
-  border: 1px solid #ffdf00;
+  border: 1px solid #FFF;
   border-radius: 5px;
-  color: #ffdf00;
+  color: #FFF;
   width: 40px;
   height: 35px;
 }
@@ -53,7 +53,7 @@
   text-align: left;
   width: 130px;
   background-color: #363636;
-  color: #ffdf00;
+  color: #FFF;
 }
 
 #menu div {
@@ -62,7 +62,7 @@
 }
 
 #menu a {
-  color: #ffdf00;
+  color: #FFF;
   text-decoration: none;
 }
 
@@ -78,8 +78,6 @@
 }
 
 .inesis_logo {
-  background-color: #FFF;
-  padding: 5px;
 }
 
 .user_pic {
@@ -93,6 +91,15 @@
   justify-content: center;
   background: url("./images/bckgrd_Inesis_dash2.jpg");
   background-repeat:no-repeat;
+  background-size: 100% 100%;
+}
+
+@media (max-width: 800px) {
+  .container-flex-dashboard {
+  justify-content: center;
+  background-image: none;
+  background-color: #12110C;
+  }
 }
 
 .dash_row {
