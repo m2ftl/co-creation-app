@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
 import store from './store/store';
 import { Provider } from 'react-redux';
+import registerServiceWorker from './registerServiceWorker';
+import "./utils/google_connect"; // initialize global function
 import { BrowserRouter} from "react-router-dom";
 
 ReactDOM.render(
@@ -13,6 +14,6 @@ ReactDOM.render(
     <App />
   </Provider>
 </BrowserRouter>
-
 , document.getElementById('root'));
+
 registerServiceWorker();
