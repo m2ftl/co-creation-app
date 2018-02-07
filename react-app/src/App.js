@@ -24,7 +24,7 @@ class App extends Component {
     } else {
       profile = <div><User /></div>
     }
-
+    
     return (
       <div className="App">
         <Header />
