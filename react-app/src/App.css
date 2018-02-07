@@ -130,6 +130,36 @@
   color: #ffdf00;
 }
 
+/* View Ideas */
+
+.ideas_block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.idea_item {
+  text-align: left;
+  padding-left: 25px;
+  padding-bottom: 8px;
+  width: 600px;
+  margin: 10px;
+  border: 1px solid #CECECE;
+}
+
+.idea_item span {
+  font-style: italic;
+  color: #CECECE;
+  float:right;
+  padding-right: 20px;
+}
+
+.italic {
+  font-style: italic;
+  color: grey;
+}
+
 
 .topTitle {
   font-family: "Impact", fantasy;
