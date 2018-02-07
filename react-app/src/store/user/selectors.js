@@ -3,12 +3,12 @@ export function getUserState(state) {
 
   return {
     user: {
-      id: state.id,
-      fullname: state.fullname,
-      givenName: state.givenName,
-      familyName: state.familyName,
-      avatar: state.avatar,
-      email: state.email
+      id: state.userReducer.id,
+      fullname: state.userReducer.fullname,
+      givenName: state.userReducer.givenName,
+      familyName: state.userReducer.familyName,
+      avatar: state.userReducer.avatar,
+      email: state.userReducer.email
     }
   };
 }
