@@ -44,18 +44,28 @@ app.post('/createquestionnew', function(req, res) {
     ssl: true,
   });
 
-  console.log(Object.keys(req.body.weather));
+  const cat = Object.keys(req.body.category).filter(key => req.body.category[key]===true );
+  const lev = Object.keys(req.body.level).filter(key => req.body.level[key]===true );
+  const weath = Object.keys(req.body.weather).filter(key => req.body.weather[key]===true );
+
   client.connect();
-  client.query("INSERT INTO questions (id, title, description,status,date,id_owner) VALUES (uuid_generate_v4(),$1,$2,'open',Now(),$3) RETURNING *", [req.body.title, req.body.description,req.body.uuid])
-  .then(res1 => {
-    console.log(res1.rows[0].id);})
-  .then(res2 => {
-    res.send({result:"success"})
-    client.end()})
-  .catch(error => {
-    res.send({result:"failed"})
-    console.warn(error);
-  });
+  client.query("INSERT INTO questions (id, title, description,status,date,id_owner) VALUES (uuid_generate_v4(),$1,$2,'open',Now(),$3) RETURNING *", [req.body.title, req.body.description,req.body.uuid],
+  function(error, res1){
+    if(error){
+      console.warn(error);
+      res.send({result:"failed"});
+    }
+    weath.forEach(function(element) {
+      client.query("INSERT INTO question_weather (id_question, id_weather) VALUES ($1,$2)", [res1.rows[0].id,element])
+    });
+    lev.forEach(function(element) {
+      client.query("INSERT INTO question_level (id_question, id_level) VALUES ($1,$2)", [res1.rows[0].id,element])
+    });
+    cat.forEach(function(element) {
+      client.query("INSERT INTO question_index_category (id_question, id_index_category) VALUES ($1,$2)", [res1.rows[0].id,element])
+    });
+    res.send({result:"success"});
+});
 });
 
 app.get('/viewideasall', function(req, res) {
