@@ -24,7 +24,7 @@ class App extends Component {
     } else {
       profile = <div><User /></div>
     }
-
+    
     return (
       <div className="App">
         <Header />
@@ -32,7 +32,7 @@ class App extends Component {
         <Switch>
           <Route path="/complete-profile" render={(routerProps) => <Profile {...routerProps} />} />
           <Route path="/dashboard" render={() => <Dashboard />} />
-          <Route path="/createidea" render={() => <CreateIdea onSubmit={this.submit}/>} />
+          <Route path="/createidea" render={() => <CreateIdea />} />
           <Route path="/sign-out" render={() => (
             this.props.googleUser.loggedIn
               ? <SignOut />

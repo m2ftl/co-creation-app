@@ -29,11 +29,13 @@ app.post('/createideanew', function(req, res) {
   });
   console.log(process.env.DATABASE_URL);
   client.connect();
-  client.query("INSERT INTO ideas (id, title, description) VALUES (uuid_generate_v4(),$1,$2)", [req.body.title, req.body.description])
-  .then(res => {
+  client.query("INSERT INTO ideas (id, title, description,status,date) VALUES (uuid_generate_v4(),$1,$2,'open',Now())", [req.body.title, req.body.description])
+  .then(res1 => {
+    res.send({result:"success"})
     client.end()})
   .catch(error => {
-      console.warn(error);
+    res.send({result:"failed"})
+    console.warn(error);
   });
 });
 
