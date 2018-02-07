@@ -132,10 +132,14 @@
 
 .topTitle {
   font-family: "Impact", fantasy;
-  color: #4285f4;
+  color: #363636;
   font-size: 40px;
   text-shadow: 2px 2px 0 #DCDCDC;
   padding: 10px 0 30px 0;
+}
+
+.textareaset{
+  width: 90%;
 }
 
 .formset {

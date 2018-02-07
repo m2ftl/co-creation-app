@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Nav, Navbar, NavItem } from "react-bootstrap";
 import '../../App.css';
 import inesis_logo2 from '../../images/inesis_logo2.png';
 import user_pic from '../../images/user_pic.png';
