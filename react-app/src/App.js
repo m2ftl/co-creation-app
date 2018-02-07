@@ -22,6 +22,10 @@ class App extends Component {
       && !this.props.user.completedProfile
       ) {
       profile = <Redirect to = "/complete-profile" />
+    } else if (this.props.user.loggedIn
+      && this.props.user.completedProfile
+      ){
+      profile = <Redirect to = "/dashboard" />
     }
       else{
         profile= <User />
