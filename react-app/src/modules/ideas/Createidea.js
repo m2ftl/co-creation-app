@@ -12,6 +12,9 @@ const validate = values => {
   if (!values.title) {
     errors.title = 'Required';
   }
+  if (!values.content) {
+       errors.content = 'Required';
+   }
   return errors
 }
 
@@ -23,30 +26,25 @@ const renderField = ({
 }) => (
   <div>
     <label className="topTitle">{label}</label>
-    <input {...input} type={type} className="form-control formset" />
+    <input {...input} type={type} placeholder="Your Idea Title" className="form-control formset" />
     {touched &&
       (error && <span className="errorForm">*{error}</span>)}
   </div>
 )
 
-const renderText = ({
-  input,
-  label,
-  type,
-  meta: { touched, error }
-}) => (
-  <div>
-    <label className="topTitle">{label}</label>
-    <textarea rows="4" cols="120" className="form-control formset" />
-    {touched &&
-      (error && <span className="errorForm">*{error}</span>)}
-  </div>
-)
-
+const renderTextArea = ({input,label, meta: { touched, error, warning }}) => (
+    <div>
+        <label className="topTitle">{label}</label>
+        <div>
+            <textarea {...input} className="form-control formset" placeholder="Describe your Idea" />
+            {touched && ((error && <span>*{error}</span>) || (warning && <span>{warning}</span>))}
+        </div>
+    </div>
+);
 
 class ContactForm extends Component{
   render() {
-    const { handleSubmit, pristine, submitting, invalid } = this.props;
+    const { handleSubmit, pristine, submitting, invalid, description, content } = this.props;
     return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -59,14 +57,14 @@ class ContactForm extends Component{
                 label="Idea Title:"
               />
               <Field
-                name="description"
-                type="textarea"
-                component={renderText}
-                label="Idea Description:"
+              name="content"
+              component={renderTextArea}
+              {...content}
+              label="Idea Description:"
               />
             </div>
         </div>
-        <button type="submit" className="btn-primary submitset" disabled={invalid || pristine || submitting}>
+        <button type="submit" className="btn submitset" disabled={invalid || pristine || submitting}>
             Submit
         </button>
       </form>
@@ -82,8 +80,4 @@ let createReduxForm = reduxForm({
 
 ContactForm = createReduxForm(ContactForm)
 
-function mapStateToProps(state) {
-  return {
-  }
-}
-export default connect(mapStateToProps)(ContactForm);
+export default ContactForm;
