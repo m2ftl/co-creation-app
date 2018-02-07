@@ -2,6 +2,8 @@ const express = require('express');
 const port = process.env.PORT || 4000;
 const app = express();
 const path = require('path');
+const PG = require('pg');
+
 
 app.use("/static", express.static(path.join(__dirname, "react-app/build/static")));
 
