@@ -8,14 +8,14 @@ class User extends Component {
   render() {
     return (
       <div className="navbar">
-        {this.props.user.id ? (
+        {this.props.googleUser.id ? (
         <div>
-          <img alt={this.props.user.givenName} src={this.props.user.avatar} width={"70px"}/>
-          <span>Welcome {this.props.user.givenName}</span>
+          <img alt={this.props.googleUser.givenName} src={this.props.googleUser.avatar} width={"70px"}/>
+          <span>Welcome {this.props.googleUser.givenName}</span>
         </div>
         ) : null}
         <div>
-          {this.props.user.id ? (
+          {this.props.googleUser.id ? (
             <div className="signout" onClick={this.props.signOut}>
               Sign out
             </div>

@@ -1,11 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
 import { profileActions } from "../../store/profile/actions";
+import { getUserState } from "../../store/user/selectors";
+
 
 class Profile extends React.Component {
   render() {
     return (
       <div>
+      <div className="signout" onClick={() => this.props.history.replace("/sign-out")}>
+        Sign out
+      </div>
         <span style={{ textAlign: "left" }}>
           <h1>Complete your Profile</h1>
         </span>
@@ -17,12 +22,14 @@ class Profile extends React.Component {
                   placeholder="First Name"
                   name="firstName"
                   type="text"
+                  value={this.props.googleUser.givenName}
                   onChange={this.props.updateFirstName}
                 />
                 <input
                   placeholder="Last Name"
                   name="lastName"
                   type="text"
+                  value={this.props.googleUser.familyName}
                   onChange={this.props.updateLastName}
                 />
                 <select name="Gender" id="Gender" onChange={this.props.updateGender}>
@@ -42,6 +49,7 @@ class Profile extends React.Component {
                   placeholder="Email"
                   name="email"
                   type="text"
+                  value={this.props.googleUser.email}
                   onChange={this.props.updateEmail}
                 />
                 <input
@@ -83,4 +91,4 @@ class Profile extends React.Component {
   }
 }
 
-export default connect(null, profileActions)(Profile);
+export default connect(getUserState, profileActions)(Profile);

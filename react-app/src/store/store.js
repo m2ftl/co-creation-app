@@ -1,12 +1,12 @@
 import { createStore, combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import profileReducer from "./profile/reducers";
-import userReducer from "./user/reducer";
+import googleUserReducer from "./user/reducer";
 
 let reducers = combineReducers({
   form: formReducer,
   profileReducer: profileReducer,
-  userReducer: userReducer
+  googleUserReducer: googleUserReducer
 });
 
 let store = createStore(reducers);

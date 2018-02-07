@@ -13,6 +13,7 @@ let initialState={
     mild:false,
     sunny:false
   },
+  completedProfile: false
 }
 
 export default function profileReducer(state=initialState, action){
