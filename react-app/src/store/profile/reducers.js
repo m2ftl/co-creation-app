@@ -1,5 +1,6 @@
 let initialState={
   uuid:"234f683a-773f-4127-931e-6d1e7463856d",
+  id_user:"234f683a-773f-4127-931e-6d1e7463856d",
   firstName:"",
   lastName:"",
   gender:"",
@@ -14,21 +15,22 @@ let initialState={
     mild:false,
     sunny:false
   },
-  completedProfile: false
+  id_google:"",
+  completedProfile: false,
+  loggedIn: false
 }
 
 export default function profileReducer(state=initialState, action){
   switch(action.type){
-    case "UPDATE_FIRST_NAME":
-      return{
+    case "LOGGED_IN":
+      return {
         ...state,
-        firstName:action.firstName
-      }
-    case "UPDATE_LAST_NAME":
-      return{
-        ...state,
-        lastName:action.lastName
-      }
+        id_google: action.id,
+        firstName: action.givenName,
+        lastName: action.familyName,
+        email: action.email,
+        loggedIn: true,
+      };
     case "UPDATE_GENDER":
       return{
         ...state,
@@ -38,11 +40,6 @@ export default function profileReducer(state=initialState, action){
       return{
         ...state,
         birthdate:action.birthdate
-      }
-    case "UPDATE_EMAIL":
-      return{
-        ...state,
-        email:action.email
       }
     case "UPDATE_PHONE":
       return{
@@ -92,8 +89,10 @@ export default function profileReducer(state=initialState, action){
         }
         }
     case "CREATE_USER":
-    console.log(state)
-    return state
+    return{
+      ...state,
+      completedProfile: true
+    };
     default:
       return state;
   }

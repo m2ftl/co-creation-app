@@ -23,14 +23,12 @@ class Profile extends React.Component {
                   name="firstName"
                   type="text"
                   value={this.props.googleUser.givenName}
-                  onChange={this.props.updateFirstName}
                 />
                 <input
                   placeholder="Last Name"
                   name="lastName"
                   type="text"
                   value={this.props.googleUser.familyName}
-                  onChange={this.props.updateLastName}
                 />
                 <select name="Gender" id="Gender" onChange={this.props.updateGender}>
                   <option value="">Select your Gender</option>
@@ -50,7 +48,6 @@ class Profile extends React.Component {
                   name="email"
                   type="text"
                   value={this.props.googleUser.email}
-                  onChange={this.props.updateEmail}
                 />
                 <input
                   placeholder="Phone Number"
