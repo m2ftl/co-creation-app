@@ -33,7 +33,7 @@ class ViewIdeas extends Component {
         )
       } else {
         return (
-          <li></li>
+          <li>Sorry, no idea for the moment</li>
         )
       }
     });
