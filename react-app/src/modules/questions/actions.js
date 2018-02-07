@@ -6,7 +6,6 @@ export default function Insertquestion(values,useruuid)
       uuid: useruuid
     };
     console.log(input);
-
      // On submit of the form, send a POST request with the data to the server.
      return fetch('/createquestionnew', {
          method: 'POST',
