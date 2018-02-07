@@ -5,6 +5,11 @@ const path = require('path');
 const PG = require('pg');
 const bodyParser = require('body-parser');
 
+if (!process.env.DATABASE_URL) {
+  console.error("environment variables not sourced");
+  exit();
+}
+
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
