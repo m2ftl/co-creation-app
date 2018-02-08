@@ -28,12 +28,25 @@ class ViewIdeas extends Component {
     let listIdeas = this.state.ideas.map((idea, index) => {
       if(this.state.ideas.length !== 0){
         return (
-          <div className="idea_item">
-            <h3><a href={"#quest"+index}>+</a> {idea.title}</h3>
-            <div id={"quest"+index} className="idea_description">
-              <div>{idea.description}</div>
-              <span>submitted by {idea.first_name} {idea.last_name}</span>
+          <div className="idea_content">
+            <div className="idea_item">
+              <h3><a href={"#quest"+index}>+</a> {idea.title}</h3>
+              <div id={"quest"+index} className="idea_description">
+                <div>{idea.description}</div>
+                <span>submitted by {idea.first_name} {idea.last_name}</span>
+              </div>
             </div>
+
+            <div className="idea_buttons">
+              <input id="button-rotation" type="radio" name="button-rotation" />
+              <label htmlFor="button-rotation" className="flip"></label>
+
+              <div className="button">
+                <label htmlFor="button-rotation-none" className="button-back">:(</label>
+                <button className="button-front">Delete</button>
+              </div>
+            </div>
+
           </div>
         )
       } else {

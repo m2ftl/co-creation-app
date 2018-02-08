@@ -132,6 +132,11 @@
 
 /* View Ideas */
 
+.subtitle_listIdeas {
+  font-style: italic;
+  color: grey;
+}
+
 .ideas_block {
   display: flex;
   flex-direction: column;
@@ -171,9 +176,70 @@
   margin-top: 5px;
 }
 
-.subtitle_listIdeas {
-  font-style: italic;
-  color: grey;
+.idea_content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* Flipside Button */
+
+.idea_buttons {
+  width: 60px;
+  height: 30px;
+  position: relative;
+}
+
+.idea_buttons label {
+  position: absolute;
+  width: 0;
+  height: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+.idea_buttons .flip {
+  width: 60px;
+  height: 30px;
+}
+
+.idea_buttons input {
+  position: absolute;
+  clip: rect(0px, 0px, 0px, 0px);
+}
+.idea_buttons input:checked ~ label {
+  display: none;
+}
+.idea_buttons input:checked ~ .button {
+  transform: rotateX(180deg);
+}
+
+.idea_buttons .button {
+  transform-style: preserve-3d;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(.07,1.2,.98,1.25) 0s;
+}
+.idea_buttons .button-front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #f44336;
+  pointer-events: none;
+  color: #fff;
+  text-align: center;
+  backface-visibility: hidden;
+}
+.idea_buttons .button-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #333;
+  transform: translateZ(-1px) rotateX(180deg);
+  color: #fff;
+  text-align: center;
+  backface-visibility: hidden;
+  transition: box-shadow 0.5s ease 0s;
 }
 
 
