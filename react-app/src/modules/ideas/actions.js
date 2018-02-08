@@ -26,14 +26,3 @@ export default function Insertidea(values,useruuid)
          }
        });
   }
-
-export function retrieveIdeas () {
-  console.log("function launched");
-  return fetch('/viewideasall', {
-      method: 'GET',
-    })
-    .then(response => response.json())
-    .then(data => {
-      return data;
-    });
-}
