@@ -4,6 +4,7 @@ import Profile from "./modules/profile/profile.js";
 import Header from './modules/header/Header';
 import Dashboard from './modules/dashboard/Dashboard';
 import CreateIdea from "./modules/ideas/Createidea";
+import Createtest from "./modules/tests/Createtest";
 import Createquestion from "./modules/questions/Createquestion";
 import { Route, Switch, withRouter, Redirect} from "react-router-dom";
 import { connect } from 'react-redux';
@@ -32,6 +33,7 @@ class App extends Component {
           <Route path="/dashboard" render={() => <Dashboard />} />
           <Route path="/createidea" render={() => <CreateIdea />} />
           <Route path="/createquestion" render={() => <Createquestion />} />
+          <Route path="/createtest" render={() => <Createtest />} />
           <Route path="/viewideas" render={() => <ViewIdeas />} />
           <Route path="/sign-out" render={() => (
             this.props.googleUser.loggedIn
