@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import getQuestions from "../../store/questions/selectors";
 import questionsActions from '../../store/questions/actions';
 
-
 class Question extends Component {
   constructor(props){
     super(props);
@@ -28,10 +27,10 @@ class Question extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.addComment(this.state.current_input, this.props.useruuid, this.props.match.params.id)
+    this.props.addanswerquestion(this.state.current_input, this.props.useruuid, this.props.match.params.id)
     .then((response) => {
       if(response) {
-        window.location.reload()
+        this.props.history.push('/success');
       } else {
         this.props.history.push('/failed');
       }
@@ -46,7 +45,7 @@ class Question extends Component {
 
     return (
       <div className="ideas_block">
-        <h1>Idea details</h1>
+        <h1>Question details</h1>
         <div className="idea_item_display">
           <h3>{found_question.title}</h3>
           <div className="idea_description">
@@ -55,7 +54,7 @@ class Question extends Component {
           </div>
         </div>
         <form onSubmit={this.onSubmit}>
-          <label>Write a comment</label>
+          <label>Write your answer</label>
           <input type="text" onChange={this.handleInput}/>
           <button type="submit">Send</button>
         </form>

@@ -9,13 +9,13 @@ export default function questionsActions(dispatch){
           dispatch({ type: "RETRIEVE_QUESTIONS", data: data })
         });
     },
-    addComment: (comment, useruuid, question_id) => {
+    addanswerquestion: (answer, useruuid, question_id) => {
       const input = {
-        comment: comment,
+        answer: answer,
         owner: useruuid,
         question_id: question_id
       }
-      return fetch("/addcomment", {
+      return fetch("/addanswerquestion", {
           method: 'POST',
           headers: {
             'Accept': 'application/json',

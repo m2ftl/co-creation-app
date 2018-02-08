@@ -174,6 +174,38 @@ app.post('/addcomment', function(req, res) {
   });
 });
 
+app.get('/viewquestionsall', function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
+  client.connect();
+  client.query("SELECT questions.id,title, description, users.first_name, users.last_name,status FROM questions INNER JOIN users ON questions.id_owner=users.id")
+  .then(res1 => {
+    client.end();
+    res.send(res1.rows);
+  })
+  .catch(error => {
+    console.warn(error);
+  });
+});
+
+app.post('/addanswerquestion', function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
+  client.connect();
+  client.query("INSERT INTO answers (answer, status, id_owner, id_question, date, id) VALUES ($1,'open',$2,$3,Now(),uuid_generate_v4())", [req.body.answer, req.body.owner, req.body.question_id])
+  .then(res1 => {
+    res.send({result:"success"})
+    client.end()})
+  .catch(error => {
+    res.send({result:"failed"})
+    console.warn(error);
+  });
+});
+
 
 app.get("*", (request, result) => {
   result.sendFile(path.join(__dirname, "react-app/build/index.html"));

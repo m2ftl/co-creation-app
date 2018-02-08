@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import "../../App.css";
 import { connect } from 'react-redux';
-import getQuestion from "../../store/questions/selectors";
-import ideasActions from '../../store/questions/actions';
+import getQuestions from "../../store/questions/selectors";
+import questionsActions from '../../store/questions/actions';
 import { Link } from "react-router-dom";
 
-class ViewQuestion extends Component {
+class ViewQuestions extends Component {
 
   componentDidMount() {
     this.props.retrieveQuestions();
@@ -37,7 +37,7 @@ class ViewQuestion extends Component {
     return (
       <div className="ideas_block">
         <h1>Questions submitted</h1>
-        <p className="subtitle_listIdeas">Please feel free to like and/or comment any question</p>
+        <p className="subtitle_listIdeas">We need your answer to develop better products</p>
         {listQuestions}
       </div>
     );
