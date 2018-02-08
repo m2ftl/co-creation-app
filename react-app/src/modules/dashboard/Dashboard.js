@@ -46,7 +46,9 @@ export default class Dashboard extends Component {
             <div>
               <h5>Tests</h5>
               <p>Lorem Ipsum dolor sit amet</p>
+                <Link to="/viewtests">
                 <a className="btn btn-dash">Go!</a>
+                </Link>
             </div>
           </div>
         </div>

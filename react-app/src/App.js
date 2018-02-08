@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import User from "./modules/user/User";
 import SignOut from "./modules/user/SignOut"
 import ViewIdeas from "./modules/ideas/Viewideas";
+import ViewTests from "./modules/tests/Viewtests";
 import Idea from "./modules/ideas/Idea";
 import {getUser} from "./store/profile/selectors";
 
@@ -43,6 +44,7 @@ class App extends Component {
           <Route path="/createtest" render={() => <Createtest />} />
           <Route path="/viewideas" render={() => <ViewIdeas />} />
           <Route path="/viewidea/:id" render={(routerProps) => <Idea {...routerProps}/>} />
+          <Route path="/viewtests" render={() => <ViewTests />} />
           <Route path="/sign-out" render={() => (
             this.props.user.loggedIn && !this.props.user.completedProfile
               ? <SignOut />

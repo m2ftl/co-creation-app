@@ -4,8 +4,11 @@ export default function ideasActions(dispatch){
       return fetch('/viewideasall', {
           method: 'GET',
         })
-        .then(response => response.json())
+        .then(response => {
+          response.json();
+        })
         .then(data => {
+          console.log(data);
           dispatch({ type: "RETRIEVE_IDEAS", data: data })
         });
     },
