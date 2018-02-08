@@ -14,6 +14,7 @@ import ViewIdeas from "./modules/ideas/Viewideas";
 import Idea from "./modules/ideas/Idea";
 import ViewQuestions from "./modules/questions/Viewquestions";
 import Question from "./modules/questions/Question";
+import ViewTests from "./modules/tests/Viewtests";
 import {getUser} from "./store/profile/selectors";
 import Success from './modules/feedback/Success';
 import Failed from './modules/feedback/Failed';
@@ -51,6 +52,7 @@ class App extends Component {
           <Route path="/viewquestion/:id" render={(routerProps) => <Question {...routerProps}/>} />
           <Route path="/success" render={() => <Success />} />
           <Route path="/failed" render={() => <Failed />} />
+          <Route path="/viewtests" render={() => <ViewTests />} />
           <Route path="/sign-out" render={() => (
             this.props.user.loggedIn && !this.props.user.completedProfile
               ? <SignOut />
