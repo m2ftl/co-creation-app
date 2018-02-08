@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "../../App.css";
 import { connect } from 'react-redux';
-import { getIdeas } from "../../store/ideas/selectors"
+import getIdeas from "../../store/ideas/selectors";
 import ideasActions from '../../store/ideas/actions';
 
 
