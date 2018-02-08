@@ -4,6 +4,7 @@ import profileReducer from "./profile/reducers";
 import googleUserReducer from "./user/reducer";
 import ideasReducer from "./ideas/reducers";
 
+
 let reducers = combineReducers({
   form: formReducer,
   profileReducer: profileReducer,
