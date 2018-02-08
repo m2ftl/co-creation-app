@@ -1,11 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import { profileActions } from "../../store/profile/actions";
-import { getUserState } from "../../store/user/selectors";
+import { getUser } from "../../store/profile/selectors";
 import { Redirect} from "react-router-dom";
 
 
 class Profile extends React.Component {
+
+
   render() {
     let content;
     if (this.props.completedProfile){
@@ -19,7 +21,10 @@ class Profile extends React.Component {
         <span style={{ textAlign: "left" }}>
           <h1>Complete your Profile</h1>
         </span>
-        <form>
+        <form onSubmit={(e)=> {
+            e.preventDefault();
+            this.props.createUser(this.props.user)
+          }}>
           <div>
             <div className="row">
               <div>
@@ -27,13 +32,13 @@ class Profile extends React.Component {
                   placeholder="First Name"
                   name="firstName"
                   type="text"
-                  value={this.props.googleUser.givenName}
+                  value={this.props.user.firstName}
                 />
                 <input
                   placeholder="Last Name"
                   name="lastName"
                   type="text"
-                  value={this.props.googleUser.familyName}
+                  value={this.props.user.lastName}
                 />
                 <select name="Gender" id="Gender" onChange={this.props.updateGender}>
                   <option value="">Select your Gender</option>
@@ -52,7 +57,7 @@ class Profile extends React.Component {
                   placeholder="Email"
                   name="email"
                   type="text"
-                  value={this.props.googleUser.email}
+                  value={this.props.user.email}
                 />
                 <input
                   placeholder="Phone Number"
@@ -84,10 +89,10 @@ class Profile extends React.Component {
               </p>
             </div>
           </div>
+          <button type="submit">
+            Validate your registration
+          </button>
         </form>
-        <button onClick={this.props.createUser}>
-          Validate your registration
-        </button>
       </div>}
     return (
       content
@@ -95,4 +100,4 @@ class Profile extends React.Component {
   }
 }
 
-export default connect(getUserState, profileActions)(Profile);
+export default connect(getUser, profileActions)(Profile);

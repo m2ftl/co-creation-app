@@ -87,7 +87,7 @@ export default function profileReducer(state=initialState, action){
           sunny: !state.weather.sunny
         }
         }
-    case "CREATE_USER":
+    case "CREATE_USER":    
     return{
       ...state,
       completedProfile: true
