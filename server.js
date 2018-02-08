@@ -306,6 +306,24 @@ app.get('/:id/answers', function(req, res) {
   });
 });
 
+app.post('/addanswer', function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
+  console.log(req.body);
+  client.connect();
+  client.query("INSERT INTO test_answers (answer, rating, status, id_owner, id_test, id) VALUES ($1,'5','open',$2,$3,uuid_generate_v4())", [req.body.answer, req.body.owner, req.body.test_id])
+  .then(res1 => {
+    console.log(res1);
+    res.send({result:"success"})
+    client.end()})
+  .catch(error => {
+    res.send({result:"failed"})
+    console.warn(error);
+  });
+});
+
 
 app.get("*", (request, result) => {
   result.sendFile(path.join(__dirname, "react-app/build/index.html"));

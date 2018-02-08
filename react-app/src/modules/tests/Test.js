@@ -6,12 +6,37 @@ import testsActions from '../../store/tests/actions';
 
 
 class Test extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      current_textarea: ''
+    }
+  }
 
   componentDidMount() {
     if(this.props.tests.length === 0) {
       // TODO: fetch only this idea
       this.props.retrieveTests();
     }
+  }
+
+  handleInput = (event) => {
+    this.setState({
+      current_textarea: event.target.value
+    });
+    console.log(this.state.current_textarea);
+  }
+
+  onSubmit = (event) => {
+    event.preventDefault();
+    this.props.addAnswer(this.state.current_textarea, this.props.useruuid, this.props.match.params.id)
+    .then((response) => {
+      if(response) {
+        window.location.reload()
+      } else {
+        this.props.history.push('/failed');
+      }
+    });
   }
 
   render() {
@@ -26,9 +51,10 @@ class Test extends Component {
         <h3>{found_test.title}</h3>
         <div>{found_test.description}</div>
         <div>{found_test.question}</div>
-        <form>
-          <textarea placeholder="Let us know what you think">
+        <form onSubmit={this.onSubmit}>
+          <textarea placeholder="Your answer" onChange={this.handleInput}>
           </textarea>
+          <button type="submit">Send Answer</button>
         </form>
       </div>
     );
