@@ -38,7 +38,9 @@ export default class Dashboard extends Component {
             <div>
               <h5>Questions</h5>
               <p>Lorem Ipsum dolor sit amet</p>
-                <a className="btn btn-dash">Answer</a>
+              <Link to="/viewquestions">
+                <a className="btn btn-dash">Questions</a>
+              </Link>
             </div>
           </div>
           <div className="item_dash">

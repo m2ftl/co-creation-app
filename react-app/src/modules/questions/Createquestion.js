@@ -27,7 +27,6 @@ class Createquestion extends Component{
   }
 
   render() {
-    console.log(this.state.questionfirsttime);
     return (
       <div>
       {this.state.questionfirsttime &&

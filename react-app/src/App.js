@@ -12,7 +12,11 @@ import User from "./modules/user/User";
 import SignOut from "./modules/user/SignOut"
 import ViewIdeas from "./modules/ideas/Viewideas";
 import Idea from "./modules/ideas/Idea";
+import ViewQuestions from "./modules/questions/Viewquestions";
+import Question from "./modules/questions/Question";
 import {getUser} from "./store/profile/selectors";
+import Success from './modules/feedback/Success';
+import Failed from './modules/feedback/Failed';
 
 
 class App extends Component {
@@ -43,6 +47,10 @@ class App extends Component {
           <Route path="/createtest" render={() => <Createtest />} />
           <Route path="/viewideas" render={() => <ViewIdeas />} />
           <Route path="/viewidea/:id" render={(routerProps) => <Idea {...routerProps}/>} />
+          <Route path="/viewquestions" render={() => <ViewQuestions />} />
+          <Route path="/viewquestion/:id" render={(routerProps) => <Question {...routerProps}/>} />
+          <Route path="/success" render={() => <Success />} />
+          <Route path="/failed" render={() => <Failed />} />
           <Route path="/sign-out" render={() => (
             this.props.user.loggedIn && !this.props.user.completedProfile
               ? <SignOut />
