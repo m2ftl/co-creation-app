@@ -4,7 +4,7 @@ import Createquestionform from "./Createquestion_form";
 import Insertquestion from "./actions";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import getUser from "../../store/profile/selectors"
+import { getUser } from "../../store/profile/selectors"
 
 class Createquestion extends Component{
   constructor(props) {

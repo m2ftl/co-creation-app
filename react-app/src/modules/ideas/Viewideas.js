@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "../../App.css";
 import { connect } from 'react-redux';
-import getUser from "../../store/profile/selectors"
+import { getUser } from "../../store/profile/selectors"
 import { retrieveIdeas } from './actions';
 
 

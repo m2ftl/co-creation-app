@@ -4,7 +4,7 @@ import Createideaform from "./Createidea_form";
 import Insertidea from "./actions";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import getUser from "../../store/profile/selectors"
+import { getUser } from "../../store/profile/selectors"
 
 class Createidea extends Component{
   constructor(props) {
