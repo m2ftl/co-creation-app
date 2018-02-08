@@ -43,15 +43,25 @@ app.post('/createquestionnew', function(req, res) {
     connectionString: process.env.DATABASE_URL,
     ssl: true,
   });
+
+  const top = Object.keys(req.body.topic).filter(key => req.body.topic[key]===true );
+
   client.connect();
-  client.query("INSERT INTO questions (id, title, description,status,date,id_owner) VALUES (uuid_generate_v4(),$1,$2,'open',Now(),$3)", [req.body.title, req.body.description,req.body.uuid])
-  .then(res1 => {
-    res.send({result:"success"})
-    client.end()})
-  .catch(error => {
-    res.send({result:"failed"})
-    console.warn(error);
-  });
+  client.query("INSERT INTO questions (id, title, description,status,date,id_owner) VALUES (uuid_generate_v4(),$1,$2,'open',Now(),$3) RETURNING *", [req.body.title, req.body.description,req.body.uuid],
+  function(error, res1){
+    if(error){
+      console.warn(error);
+      res.send({result:"failed"});
+    } else {
+    top.forEach(function(element) {
+      client.query("INSERT INTO question_topic (id_question, topic) VALUES ($1,$2)", [res1.rows[0].id,element],function(error, res1){
+        if(error)
+          { console.warn(error);
+            res.send({result:"failed"})}
+      })
+    })}
+    res.send({result:"success"});
+  })
 });
 
 app.get('/viewideasall', function(req, res) {
