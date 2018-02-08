@@ -64,7 +64,6 @@ app.post('/createquestionnew', function(req, res) {
   })
 });
 
-
 app.get('/viewideasall', function(req, res) {
   const client = new PG.Client({
     connectionString: process.env.DATABASE_URL,
