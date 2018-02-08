@@ -42,5 +42,8 @@ export default function questionsActions(dispatch){
           dispatch({ type: "RETRIEVE_ANSWERS", data: data })
         });
     },
+    resetAnswers: () => {
+      return dispatch({ type: "RESET_ANSWERS" })
+    }
   }
 }

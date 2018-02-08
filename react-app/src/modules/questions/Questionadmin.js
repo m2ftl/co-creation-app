@@ -15,7 +15,7 @@ class Questionadmin extends Component {
   }
 
   componentWillMount() {
-    this.props.resetComments();
+    this.props.resetAnswers();
   }
 
 
