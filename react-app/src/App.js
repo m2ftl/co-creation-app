@@ -48,14 +48,11 @@ class App extends Component {
           <Route path="/createtest" render={() => <Createtest />} />
           <Route path="/viewideas" render={() => <ViewIdeas />} />
           <Route path="/viewidea/:id" render={(routerProps) => <Idea {...routerProps}/>} />
-<<<<<<< HEAD
           <Route path="/viewquestions" render={() => <ViewQuestions />} />
           <Route path="/viewquestion/:id" render={(routerProps) => <Question {...routerProps}/>} />
           <Route path="/success" render={() => <Success />} />
           <Route path="/failed" render={() => <Failed />} />
-=======
           <Route path="/viewtests" render={() => <ViewTests />} />
->>>>>>> display all tests
           <Route path="/sign-out" render={() => (
             this.props.user.loggedIn && !this.props.user.completedProfile
               ? <SignOut />
