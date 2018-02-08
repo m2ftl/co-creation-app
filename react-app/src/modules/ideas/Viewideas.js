@@ -1,32 +1,20 @@
 import React, { Component } from 'react';
 import "../../App.css";
 import { connect } from 'react-redux';
-import { getUser } from "../../store/profile/selectors"
-import { retrieveIdeas } from './actions';
+import { getIdeas } from "../../store/ideas/selectors"
+import ideasActions from '../../store/ideas/actions';
 
 
 class ViewIdeas extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      ideas:[]
-    };
-  }
 
   componentDidMount() {
-    retrieveIdeas()
-    .then((response) => {
-      this.setState({
-        ideas: response
-      });
-    }
-    );
+    this.props.retrieveIdeas();
   }
 
   render() {
 
-    let listIdeas = this.state.ideas.map((idea, index) => {
-      if(this.state.ideas.length !== 0){
+    let listIdeas = this.props.ideas.map((idea, index) => {
+      if(this.props.ideas.length !== 0){
         return (
           <div className="idea_item">
             <h3><a href={"#quest"+index}>+</a> {idea.title}</h3>
@@ -54,4 +42,4 @@ class ViewIdeas extends Component {
   }
 }
 
-export default connect(getUser)(ViewIdeas);
+export default connect(getIdeas, ideasActions)(ViewIdeas);
