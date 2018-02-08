@@ -7,39 +7,24 @@ import ideasActions from '../../store/ideas/actions';
 
 class Idea extends Component {
 
-  componentDidMount() {
-    this.props.retrieveIdeas();
-  }
-
   render() {
-
-    let listIdeas = this.props.ideas.map((idea, index) => {
-      if(this.props.ideas.length !== 0){
-        return (
-          <div className="idea_item">
-            <h3><a href={"#quest"+index}>+</a> {idea.title}</h3>
-            <div id={"quest"+index} className="idea_description">
-              <div>{idea.description}</div>
-              <span>submitted by {idea.first_name} {idea.last_name}</span>
-            </div>
-          </div>
-        )
-      } else {
-        return (
-          <div>Sorry, there is no idea for the moment</div>
-        )
-      }
+    const found = this.props.ideas.find( (element) => {
+      return element.id===this.props.match.params.id;
     });
-
-
+    console.log(found);
     return (
       <div className="ideas_block">
-        <h1>Ideas submitted</h1>
-        <p className="subtitle_listIdeas">Please feel free to like and/or comment any idea</p>
-        {listIdeas}
+        <h1>Idea details</h1>
+        <div className="idea_item_display">
+          <h3>{found.title}</h3>
+          <div className="idea_description">
+            <div>{found.description}</div>
+            <span>submitted by {found.first_name} {found.last_name}</span>
+          </div>
+        </div>
       </div>
     );
   }
 }
 
-export default connect(getIdeas, ideasActions)(ViewIdeas);
+export default connect(getIdeas, ideasActions)(Idea);
