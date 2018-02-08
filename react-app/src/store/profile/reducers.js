@@ -1,5 +1,5 @@
 let initialState={
-  id_user:"234f683a-773f-4127-931e-6d1e7463856d",
+  id_user:"",
   firstName:"",
   lastName:"",
   gender:"",
@@ -87,10 +87,11 @@ export default function profileReducer(state=initialState, action){
           sunny: !state.weather.sunny
         }
         }
-    case "CREATE_USER":    
+    case "CREATE_USER":
     return{
       ...state,
-      completedProfile: true
+      completedProfile: true,
+      id_user: action.id_user,
     };
     default:
       return state;

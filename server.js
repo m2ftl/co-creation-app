@@ -31,10 +31,28 @@ app.post('/api/profile/create',function(req,res) {
     ssl: true,
   });
   client.connect();
-  client.query("INSERT INTO users (id,first_name,last_name,email,birthdate,gender,phone,is_admin,player_index,id_google) VALUES (uuid_generate_v4(),$1,$2,$3,$4,$5,$6,false,$7,$8)",
+  client.query("INSERT INTO users (id,first_name,last_name,email,birthdate,gender,phone,is_admin,player_index,id_google) VALUES (uuid_generate_v4(),$1,$2,$3,$4,$5,$6,false,$7,$8) RETURNING id",
   [req.body.firstName,req.body.lastName,req.body.email,req.body.birthdate,req.body.gender,req.body.phone,req.body.index,req.body.id_google])
   .then(resSQL => {
-    res.send({result:"Profile created successfully ! Welcome !"});
+    res.json({result:"Profile created successfully ! Welcome !", id_user:resSQL.rows[0].id});
+    client.end();
+  })
+  .catch(e => {
+    res.send({result:"Oups something wrong "})
+    console.warn(e);
+    });
+});
+
+app.get('/api/profile/:id',function(req,res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
+  client.connect();
+  client.query("SELECT id FROM users WHERE id=$1",
+  [req.params.id])
+  .then(resSQL => {
+    res.send({result:"Good"});
     client.end();
   })
   .catch(e => {
