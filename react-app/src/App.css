@@ -185,6 +185,20 @@
   color: grey;
 }
 
+/* Idea with comments */
+
+.comment_description {
+  padding-left: 20px;
+}
+
+.comment_description span {
+  font-style: italic;
+  color: #CECECE;
+  float:right;
+  padding-right: 20px;
+  margin-top: 5px;
+}
+
 
 .topTitle {
   font-family: "Impact", fantasy;

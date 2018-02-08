@@ -97,6 +97,38 @@ app.get('/viewideasall', function(req, res) {
   });
 });
 
+app.get('/:id/comments', function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
+  client.connect();
+  client.query("SELECT comment, comments.status, users.first_name, users.last_name, comments.date FROM comments INNER JOIN users ON comments.id_owner=users.id WHERE comments.id_idea=$1;", [req.params.id])
+  .then(res1 => {
+    client.end();
+    res.send(res1.rows);
+  })
+  .catch(error => {
+    console.warn(error);
+  });
+});
+
+app.post('/addcomment', function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
+  client.connect();
+  client.query("INSERT INTO comments (comment, status, id_owner, id_idea, date, id) VALUES ($1,'open',$2,$3,Now(),uuid_generate_v4())", [req.body.comment, req.body.owner, req.body.idea_id])
+  .then(res1 => {
+    res.send({result:"success"})
+    client.end()})
+  .catch(error => {
+    res.send({result:"failed"})
+    console.warn(error);
+  });
+});
+
 
 app.get("*", (request, result) => {
   result.sendFile(path.join(__dirname, "react-app/build/index.html"));

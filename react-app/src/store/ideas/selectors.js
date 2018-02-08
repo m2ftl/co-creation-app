@@ -1,6 +1,7 @@
 export default function getIdeas(state){
-  console.log(state);
   return{
-    ideas: state.ideasReducer.ideas
+    ideas: state.ideasReducer.ideas,
+    comments: state.ideasReducer.comments,
+    useruuid: state.profileReducer.id_user
   }
 }
