@@ -9,20 +9,19 @@ class ViewTests extends Component {
 
   componentDidMount() {
     this.props.retrieveTests();
-    console.log(this.props.tests);
   }
 
   render() {
-    console.log(this.props.tests);
     let listTests = this.props.tests.map((test, index) => {
-      console.log(test);
       if(this.props.tests.length !== 0) {
         return (
-          <div>
+          <div className="test_item">
+            <div className="product_picture">PRODUCT PICTURE</div>
             <h3>{test.title}</h3>
-            <div>{test.description}</div>
-            <div>{test.question}</div>
             <span>submitted {test.date}</span>
+            <Link to={"/viewtest/"+test.id}>
+              <div>Answer Test</div>
+            </Link>
           </div>
         )
       } else {

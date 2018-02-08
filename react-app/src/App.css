@@ -200,6 +200,21 @@
 }
 
 
+/* Tests */
+
+.test_item {
+  width: 300px;
+  border: 1px solid grey;
+  justify-content: center;
+}
+
+.product_picture {
+  width: 150px;
+  height: 100px;
+  border: 1px solid blue;
+}
+
+
 .topTitle {
   font-family: "Impact", fantasy;
   color: #363636;
