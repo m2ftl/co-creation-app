@@ -6,9 +6,9 @@ export default class Burger_menu extends Component {
     return(
         <div className="item-header-block burger-menu">
           <button type="button" data-toggle="collapse" data-target="#menu">
-            <span class="glyphicon glyphicon-menu-hamburger"></span>
+            <span className="glyphicon glyphicon-menu-hamburger"></span>
           </button>
-          <div id="menu" class="collapse">
+          <div id="menu" className="collapse">
             <div>
               <a>Submit an idea</a>
             </div>
@@ -22,7 +22,7 @@ export default class Burger_menu extends Component {
               <a>My Profile</a>
             </div>
             <div>
-              <a><span class="glyphicon glyphicon-log-in"></span>&nbsp;Log out</a>
+              <a><span className="glyphicon glyphicon-log-in"></span>&nbsp;Log out</a>
             </div>
           </div>
         </div>

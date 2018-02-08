@@ -140,22 +140,38 @@
 }
 
 .idea_item {
+  overflow: hidden;
   text-align: left;
   padding-left: 25px;
   padding-bottom: 8px;
   width: 600px;
+  height: 70px;
   margin: 10px;
   border: 1px solid #CECECE;
+  transition: height 1s;
 }
 
-.idea_item span {
+.idea_item:hover {
+  height: 160px;
+}
+
+.idea_description {
+  margin-top: 30px;
+  margin-left: 25px;
+  margin-right: 15px;
+  padding: 3px;
+  background-color: #CECECE;
+}
+
+.idea_description span {
   font-style: italic;
   color: #CECECE;
   float:right;
   padding-right: 20px;
+  margin-top: 5px;
 }
 
-.italic {
+.subtitle_listIdeas {
   font-style: italic;
   color: grey;
 }
