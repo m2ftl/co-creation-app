@@ -3,7 +3,7 @@ import "../../App.css";
 import { connect } from 'react-redux';
 import getIdeas from "../../store/ideas/selectors";
 import ideasActions from '../../store/ideas/actions';
-
+import { Link } from "react-router-dom";
 
 class ViewIdeas extends Component {
 
@@ -12,10 +12,11 @@ class ViewIdeas extends Component {
   }
 
   render() {
-
     let listIdeas = this.props.ideas.map((idea, index) => {
+      console.log(idea);
       if(this.props.ideas.length !== 0){
         return (
+          <Link to={'/viewidea/'+idea.id}>
           <div className="idea_item">
             <h3><a href={"#quest"+index}>+</a> {idea.title}</h3>
             <div id={"quest"+index} className="idea_description">
@@ -23,6 +24,7 @@ class ViewIdeas extends Component {
               <span>submitted by {idea.first_name} {idea.last_name}</span>
             </div>
           </div>
+          </Link>
         )
       } else {
         return (

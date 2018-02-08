@@ -151,6 +151,15 @@
   transition: height 1s;
 }
 
+.idea_item_display {
+  text-align: left;
+  padding-left: 25px;
+  padding-bottom: 8px;
+  width: 600px;
+  margin: 10px;
+  border: 1px solid #CECECE;
+}
+
 .idea_item:hover {
   height: 160px;
 }
