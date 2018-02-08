@@ -32,6 +32,18 @@ export default function questionsActions(dispatch){
             return false;
           }
         });
+    },
+    retrieveAnswers: (question) => {
+      return fetch(`/${question}/answers`, {
+          method: 'GET'
+        })
+        .then(response => response.json())
+        .then(data => {
+          dispatch({ type: "RETRIEVE_ANSWERS", data: data })
+        });
+    },
+    resetAnswers: () => {
+      return dispatch({ type: "RESET_ANSWERS" })
     }
   }
 }

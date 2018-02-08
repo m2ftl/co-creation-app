@@ -1,7 +1,7 @@
 export default function getQuestions(state){
   return{
     questions: state.questionsReducer.questions,
-    comments: state.questionsReducer.comments,
+    answers: state.questionsReducer.answers,
     useruuid: state.profileReducer.id_user
   }
 }
