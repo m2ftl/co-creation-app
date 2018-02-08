@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "../../App.css";
 import { connect } from 'react-redux';
-import getUseruuid from "../../store/ideas/selectors"
+import { getUser } from "../../store/profile/selectors"
 import { retrieveIdeas } from './actions';
 
 
@@ -54,4 +54,4 @@ class ViewIdeas extends Component {
   }
 }
 
-export default connect(getUseruuid)(ViewIdeas);
+export default connect(getUser)(ViewIdeas);

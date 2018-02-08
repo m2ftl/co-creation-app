@@ -1,4 +1,4 @@
-export function getUserState(state) {
+export const getUserState= (state) => {
   return {
     googleUser: {
       id: state.googleUserReducer.id,

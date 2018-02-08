@@ -1,23 +1,19 @@
-export function getUser(state){
+export const getUser= (state) => {
   return{
-    user: state.profileReducer,
+    user: {
+      id_user: state.profileReducer.id_user,
+      firstName:state.profileReducer.firstName,
+      lastName:state.profileReducer.lastName,
+      gender:state.profileReducer.gender,
+      birthdate:state.profileReducer.birthdate,
+      email:state.profileReducer.email,
+      phone:state.profileReducer.phone,
+      level:state.profileReducer.level,
+      index:state.profileReducer.index,
+      weather:state.profileReducer.weather,
+      id_google:state.profileReducer.id_google,
+      completedProfile:state.profileReducer.completedProfile,
+      loggedIn:state.profileReducer.loggedIn
+    }
   }
 }
-
-// attributs of user:
-// {
-//   firstName:"",
-//   lastName:"",
-//   gender:"",
-//   birthdate:"",
-//   email:"",
-//   phone:"",
-//   level:"",
-//   index:"",
-//   weather:{
-//     rain:false,
-//     cold:false,
-//     mild:false,
-//     sunny:false
-//   },
-// }

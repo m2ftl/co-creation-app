@@ -1,4 +1,4 @@
-import store from "../store/store";
+import {store} from "../store/store";
 
 /**
  * This function need to be accessible globally for google connect to work.

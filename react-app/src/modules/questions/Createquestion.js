@@ -4,7 +4,7 @@ import Createquestionform from "./Createquestion_form";
 import Insertquestion from "./actions";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import getUseruuid from "../../store/ideas/selectors"
+import { getUser } from "../../store/profile/selectors"
 
 class Createquestion extends Component{
   constructor(props) {
@@ -18,7 +18,7 @@ class Createquestion extends Component{
   submit = values => {
     // print the form values to the console
 
-      Insertquestion(values,this.props.useruuid)
+      Insertquestion(values,this.props.user.id_user)
       .then((response) =>
       this.setState({
         questionsub: response,
@@ -55,4 +55,4 @@ class Createquestion extends Component{
   }
 }
 
-export default connect(getUseruuid)(Createquestion);
+export default connect(getUser)(Createquestion);

@@ -2,11 +2,16 @@ import React from "react";
 import { connect } from "react-redux";
 import { profileActions } from "../../store/profile/actions";
 import { getUserState } from "../../store/user/selectors";
+import { Redirect} from "react-router-dom";
 
 
 class Profile extends React.Component {
   render() {
-    return (
+    let content;
+    if (this.props.completedProfile){
+      content = <Redirect to = "/dashboard" />
+    }else{
+      content =
       <div>
       <div className="signout" onClick={() => this.props.history.replace("/sign-out")}>
         Sign out
@@ -23,14 +28,12 @@ class Profile extends React.Component {
                   name="firstName"
                   type="text"
                   value={this.props.googleUser.givenName}
-                  onChange={this.props.updateFirstName}
                 />
                 <input
                   placeholder="Last Name"
                   name="lastName"
                   type="text"
                   value={this.props.googleUser.familyName}
-                  onChange={this.props.updateLastName}
                 />
                 <select name="Gender" id="Gender" onChange={this.props.updateGender}>
                   <option value="">Select your Gender</option>
@@ -50,7 +53,6 @@ class Profile extends React.Component {
                   name="email"
                   type="text"
                   value={this.props.googleUser.email}
-                  onChange={this.props.updateEmail}
                 />
                 <input
                   placeholder="Phone Number"
@@ -86,7 +88,9 @@ class Profile extends React.Component {
         <button onClick={this.props.createUser}>
           Validate your registration
         </button>
-      </div>
+      </div>}
+    return (
+      content
     );
   }
 }

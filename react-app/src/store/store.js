@@ -1,7 +1,11 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers} from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import profileReducer from "./profile/reducers";
 import googleUserReducer from "./user/reducer";
+import {getUser} from "./profile/selectors";
+import {getUserState} from "./user/selectors";
+
+
 
 let reducers = combineReducers({
   form: formReducer,
@@ -9,5 +13,4 @@ let reducers = combineReducers({
   googleUserReducer: googleUserReducer
 });
 
-let store = createStore(reducers);
-export default store;
+export const store = createStore(reducers);

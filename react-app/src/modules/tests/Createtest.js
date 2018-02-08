@@ -4,7 +4,7 @@ import Createtestform from "./Createtest_form";
 import Inserttest from "./actions";
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import getUseruuid from "../../store/ideas/selectors"
+import { getUser } from "../../store/profile/selectors"
 
 class Createtest extends Component{
   constructor(props) {
@@ -18,7 +18,7 @@ class Createtest extends Component{
   submit = values => {
     // print the form values to the console
 
-      Inserttest(values,this.props.useruuid)
+      Inserttest(values,this.props.user.id_user)
       .then((response) =>
       this.setState({
         testsub: response,
@@ -55,4 +55,4 @@ class Createtest extends Component{
   }
 }
 
-export default connect(getUseruuid)(Createtest);
+export default connect(getUser)(Createtest);
