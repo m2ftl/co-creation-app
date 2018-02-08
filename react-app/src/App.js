@@ -19,7 +19,8 @@ import Test from "./modules/tests/Test";
 import {getUser} from "./store/profile/selectors";
 import Success from './modules/feedback/Success';
 import Failed from './modules/feedback/Failed';
-
+import ViewQuestionsadmin from "./modules/questions/Viewquestionsadmin";
+import Questionadmin from "./modules/questions/Questionadmin";
 
 class App extends Component {
 
@@ -50,7 +51,9 @@ class App extends Component {
           <Route path="/viewideas" render={() => <ViewIdeas />} />
           <Route path="/viewidea/:id" render={(routerProps) => <Idea {...routerProps}/>} />
           <Route path="/viewquestions" render={() => <ViewQuestions />} />
+          <Route path="/viewquestionsadmin" render={() => <ViewQuestionsadmin />} />
           <Route path="/viewquestion/:id" render={(routerProps) => <Question {...routerProps}/>} />
+          <Route path="/viewquestionadmin/:id" render={(routerProps) => <Questionadmin {...routerProps}/>} />
           <Route path="/success" render={() => <Success />} />
           <Route path="/failed" render={() => <Failed />} />
           <Route path="/viewtests" render={() => <ViewTests />} />

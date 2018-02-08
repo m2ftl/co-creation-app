@@ -290,6 +290,22 @@ app.get('/viewtestsall', function(req, res) {
   });
 });
 
+app.get('/:id/answers', function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
+  client.connect();
+  client.query("SELECT answer, answers.status, users.first_name, users.last_name, answers.date FROM answers INNER JOIN users ON answers.id_owner=users.id WHERE answers.id_idea=$1;", [req.params.id])
+  .then(res1 => {
+    client.end();
+    res.send(res1.rows);
+  })
+  .catch(error => {
+    console.warn(error);
+  });
+});
+
 
 app.get("*", (request, result) => {
   result.sendFile(path.join(__dirname, "react-app/build/index.html"));

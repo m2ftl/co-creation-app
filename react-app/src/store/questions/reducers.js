@@ -1,6 +1,6 @@
 let initialState={
     questions: [],
-    comments: []
+    answers: []
 };
 
 export default function questionsReducer(state=initialState, action){
@@ -9,6 +9,11 @@ export default function questionsReducer(state=initialState, action){
       return{
         ...state,
         questions:action.data
+      }
+    case "RETRIEVE_ANSWERS":
+      return{
+        ...state,
+        answers:action.data
       }
     default:
       return state;
