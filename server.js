@@ -256,6 +256,23 @@ app.get('/viewquestionsall', function(req, res) {
   });
 });
 
+app.get('/archivetest/:id', function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
+  client.connect();
+  client.query("UPDATE tests SET status='closed' WHERE id=$1;",
+  [req.params.id])
+  .then(res1 => {
+    client.end();
+    res.send(res1.rows);
+  })
+  .catch(error => {
+    console.warn(error);
+  });
+});
+
 app.post('/addanswerquestion', function(req, res) {
   const client = new PG.Client({
     connectionString: process.env.DATABASE_URL,
@@ -279,7 +296,7 @@ app.get('/viewtestsall', function(req, res) {
     ssl: true,
   });
   client.connect();
-  client.query("SELECT title, description, status, id, date, question FROM tests")
+  client.query("SELECT title, description, status, id, date, question FROM tests WHERE status='opened'")
   .then(res1 => {
     console.log(res1.rows);
     client.end();

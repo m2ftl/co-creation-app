@@ -6,9 +6,14 @@ export default function testsActions(dispatch){
         })
         .then(response => response.json())
         .then(data => {
-          console.log(data);
           dispatch({ type: "RETRIEVE_TESTS", data: data })
         });
+    },
+    archiveTest: (id) => {
+      console.log(id);
+      return fetch(`/archivetest/${id}`, {
+          method: 'GET',
+        })
     },
     addAnswer: (answer, useruuid, test_id) => {
       const input = {
@@ -26,7 +31,6 @@ export default function testsActions(dispatch){
         })
         .then(response => response.json())
         .then(data => {
-          console.log(data);
           if (data.result === "success") {
             return true;
           } else {
