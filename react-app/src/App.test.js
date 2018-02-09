@@ -8,7 +8,6 @@ import { store } from "./store/store";
 
 if(window.localStorage) {
   // localStorage can be used
-} else {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(
