@@ -44,6 +44,27 @@ export default function ideasActions(dispatch){
             return false;
           }
         });
+    },
+    like: (idea_id, owner_id) => {
+      return fetch("/api/like/add", {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            idea_id: idea_id,
+            owner_id: owner_id
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.result === "success") {
+            console.log("success");
+          } else {
+            console.warn(data);
+          }
+        });
     }
   }
 }
