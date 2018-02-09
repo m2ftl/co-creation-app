@@ -22,6 +22,11 @@ class ViewTests extends Component {
             <Link to={"/viewtest/"+test.id}>
               <div>Answer Test</div>
             </Link>
+              <form onSubmit={(e)=> {
+                e.preventDefault();
+                this.props.archiveTest(test.id)}}>
+              <button type="submit">Archive Test</button>
+              </form>
           </div>
         )
       } else {
