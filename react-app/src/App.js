@@ -21,19 +21,33 @@ import Success from './modules/feedback/Success';
 import Failed from './modules/feedback/Failed';
 import ViewQuestionsadmin from "./modules/questions/Viewquestionsadmin";
 import Questionadmin from "./modules/questions/Questionadmin";
+import {profileActions} from './store/profile/actions';
+
 
 class App extends Component {
 
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.user.loggedIn && nextProps.user.loggedIn) {
+      this.props.checkUser(nextProps.user.id_google);
+    }
+  }
+
   render() {
     let profile;
+    console.log(this.props.user.completedProfile);
     if (this.props.user.loggedIn
-      && !this.props.user.completedProfile
+      && this.props.user.completedProfile === false
       ) {
       profile = <Redirect to = "/complete-profile" />
     } else if (this.props.user.loggedIn
-      && this.props.user.completedProfile
+      && this.props.user.completedProfile === true
       ){
       profile = <Redirect to = "/dashboard" />
+    }
+    else if (this.props.user.loggedIn
+      && this.props.user.completedProfile === null
+      ){
+      profile = <div> </div>
     }
       else{
         profile= <User />
@@ -63,6 +77,11 @@ class App extends Component {
               ? <SignOut />
               : <Redirect to = "/" />
           )} />
+          <Route path="/signoutmenu" render={() => (
+            this.props.user.loggedIn && this.props.user.completedProfile
+              ? <SignOut />
+              : <Redirect to = "/" />
+          )} />
           <Route render={() => profile} />
         </Switch>
       </div>
@@ -70,4 +89,4 @@ class App extends Component {
   }
 }
 
-export default withRouter(connect(getUser)(App));
+export default withRouter(connect(getUser,profileActions)(App));

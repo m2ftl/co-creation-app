@@ -325,6 +325,28 @@ app.post('/addanswer', function(req, res) {
 });
 
 
+app.get("/:id_google/checkuser", function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  });
+  console.log(req.params);
+  client.connect();
+  client
+    .query("SELECT COUNT(id_google) FROM users WHERE id_google=$1", [req.params.id_google])
+    .then(resSQL => {
+      client.end();
+      console.log(resSQL.rows[0].count);
+      res.json(resSQL.rows[0].count);
+    })
+    .catch(e => {
+      client.end();
+      res.send({ result: "Oups something wrong " });
+      console.warn(e);
+    });
+});
+
+
 app.get("*", (request, result) => {
   result.sendFile(path.join(__dirname, "react-app/build/index.html"));
 });

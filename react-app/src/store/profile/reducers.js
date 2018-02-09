@@ -19,11 +19,12 @@ let initialState={
     sunny:false
   },
   id_google:"",
-  completedProfile: false,
+  completedProfile: null,
   loggedIn: false
 }
 
 export default function profileReducer(state=initialState, action){
+  console.log(state);
   switch(action.type){
     case "LOGGED_IN":
       return {
@@ -97,7 +98,17 @@ export default function profileReducer(state=initialState, action){
       ...state,
       completedProfile: true,
       id_user: action.id_user,
-    };
+    }
+    case "USER_EXISTS":
+    return{
+      ...state,
+      completedProfile: true
+    }
+    case "USER_NOTEXISTS":
+    return{
+      ...state,
+      completedProfile: false
+    }
     default:
       return state;
   }

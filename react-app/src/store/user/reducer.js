@@ -9,6 +9,7 @@ const initialState = {
 };
 
 export default function googleUserReducer(state = initialState, action) {
+  console.log(state);
   switch (action.type) {
     case "LOGGED_IN":
       return {
