@@ -48,6 +48,44 @@
   height: 35px;
 }
 
+.burger-menuadmin {
+  float: left;
+  padding-left: 10px;
+  padding-top: 10px;
+  height: 70px;
+  background-color: #363636;
+  text-align: left;
+  width: 130px;
+}
+
+.burger-menuadmin button {
+  margin-top: 7px;
+  background-color: #363636;
+  border: 1px solid #FFF;
+  border-radius: 5px;
+  color: #FFF;
+  width: 40px;
+  height: 35px;
+}
+
+#menuadmin {
+  padding-top: 30px;
+  text-align: left;
+  width: 130px;
+  background-color: #363636;
+  color: #FFF;
+}
+
+#menuadmin div {
+  padding-bottom: 15px;
+  margin-left: 15px;
+}
+
+#menuadmin a {
+  color: #FFF;
+  text-decoration: none;
+}
+
 #menu {
   padding-top: 30px;
   text-align: left;

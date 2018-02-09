@@ -1,5 +1,9 @@
+
+const userid = localStorage.getItem("id_user")
+  ? localStorage.getItem("id_user"): "";
+
 let initialState={
-  id_user:"",
+  id_user: userid,
   firstName:"",
   lastName:"",
   gender:"",
@@ -88,6 +92,7 @@ export default function profileReducer(state=initialState, action){
         }
         }
     case "CREATE_USER":
+    localStorage.setItem("id_user", action.id_user);
     return{
       ...state,
       completedProfile: true,

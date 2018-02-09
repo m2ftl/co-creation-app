@@ -9,6 +9,7 @@ class Burger_menu extends Component {
 
   render(){
     return(
+      <div>
         <div className="item-header-block burger-menu">
           <button type="button" data-toggle="collapse" data-target="#menu">
             <span className="glyphicon glyphicon-menu-hamburger"></span>
@@ -22,6 +23,19 @@ class Burger_menu extends Component {
               <div><a><span className="glyphicon glyphicon-log-in"></span>&nbsp;Log out</a></div>
           </div>
         </div>
+        <div className="item-header-block burger-menuadmin">
+          <button type="button" data-toggle="collapse" data-target="#menuadmin">
+            <span className="glyphicon glyphicon-menu-hamburger"></span>
+          </button>
+          <div id="menuadmin" className="collapse">
+            <Link to="/dashboard"><div><a>Dashboard</a></div></Link>
+            <Link to="/createtest"><div><a>Create a test</a></div></Link>
+            <Link to="/createquestion"><div><a>Create a question</a></div></Link>
+            <Link to="/viewquestionsadmin"><div><a>Admin questions</a></div></Link>
+              <div><a><span className="glyphicon glyphicon-log-in"></span>&nbsp;Log out</a></div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
