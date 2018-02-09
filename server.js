@@ -349,7 +349,7 @@ app.get("/:id_google/checkuser", function(req, res) {
   });
   client.connect();
   client
-    .query("SELECT id FROM users WHERE id_google=$1", [req.params.id_google])
+    .query("SELECT id FROM users WHERE id_google=$1;", [req.params.id_google])
     .then(resSQL => {
       client.end();
       res.json(resSQL.rows.length>0?resSQL.rows[0].id:"no_user_in_DB");
@@ -361,6 +361,26 @@ app.get("/:id_google/checkuser", function(req, res) {
     });
 });
 
+
+app.get("/api/idea/:idea_id/like/count", function(req,res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  });
+  client.connect();
+  client
+    .query("SELECT COUNT(id_idea) FROM like_ideas WHERE id_idea=$1;",
+    [req.params.idea_id])
+    .then(resSQL => {
+      client.end();
+      return res.json(resSQL.rows[0].count)
+    })
+    .catch(e => {
+      client.end();
+      res.send({ result: "Oups something wrong " });
+      console.warn(e);
+    })
+});
 
 app.get("*", (request, result) => {
   result.sendFile(path.join(__dirname, "react-app/build/index.html"));
