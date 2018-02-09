@@ -5,8 +5,9 @@ import { BrowserRouter} from "react-router-dom";
 import {Provider} from 'react-redux';
 import { store } from "./store/store";
 
+const isNode =typeof module !== 'undefined'
 
-if(window.localStorage) {
+if (!isnode) {
   // localStorage can be used
   it('renders without crashing', () => {
     const div = document.createElement('div');
