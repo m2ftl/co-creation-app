@@ -240,13 +240,31 @@ app.post("/addcomment", function(req, res) {
     });
 });
 
-app.get('/viewquestionsall', function(req, res) {
+app.get('/viewquestionsall/:id', function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
+  console.log("param",req.params.id);
+  client.connect();
+  client.query("SELECT DISTINCT questions.id,title, description, users1.first_name, users1.last_name,status,date,question_topic.topic FROM questions INNER JOIN users as users1 ON questions.id_owner=users1.id INNER JOIN question_topic ON question_topic.id_question=questions.id and question_topic.topic=(SELECT level FROM users as users2 WHERE users2.id=$1) ORDER BY date DESC",[req.params.id])
+  .then(res1 => {
+    client.end();
+    console.log("OK");
+    res.send(res1.rows);
+  })
+  .catch(error => {
+    console.warn(error);
+  });
+});
+
+app.get('/viewquestionsalladmin', function(req, res) {
   const client = new PG.Client({
     connectionString: process.env.DATABASE_URL,
     ssl: true,
   });
   client.connect();
-  client.query("SELECT questions.id,title, description, users.first_name, users.last_name,status,date FROM questions INNER JOIN users ON questions.id_owner=users.id")
+  client.query("SELECT questions.id,title, description, users.first_name, users.last_name,status,date FROM questions INNER JOIN users ON questions.id_owner=users.id WHERE status='open' ORDER BY status DESC,date DESC")
   .then(res1 => {
     client.end();
     res.send(res1.rows);
@@ -358,21 +376,60 @@ app.get("/:id_google/checkuser", function(req, res) {
     });
 });
 
-app.get('/archivequestion/:id', function(req, res) {
-   const client = new PG.Client({
-     connectionString: process.env.DATABASE_URL,
-     ssl: true,
-   });
-   client.connect();
-   client.query("UPDATE questions SET status='closed' WHERE id=$1;",
-   [req.params.id])
-   .then(res1 => {
-     client.end();
+app.get("/archivequestion/:id", function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  });
+  console.log(req.params.id);
+  client.connect();
+  client
+    .query("UPDATE questions SET status='closed' WHERE id=$1;", [req.params.id])
+    .then(resSQL => {
+      client.end();
+      res.send({ data: "success" });
+    })
+    .catch(e => {
+      client.end();
+      res.send({ data: "failed" });
+      console.warn(e);
+    });
+});
+
+app.get("/reopenquestion/:id", function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  });
+  console.log(req.params.id);
+  client.connect();
+  client
+    .query("UPDATE questions SET status='open' WHERE id=$1;", [req.params.id])
+    .then(resSQL => {
+      client.end();
+      res.send({ data: "success" });
+    })
+    .catch(e => {
+      client.end();
+      res.send({ data: "failed" });
+      console.warn(e);
+    });
+});
+
+app.get('/:id/topics', function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
+  client.connect();
+  client.query("SELECT topic FROM question_topic WHERE id_question=$1;", [req.params.id])
+  .then(res1 => {
+    client.end();
     res.send(res1.rows);
-   })
-   .catch(error => {
-     console.warn(error);
-   });
+  })
+  .catch(error => {
+    console.warn(error);
+  });
 });
 
 app.get("/api/idea/:idea_id/like/count", function(req,res) {
@@ -394,6 +451,28 @@ app.get("/api/idea/:idea_id/like/count", function(req,res) {
       console.warn(e);
     })
 });
+
+app.post("/editquestion", function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  });
+  console.log(req.body);
+  client.connect();
+  client.query(
+    "UPDATE questions SET title=$1, description=$2 WHERE id=$3",
+    [req.body.title, req.body.description, req.body.id],
+    function(error, res1) {
+      if (error) {
+        console.warn(error);
+        res.send({ result: "failed" });
+      } else {
+        res.send({ result: "success" });
+      }
+    }
+  );
+});
+
 
 app.get("*", (request, result) => {
   result.sendFile(path.join(__dirname, "react-app/build/index.html"));

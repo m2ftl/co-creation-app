@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 class ViewQuestionsadmin extends Component {
 
   componentDidMount() {
-    this.props.retrieveQuestions();
+    this.props.retrieveQuestionsAdmin();
   }
 
   render() {

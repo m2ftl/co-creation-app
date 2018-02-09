@@ -22,6 +22,8 @@ import Failed from './modules/feedback/Failed';
 import ViewQuestionsadmin from "./modules/questions/Viewquestionsadmin";
 import Questionadmin from "./modules/questions/Questionadmin";
 import {profileActions} from './store/profile/actions';
+import Editquestion from "./modules/questions/Editquestion";
+import Editquestiontopics from "./modules/questions/Editquestiontopics";
 
 
 class App extends Component {
@@ -71,6 +73,8 @@ class App extends Component {
           <Route path="/failed" render={() => <Failed />} />
           <Route path="/viewtests" render={() => <ViewTests />} />
           <Route path="/viewtest/:id" render={(routerProps) => <Test {...routerProps}/>} />
+          <Route path="/editquestionadmin/:id" render={(routerProps) => <Editquestion {...routerProps} onSubmit={this.submit}/>} />
+          <Route path="/editquestiontopicsadmin/:id" render={(routerProps) => <Editquestiontopics {...routerProps} onSubmit={this.submit}/>} />
           <Route path="/sign-out" render={() => (
             this.props.user.loggedIn && !this.props.user.completedProfile
               ? <SignOut />

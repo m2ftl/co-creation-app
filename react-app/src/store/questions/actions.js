@@ -1,7 +1,8 @@
 export default function questionsActions(dispatch){
   return {
-    retrieveQuestions: () => {
-      return fetch('/viewquestionsall', {
+    retrieveQuestions: (id) => {
+      console.log("uu",id)
+      return fetch(`/viewquestionsall/${id}`, {
           method: 'GET',
         })
         .then(response => response.json())
@@ -46,9 +47,80 @@ export default function questionsActions(dispatch){
       return dispatch({ type: "RESET_ANSWERS" })
     },
     archiveQuestion: (id) => {
-      return fetch(`/archivetest/${id}`, {
+      console.log(id);
+      return fetch(`/archivequestion/${id}`, {
       method: 'GET',
       })
-    }
+      .then(response => response.json())
+      .then(data => {
+        if (data.data === "success") {
+          return true;
+        } else {
+          console.warn(data);
+          return false;
+        }
+      });
+    },
+    reOpenQuestion: (id) => {
+      console.log(id);
+      return fetch(`/reopenquestion/${id}`, {
+      method: 'GET',
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.data === "success") {
+          return true;
+        } else {
+          console.warn(data);
+          return false;
+        }
+      });
+    },
+    retrieveQuestionsAdmin: () => {
+      return fetch('/viewquestionsalladmin', {
+          method: 'GET',
+        })
+        .then(response => response.json())
+        .then(data => {
+          dispatch({ type: "RETRIEVE_QUESTIONS", data: data })
+        });
+    },
+    retrieveTopics: (question) => {
+      return fetch(`/${question}/topics`, {
+          method: 'GET'
+        })
+        .then(response => response.json())
+        .then(data => {
+          dispatch({ type: "RETRIEVE_TOPICS", data: data })
+        });
+    },
+    resetTopics: () => {
+      return dispatch({ type: "RESET_TOPICS" })
+    },
+    Inserteditquestion: (title,description,id) =>
+      {
+        const input = {
+          title:title,
+          description:description,
+          id: id
+        };
+         return fetch('/editquestion', {
+             method: 'POST',
+             headers: {
+               'Accept': 'application/json',
+               'Content-Type': 'application/json'
+              },
+             body: JSON.stringify(input)
+           })
+           .then(response => response.json())
+           .then(data => {
+             if (data.result === "success") {
+               return true;// dispatch a success
+             } else {
+               console.warn(data);
+               return false;
+             }
+           });
+      }
   }
 }
