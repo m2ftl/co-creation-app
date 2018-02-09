@@ -69,6 +69,9 @@ class Idea extends Component {
             <span>submitted by {found_comment.first_name} {found_comment.last_name}</span>
           </div>
         </div>
+          <div>
+            <button onClick={() => this.props.like(this.props.match.params.id, this.props.useruuid)} >Like!</button>
+          </div>
         <form onSubmit={this.onSubmit}>
           <label>Write a comment</label>
           <input type="text" onChange={this.handleInput}/>

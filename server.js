@@ -188,7 +188,7 @@ app.get("/viewideasall", function(req, res) {
   client.connect();
   client
     .query(
-      "SELECT ideas.id,title, description, users.first_name, users.last_name FROM ideas INNER JOIN users ON ideas.id_owner=users.id"
+      "SELECT ideas.id,title, description, users.first_name, users.last_name, ideas.id_owner FROM ideas INNER JOIN users ON ideas.id_owner=users.id"
     )
     .then(res1 => {
       client.end();
@@ -347,6 +347,27 @@ app.get("/:id_google/checkuser", function(req, res) {
 
 app.get("*", (request, result) => {
   result.sendFile(path.join(__dirname, "react-app/build/index.html"));
+});
+
+app.post("/api/like/add", function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  });
+  client.connect();
+  client.query(
+      "INSERT INTO like_ideas (id_idea, id_user) VALUES ($1,$2);",
+      [req.body.idea_id,req.body.owner_id]
+    )
+    .then(resSQL => {
+      client.end();
+      console.log("success");
+    })
+    .catch(e => {
+      client.end();
+      res.send({ result: "Oups something wrong " });
+      console.warn(e);
+    });
 });
 
 app.listen(port, function listening() {
