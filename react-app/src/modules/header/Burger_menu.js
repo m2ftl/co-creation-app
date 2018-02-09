@@ -20,7 +20,9 @@ class Burger_menu extends Component {
             <Link to="/viewideas"><div><a>View ideas</a></div></Link>
               <div><a>Tests</a></div>
               <div><a>My Profile</a></div>
+            <Link to="/signoutmenu">
               <div><a><span className="glyphicon glyphicon-log-in"></span>&nbsp;Log out</a></div>
+            </Link>
           </div>
         </div>
         <div className="item-header-block burger-menuadmin">
@@ -32,7 +34,9 @@ class Burger_menu extends Component {
             <Link to="/createtest"><div><a>Create a test</a></div></Link>
             <Link to="/createquestion"><div><a>Create a question</a></div></Link>
             <Link to="/viewquestionsadmin"><div><a>Admin questions</a></div></Link>
+            <Link to="/signoutmenu">
               <div><a><span className="glyphicon glyphicon-log-in"></span>&nbsp;Log out</a></div>
+            </Link>
           </div>
         </div>
       </div>

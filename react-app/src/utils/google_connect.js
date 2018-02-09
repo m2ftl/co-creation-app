@@ -8,6 +8,7 @@ import {store} from "../store/store";
 window.googleConnectCallback = function(googleUser) {
   // Useful data for your client-side scripts:
   const profile = googleUser.getBasicProfile();
+
   store.dispatch({
     type: "LOGGED_IN",
     id: profile.getId(), // Don't send this directly to your server!

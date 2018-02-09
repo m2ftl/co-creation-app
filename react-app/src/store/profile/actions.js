@@ -42,5 +42,21 @@ export function profileActions(dispatch) {
     updateCold: () => dispatch({ type: "UPDATE_COLD" }),
     updateMild: () => dispatch({ type: "UPDATE_MILD" }),
     updateSunny: () => dispatch({ type: "UPDATE_SUNNY" }),
+    checkUser: (id_google) => {
+      return fetch(`/${id_google}/checkuser`, {
+          method: 'GET',
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data==="1") {
+          dispatch({ type: "USER_EXISTS" })
+          return true
+          }
+          else {
+          dispatch({ type: "USER_NOTEXISTS" })
+          return false
+          }
+        });
+    }
   };
 }

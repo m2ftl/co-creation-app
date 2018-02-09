@@ -5,6 +5,10 @@ import { signOut } from "../../store/user/actions";
 import { getUserState } from "../../store/user/selectors";
 
 class User extends Component {
+
+
+
+
   render() {
     return (
       <div className="navbar">
