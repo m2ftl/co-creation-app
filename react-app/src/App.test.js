@@ -1,13 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import { BrowserRouter} from "react-router-dom";
-import {Provider} from 'react-redux';
-import { store } from "./store/store";
 
 
 
-  it('renders without crashing', () => {
-      const result = "correct";
-      expect (result.toBe("correct");
-  });
+test("Fake test", () => {
+  const result = 2
+  expect(result).toBe(2);
+})
