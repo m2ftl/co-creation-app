@@ -330,13 +330,11 @@ app.get("/:id_google/checkuser", function(req, res) {
     connectionString: process.env.DATABASE_URL,
     ssl: true
   });
-  console.log(req.params);
   client.connect();
   client
     .query("SELECT COUNT(id_google) FROM users WHERE id_google=$1", [req.params.id_google])
     .then(resSQL => {
       client.end();
-      console.log(resSQL.rows[0].count);
       res.json(resSQL.rows[0].count);
     })
     .catch(e => {

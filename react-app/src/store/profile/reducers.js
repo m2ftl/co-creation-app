@@ -24,7 +24,6 @@ let initialState={
 }
 
 export default function profileReducer(state=initialState, action){
-  console.log(state);
   switch(action.type){
     case "LOGGED_IN":
       return {

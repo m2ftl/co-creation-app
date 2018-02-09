@@ -34,7 +34,6 @@ class App extends Component {
 
   render() {
     let profile;
-    console.log(this.props.user.completedProfile);
     if (this.props.user.loggedIn
       && this.props.user.completedProfile === false
       ) {

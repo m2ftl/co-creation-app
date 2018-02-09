@@ -19,7 +19,6 @@ export function profileActions(dispatch) {
       })
         .then(res => res.json())
         .then(data => {
-          console.log("createuser");
           dispatch({ type: "CREATE_USER", id_user: data.id_user });
         })
         .catch(e => console.warn(e));
@@ -44,7 +43,6 @@ export function profileActions(dispatch) {
     updateMild: () => dispatch({ type: "UPDATE_MILD" }),
     updateSunny: () => dispatch({ type: "UPDATE_SUNNY" }),
     checkUser: (id_google) => {
-      console.log("toto",id_google);
       return fetch(`/${id_google}/checkuser`, {
           method: 'GET',
         })
