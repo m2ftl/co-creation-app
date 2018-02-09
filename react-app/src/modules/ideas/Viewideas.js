@@ -16,14 +16,14 @@ class ViewIdeas extends Component {
       console.log(idea);
       if(this.props.ideas.length !== 0){
         return (
-          <Link to={'/viewidea/'+idea.id}>
-          <div className="idea_item">
-            <h3><a href={"#quest"+index}>+</a> {idea.title}</h3>
-            <div id={"quest"+index} className="idea_description">
-              <div>{idea.description}</div>
-              <span>submitted by {idea.first_name} {idea.last_name}</span>
+          <Link key={index} to={'/viewidea/'+idea.id}>
+            <div className="idea_item">
+              <h3><a href={"#quest"+index}>+</a> {idea.title}</h3>
+              <div id={"quest"+index} className="idea_description">
+                <div>{idea.description}</div>
+                <span>submitted by {idea.first_name} {idea.last_name}</span>
+              </div>
             </div>
-          </div>
           </Link>
         )
       } else {

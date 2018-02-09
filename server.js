@@ -349,10 +349,10 @@ app.get("/:id_google/checkuser", function(req, res) {
   });
   client.connect();
   client
-    .query("SELECT COUNT(id_google) FROM users WHERE id_google=$1", [req.params.id_google])
+    .query("SELECT id FROM users WHERE id_google=$1", [req.params.id_google])
     .then(resSQL => {
       client.end();
-      res.json(resSQL.rows[0].count);
+      res.json(resSQL.rows.length>0?resSQL.rows[0].id:"no_user_in_DB");
     })
     .catch(e => {
       client.end();

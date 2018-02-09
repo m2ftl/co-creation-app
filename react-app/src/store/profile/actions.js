@@ -48,7 +48,8 @@ export function profileActions(dispatch) {
         })
         .then(response => response.json())
         .then(data => {
-          if (data==="1") {
+          if (data!=="no_user_in_DB") {
+          localStorage.setItem("id_user",data);
           dispatch({ type: "USER_EXISTS" })
           return true
           }
