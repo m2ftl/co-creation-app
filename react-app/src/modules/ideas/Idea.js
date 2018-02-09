@@ -9,11 +9,18 @@ class Idea extends Component {
   constructor(props){
     super(props);
     this.state = {
-      current_input: ''
+      current_input: '',
+      counterLikes:''
     }
   }
 
   componentDidMount() {
+
+    const counterLikes = this.props.countLikes(this.props.match.params.id)
+    .then(count => {
+      this.setState({counterLikes:count})
+      });
+
     if(this.props.ideas.length === 0) {
       // TODO: fetch only this idea
       this.props.retrieveIdeas();
@@ -72,6 +79,7 @@ class Idea extends Component {
           <div>
             <button onClick={() => this.props.like(this.props.match.params.id, this.props.useruuid)} >Like!</button>
           </div>
+          <div>ICI COUNTER DE LIKE : {this.state.counterLikes}</div>
         <form onSubmit={this.onSubmit}>
           <label>Write a comment</label>
           <input type="text" onChange={this.handleInput}/>

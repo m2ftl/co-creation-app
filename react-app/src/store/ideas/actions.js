@@ -65,6 +65,17 @@ export default function ideasActions(dispatch){
             console.warn(data);
           }
         });
+    },
+    countLikes: (idea_id) => {
+      return fetch(`/api/idea/${idea_id}/like/count`, {
+          method: 'GET'
+        })
+        .then(res => {
+          console.log("success");
+          return res.json();
+          })
+        .catch(e=>console.log(e))
+
     }
   }
 }
