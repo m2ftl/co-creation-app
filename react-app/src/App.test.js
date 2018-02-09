@@ -9,6 +9,7 @@ const isNode =typeof module !== 'undefined'
 
 if (!isnode) {
   // localStorage can be used
+if (typeof(Storage) !== "undefined") {
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(
@@ -20,4 +21,5 @@ if (!isnode) {
     , div);
     ReactDOM.unmountComponentAtNode(div);
   });
+  }
 }
