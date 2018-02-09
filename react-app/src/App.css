@@ -189,6 +189,35 @@
   transition: height 1s;
 }
 
+.question_item {
+  overflow: hidden;
+  text-align: left;
+  padding-left: 25px;
+  padding-bottom: 8px;
+  width: 600px;
+  height: 100px;
+  margin: 10px;
+  border: 1px solid #CECECE;
+  transition: height 1s;
+}
+
+.question_item:hover {
+  height: 160px;
+}
+
+.question_item_display {
+  text-align: left;
+  padding-left: 25px;
+  padding-bottom: 8px;
+  width: 600px;
+  margin: 10px;
+  border: 1px solid #CECECE;
+}
+
+.questionbutton {
+  float: left;
+}
+
 .idea_item_display {
   text-align: left;
   padding-left: 25px;

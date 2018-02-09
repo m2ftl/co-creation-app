@@ -30,18 +30,24 @@ class Questionadmin extends Component {
       )
     });
 
-    const found_question = this.props.questions.find((element) => {
+    let found_question = this.props.questions.find((element) => {
       return element.id===this.props.match.params.id;
     }) || [];
-
+    console.log(found_question);
     return (
       <div className="ideas_block">
         <h1>Question details</h1>
-        <div className="idea_item_display">
+        <div className="question_item_display">
           <h3>{found_question.title}</h3>
+          <div>{found_question.date} {found_question.status}</div>
           <div className="idea_description">
             <div>{found_question.description}</div>
             <span>submitted by {found_question.first_name} {found_question.last_name}</span>
+            <form onSubmit={(e)=> {
+              e.preventDefault();
+              this.props.archiveQuestion(this.props.match.params.id)}}>
+            <button type="submit">Archive Question</button>
+            </form>
           </div>
         </div>
         {this.props.answers.length !== 0

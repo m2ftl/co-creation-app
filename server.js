@@ -246,7 +246,7 @@ app.get('/viewquestionsall', function(req, res) {
     ssl: true,
   });
   client.connect();
-  client.query("SELECT questions.id,title, description, users.first_name, users.last_name,status FROM questions INNER JOIN users ON questions.id_owner=users.id")
+  client.query("SELECT questions.id,title, description, users.first_name, users.last_name,status,date FROM questions INNER JOIN users ON questions.id_owner=users.id")
   .then(res1 => {
     client.end();
     res.send(res1.rows);
@@ -358,6 +358,22 @@ app.get("/:id_google/checkuser", function(req, res) {
     });
 });
 
+app.get('/archivequestion/:id', function(req, res) {
+   const client = new PG.Client({
+     connectionString: process.env.DATABASE_URL,
+     ssl: true,
+   });
+   client.connect();
+   client.query("UPDATE questions SET status='closed' WHERE id=$1;",
+   [req.params.id])
+   .then(res1 => {
+     client.end();
+    res.send(res1.rows);
+   })
+   .catch(error => {
+     console.warn(error);
+   });
+});
 
 app.get("/api/idea/:idea_id/like/count", function(req,res) {
   const client = new PG.Client({

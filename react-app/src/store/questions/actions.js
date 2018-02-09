@@ -44,6 +44,11 @@ export default function questionsActions(dispatch){
     },
     resetAnswers: () => {
       return dispatch({ type: "RESET_ANSWERS" })
+    },
+    archiveQuestion: (id) => {
+      return fetch(`/archivetest/${id}`, {
+      method: 'GET',
+      })
     }
   }
 }
