@@ -15,7 +15,7 @@ class Test extends Component {
 
   componentDidMount() {
     if(this.props.tests.length === 0) {
-      // TODO: fetch only this idea
+      // TODO: fetch only this test
       this.props.retrieveTests();
     }
   }
@@ -24,15 +24,14 @@ class Test extends Component {
     this.setState({
       current_textarea: event.target.value
     });
-    console.log(this.state.current_textarea);
   }
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.addAnswer(this.state.current_textarea, this.props.useruuid, this.props.match.params.id)
+    this.props.addAnswerTest(this.state.current_textarea, this.props.useruuid, this.props.match.params.id)
     .then((response) => {
       if(response) {
-        window.location.reload()
+        this.props.history.push('/success');
       } else {
         this.props.history.push('/failed');
       }
@@ -46,16 +45,25 @@ class Test extends Component {
     }) || [];
 
     return (
-      <div className="test_item">
-        <h1>Test our product!</h1>
-        <h3>{found_test.title}</h3>
-        <div>{found_test.description}</div>
-        <div>{found_test.question}</div>
-        <form onSubmit={this.onSubmit}>
-          <textarea placeholder="Your answer" onChange={this.handleInput}>
-          </textarea>
-          <button type="submit">Send Answer</button>
-        </form>
+      <div className="div_global_test">
+        <div className="test_item">
+
+          <div className="description_test_for_answer">
+            <div className="vt_prdct_pict"><img src={""+found_test.image_path+""} /></div>
+            <div className="vt_test_title">{found_test.title}</div>
+            <div className="vt_test_descr">{found_test.description}</div>
+            <div className="vt_test_question">> {found_test.question}</div>
+          </div>
+
+          <div className="answer_test">
+            <form onSubmit={this.onSubmit}>
+              <div className="label_test_answer">Write your answer:</div>
+              <div><textarea onChange={this.handleInput}></textarea></div>
+              <div><button type="submit" className="btn">Send</button></div>
+            </form>
+          </div>
+
+        </div>
       </div>
     );
   }

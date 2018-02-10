@@ -12,21 +12,30 @@ class ViewTests extends Component {
   }
 
   render() {
+
     let listTests = this.props.tests.map((test, index) => {
       if(this.props.tests.length !== 0) {
+        let format_date = new Date(test.date);
+        let formated_date = format_date.getDate()+'/'+(format_date.getMonth())+1+'/'+format_date.getFullYear();
+
+        console.log(this.props.tests);
         return (
-          <div className="test_item">
-            <div className="product_picture">PRODUCT PICTURE</div>
-            <h3>{test.title}</h3>
-            <span>submitted {test.date}</span>
-            <Link to={"/viewtest/"+test.id}>
-              <div>Answer Test</div>
-            </Link>
+          <div className="viewtest_item_bckgrd">
+            <div className="viewtest_item_content">
+              <div className="product_picture">
+                <img src={""+test.image_path+""} />
+              </div>
+              <h3>{test.title}</h3>
+              <div className="viewtest_item_date">submitted: &nbsp;{formated_date}</div>
+              <Link to={"/viewtest/"+test.id}>
+                <div className="viewtest_item_button">Answer Test</div>
+              </Link>
               <form onSubmit={(e)=> {
                 e.preventDefault();
                 this.props.archiveTest(test.id)}}>
               <button type="submit">Archive Test</button>
               </form>
+            </div>
           </div>
         )
       } else {
@@ -39,7 +48,7 @@ class ViewTests extends Component {
       <div className="ideas_block">
         <h1>Tests</h1>
         <p className="subtitle_listIdeas">Test our products and let us know your opinion about it</p>
-        {listTests}
+        <div className="div_glob_tests">{listTests}</div>
       </div>
     );
   }

@@ -6,11 +6,11 @@ class Failed extends Component{
 
   render() {
     return (
-        <div>
-        <div> Sorry we receive an error please try again later... </div>
-        <Link to="/dashboard">
-        <button className="btn btn-dash">Dashboard</button>
-        </Link>
+        <div className="feedbacks">
+          <div className="feedback_baseline">Sorry we receive an error please try again later...</div>
+          <Link to="/dashboard">
+          <button className="btn btn-dash">Dashboard</button>
+          </Link>
         </div>
     );
   }
