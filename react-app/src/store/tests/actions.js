@@ -15,13 +15,13 @@ export default function testsActions(dispatch){
           method: 'GET',
         })
     },
-    addAnswer: (answer, useruuid, test_id) => {
+    addAnswerTest: (answer, useruuid, test_id) => {
       const input = {
         answer: answer,
         owner: useruuid,
         test_id: test_id
       }
-      return fetch("/addanswer", {
+      return fetch("/addanswertest", {
           method: 'POST',
           headers: {
             'Accept': 'application/json',

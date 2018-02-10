@@ -296,9 +296,8 @@ app.get('/viewtestsall', function(req, res) {
     ssl: true,
   });
   client.connect();
-  client.query("SELECT title, description, status, id, date, question FROM tests WHERE status='opened'")
+  client.query("SELECT * FROM tests WHERE status='open'")
   .then(res1 => {
-    console.log(res1.rows);
     client.end();
     res.send(res1.rows);
   })
@@ -323,16 +322,14 @@ app.get('/:id/answers', function(req, res) {
   });
 });
 
-app.post('/addanswer', function(req, res) {
+app.post('/addanswertest', function(req, res) {
   const client = new PG.Client({
     connectionString: process.env.DATABASE_URL,
     ssl: true,
   });
-  console.log(req.body);
   client.connect();
   client.query("INSERT INTO test_answers (answer, rating, status, id_owner, id_test, id) VALUES ($1,'5','open',$2,$3,uuid_generate_v4())", [req.body.answer, req.body.owner, req.body.test_id])
   .then(res1 => {
-    console.log(res1);
     res.send({result:"success"})
     client.end()})
   .catch(error => {

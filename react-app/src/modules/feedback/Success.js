@@ -6,11 +6,11 @@ class Success extends Component{
 
   render() {
     return (
-        <div>
-        <div> Thank you for your input!!!! </div>
-        <Link to="/dashboard">
-        <button className="btn btn-dash">Dashboard</button>
-        </Link>
+        <div className="feedbacks">
+          <div className="feedback_baseline">Thank you for your feedback</div>
+          <Link to="/dashboard">
+          <button className="btn btn-dash">Dashboard</button>
+          </Link>
         </div>
     );
   }
