@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../../App.css';
-import inesis_logo from '../../images/inesis-logo.png';
 import { Link } from "react-router-dom";
 import dash_icons_got_idea from '../../images/dash_icons_got_idea.png';
 import dash_icons_view_ideas from '../../images/dash_icons_view_ideas.png';

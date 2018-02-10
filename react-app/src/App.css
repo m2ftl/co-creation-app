@@ -24,98 +24,87 @@
 
 /* Header */
 
-.item-header-block {
-  display: inline;
+.container-header {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  align-items: flex-start;
 }
 
-.burger-menu {
-  float: left;
-  padding-left: 10px;
-  padding-top: 10px;
+.div_burger_menu {
+  text-align: left;
   height: 70px;
   background-color: #363636;
+  color: white;
+}
+
+.button_burger_menu {
+  margin-left: 25px;
+  margin-top: 10px;
+  background-color: #363636;
+  border-radius: 10px;
+}
+
+.button_burger_menu:focus {
+  outline:0;
+}
+
+.button_burger_menu img {
+  padding: 5px;
+}
+
+.wrapper_menu {
+  position: absolute;
+  width: 230px;
+  overflow: hidden;
   text-align: left;
-  width: 130px;
+  height: 0px;
+  transition: height 0.8s;
 }
 
-.burger-menu button {
-  margin-top: 7px;
-  background-color: #363636;
-  border: 1px solid #FFF;
-  border-radius: 5px;
-  color: #FFF;
-  width: 40px;
-  height: 35px;
+.display_menu {
+  height: 490px;
 }
 
-.burger-menuadmin {
-  float: left;
-  padding-left: 10px;
-  padding-top: 10px;
-  height: 70px;
-  background-color: #363636;
-  text-align: left;
-  width: 130px;
+.wrapper_menu_items div {
+  color: white;
+  padding: 15px 0 15px 20px;
+  border-top: 1px solid #363636;
+  background: linear-gradient(to bottom right, black, #363636);
 }
 
-.burger-menuadmin button {
-  margin-top: 7px;
-  background-color: #363636;
-  border: 1px solid #FFF;
-  border-radius: 5px;
-  color: #FFF;
-  width: 40px;
-  height: 35px;
+.wrapper_menu_items_admin div:not(.sep_admin_menu) {
+  color: white;
+  padding: 15px 0 15px 20px;
+  border-top: 1px solid #363636;
+  background: linear-gradient(to bottom right, black, #363636);
 }
 
-#menuadmin {
-  padding-top: 30px;
-  text-align: left;
-  width: 130px;
-  background-color: #363636;
-  color: #FFF;
+.sep_admin_menu {
+  padding: 4px;
+  background-color: #CECECE;
+  font-weight: bold;
+  font-style: italic;
+  text-decoration: underline;
+  color: black;
 }
 
-#menuadmin div {
-  padding-bottom: 15px;
-  margin-left: 15px;
-}
-
-#menuadmin a {
-  color: #FFF;
-  text-decoration: none;
-}
-
-#menu {
-  padding-top: 30px;
-  text-align: left;
-  width: 130px;
-  background-color: #363636;
-  color: #FFF;
-}
-
-#menu div {
-  padding-bottom: 15px;
-  margin-left: 15px;
-}
-
-#menu a {
-  color: #FFF;
-  text-decoration: none;
-}
 
 /* Header > NavBar */
 
 .container-grid-navbar {
   display: grid;
   grid-template-columns: 80% 20%;
-  align-items: center;
   height: 70px;
   background-color: #363636;
   color: white;
 }
 
-.inesis_logo {
+.item-navbar_inesis {
+  margin-top: 15px;
+}
+
+.item-navbar {
+  margin-top: 8px;
 }
 
 .user_pic {

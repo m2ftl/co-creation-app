@@ -1,14 +1,49 @@
 import React, { Component } from 'react';
 import '../../App.css';
-import Burger_menu from './Burger_menu';
-import Header_navBar from './Header_navBar';
+import BurgerMenuButton from './BurgerMenuButton';
+import HeaderNavBar from './HeaderNavBar';
+import WrapperMenu from './WrapperMenu';
+import WrapperMenuAdmin from './WrapperMenuAdmin';
 
 export default class Header extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sideClass: "",
+      buttonpush: 0
+    };
+  }
+
+  changeClass = (event) => {
+      event.preventDefault();
+      if (this.state.buttonpush === 0) {
+        this.setState({
+          wrapperClass:"display_menu",
+          buttonpush:1
+        });
+        this.forceUpdate();
+      }
+      else {
+        this.setState({
+          wrapperClass:"",
+          buttonpush:0
+        });
+        this.forceUpdate();
+      }
+  };
+
   render(){
     return(
-      <div className="container-header">
-        <Burger_menu />
-        <Header_navBar />
+      <div>
+        <div className="container-header">
+          <BurgerMenuButton changeClass={this.changeClass}/>
+          <HeaderNavBar />
+        </div>
+        <div className={"wrapper_menu "+this.state.wrapperClass}>
+          <WrapperMenu />
+          
+          <WrapperMenuAdmin />
+        </div>
       </div>
     );
   }
