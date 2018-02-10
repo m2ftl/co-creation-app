@@ -24,7 +24,7 @@ export default class Dashboard extends Component {
             </div>
           </div>
           <div className="item_dash">
-            <img src={dash_icons_view_ideas} alt="logo" width={"50px"} />
+            <img src={dash_icons_view_ideas} alt="logo" height={"50px"} />
             <div>
               <h5>View Ideas</h5>
               <p>Lorem Ipsum dolor sit amet</p>
