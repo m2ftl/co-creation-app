@@ -56,11 +56,11 @@ class Editquestion extends Component{
       <form onSubmit={this.onSubmit}>
       <div>
         <label className="topTitle">Question Title:</label>
-        <input type="text" placeholder={found_question.title} className="form-control formset" onChange={this.handleInputdescription} />
+        <input type="text" placeholder={found_question.title} className="form-control formset" onChange={this.handleInputtitle} />
       </div>
       <label className="topTitle">Question:</label>
       <div>
-          <textarea className="form-control formset" placeholder={found_question.description} onChange={this.handleInputtitle} />
+          <textarea className="form-control formset" placeholder={found_question.description} onChange={this.handleInputdescription} />
       </div>
       <button type="submit" className="btn submitset" >
           Update

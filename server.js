@@ -250,7 +250,7 @@ app.get('/viewquestionsall/:id', function(req, res) {
   client.query("SELECT DISTINCT questions.id,title, description, users1.first_name, users1.last_name,questions.status,questions.date,question_topic.topic,answers.id_owner FROM questions INNER JOIN users as users1 ON questions.id_owner=users1.id INNER JOIN question_topic ON question_topic.id_question=questions.id and question_topic.topic=(SELECT level FROM users as users2 WHERE users2.id=$1) LEFT JOIN answers ON answers.id_question=questions.id  and answers.id_owner =$1 WHERE questions.status='open' and answers.id_owner is NULL ORDER BY date DESC",[req.params.id])
   .then(res1 => {
     client.end();
-    console.log("OK");
+    console.log(res1.rows);
     res.send(res1.rows);
   })
   .catch(error => {
@@ -461,7 +461,7 @@ app.post("/editquestion", function(req, res) {
   client.connect();
   client.query(
     "UPDATE questions SET title=$1, description=$2 WHERE id=$3",
-    [req.body.title, req.body.description, req.body.id],
+    [req.body.title,req.body.description, req.body.id],
     function(error, res1) {
       if (error) {
         console.warn(error);

@@ -18,37 +18,37 @@ class Editquestion extends Component{
       <label  className="topTitle" >Select the level of destination</label>
       <div>
       <label> Beginner </label>
-      <input name="topic.Beginner" value="Beginner" type="checkbox" />
+      <input name="topic.beginner" value="beginner" type="checkbox" />
       <label className="ml-5"> Advanced </label>
-      <input name="topic.Advanced" value="Advanced" type="checkbox" />
+      <input name="topic.advanced" value="advanced" type="checkbox" />
       <label className="ml-5"> Expert </label>
-      <input name="topic.Expert" value="Expert" type="checkbox" />
+      <input name="topic.expert" value="expert" type="checkbox" />
       </div>
       <label  className="topTitle" >Select the index of destination</label>
       <div>
       <label> Category 1: to 4.4</label>
-      <input name="topic.Category1" value="Category1" type="checkbox"  />
+      <input name="topic.category1" value="category1" type="checkbox"  />
       <label className="ml-5"> Category 2: from 4.4 to 11.4 </label>
-      <input name="topic.Category2" value="Category2" type="checkbox"  />
+      <input name="topic.category2" value="category2" type="checkbox"  />
       <label className="ml-5"> Category 3: from 11.4 to 18.4 </label>
-      <input name="topic.Category3" value="Category 3" type="checkbox"  />
+      <input name="topic.category3" value="category 3" type="checkbox"  />
       <label className="ml-5"> Category 4: from 18.4 to 26.4 </label>
-      <input name="topic.Category4" value="Category4" type="checkbox"  />
+      <input name="topic.category4" value="category4" type="checkbox"  />
       <label className="ml-5"> Category 5: from 26.4 to 36 </label>
-      <input name="topic.Category5" value="Category5" type="checkbox"  />
+      <input name="topic.category5" value="category5" type="checkbox"  />
       <label className="ml-5"> Category 6: from 36 to 54 </label>
-      <input name="topic.Category6" value="Category6" type="checkbox"  />
+      <input name="topic.category6" value="category6" type="checkbox"  />
       </div>
       <label  className="topTitle" >Select the weather of destination</label>
       <div>
       <label> Rain </label>
-      <input name="topic.Rain" value="Rain" type="checkbox"  />
+      <input name="topic.rain" value="rain" type="checkbox"  />
       <label className="ml-5"> Cold </label>
-      <input name="topic.Cold" value="Cold" type="checkbox"  />
+      <input name="topic.cold" value="cold" type="checkbox"  />
       <label className="ml-5"> Mild </label>
-      <input name="topic.Mild" value="Mild" type="checkbox"  />
+      <input name="topic.mild" value="mild" type="checkbox"  />
       <label className="ml-5"> Sunny </label>
-      <input name="topic.Sunny" value="Sunny" type="checkbox"  />
+      <input name="topic.sunny" value="sunny" type="checkbox"  />
       </div>
 
       <button type="submit" className="btn submitset" >
