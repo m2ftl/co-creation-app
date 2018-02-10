@@ -9,6 +9,7 @@ class ViewQuestions extends Component {
 
   componentDidMount() {
     this.props.retrieveQuestions(this.props.useruuid);
+    this.props.retrieveQuestionsCounter(this.props.useruuid);
   }
 
   render() {
@@ -36,7 +37,7 @@ class ViewQuestions extends Component {
 
     return (
       <div className="ideas_block">
-        <h1>Questions submitted</h1>
+        <h1>{this.props.counterquestions} Questions submitted</h1>
         <p className="subtitle_listIdeas">We need your answer to develop better products</p>
         {listQuestions}
       </div>

@@ -3,6 +3,7 @@ export default function getQuestions(state){
     questions: state.questionsReducer.questions,
     answers: state.questionsReducer.answers,
     topics: state.questionsReducer.topics,
-    useruuid: state.profileReducer.id_user
+    useruuid: state.profileReducer.id_user,
+    counterquestions: state.questionsReducer.counterquestions,
   }
 }

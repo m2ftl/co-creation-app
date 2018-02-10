@@ -247,7 +247,7 @@ app.get('/viewquestionsall/:id', function(req, res) {
   });
   console.log("param",req.params.id);
   client.connect();
-  client.query("SELECT DISTINCT questions.id,title, description, users1.first_name, users1.last_name,status,date,question_topic.topic FROM questions INNER JOIN users as users1 ON questions.id_owner=users1.id INNER JOIN question_topic ON question_topic.id_question=questions.id and question_topic.topic=(SELECT level FROM users as users2 WHERE users2.id=$1) ORDER BY date DESC",[req.params.id])
+  client.query("SELECT DISTINCT questions.id,title, description, users1.first_name, users1.last_name,questions.status,questions.date,question_topic.topic,answers.id_owner FROM questions INNER JOIN users as users1 ON questions.id_owner=users1.id INNER JOIN question_topic ON question_topic.id_question=questions.id and question_topic.topic=(SELECT level FROM users as users2 WHERE users2.id=$1) LEFT JOIN answers ON answers.id_question=questions.id  and answers.id_owner =$1 WHERE questions.status='open' and answers.id_owner is NULL ORDER BY date DESC",[req.params.id])
   .then(res1 => {
     client.end();
     console.log("OK");
@@ -264,7 +264,7 @@ app.get('/viewquestionsalladmin', function(req, res) {
     ssl: true,
   });
   client.connect();
-  client.query("SELECT questions.id,title, description, users.first_name, users.last_name,status,date FROM questions INNER JOIN users ON questions.id_owner=users.id WHERE status='open' ORDER BY status DESC,date DESC")
+  client.query("SELECT questions.id,title, description, users.first_name, users.last_name,status,date FROM questions INNER JOIN users ON questions.id_owner=users.id ORDER BY status DESC,date DESC")
   .then(res1 => {
     client.end();
     res.send(res1.rows);
@@ -473,6 +473,21 @@ app.post("/editquestion", function(req, res) {
   );
 });
 
+app.get('/viewquestionsallcounter/:id', function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
+  client.connect();
+  client.query("SELECT DISTINCT COUNT (questions.id) FROM questions INNER JOIN users as users1 ON questions.id_owner=users1.id INNER JOIN question_topic ON question_topic.id_question=questions.id and question_topic.topic=(SELECT level FROM users as users2 WHERE users2.id=$1) LEFT JOIN answers ON answers.id_question=questions.id  and answers.id_owner =$1 WHERE questions.status='open' and answers.id_owner is NULL ",[req.params.id])
+  .then(res1 => {
+    client.end();
+    res.send(res1.rows[0].count);
+  })
+  .catch(error => {
+    console.warn(error);
+  });
+});
 
 app.get("*", (request, result) => {
   result.sendFile(path.join(__dirname, "react-app/build/index.html"));

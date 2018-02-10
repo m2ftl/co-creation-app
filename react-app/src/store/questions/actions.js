@@ -1,7 +1,6 @@
 export default function questionsActions(dispatch){
   return {
     retrieveQuestions: (id) => {
-      console.log("uu",id)
       return fetch(`/viewquestionsall/${id}`, {
           method: 'GET',
         })
@@ -121,6 +120,16 @@ export default function questionsActions(dispatch){
                return false;
              }
            });
-      }
+      },
+      retrieveQuestionsCounter: (id) => {
+        return fetch(`/viewquestionsallcounter/${id}`, {
+            method: 'GET',
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            dispatch({ type: "RETRIEVE_COUNTERQUESTIONS", data: data })
+          });
+      },
   }
 }
