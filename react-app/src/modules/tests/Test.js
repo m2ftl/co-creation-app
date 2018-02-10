@@ -49,9 +49,10 @@ class Test extends Component {
         <div className="test_item">
 
           <div className="description_test_for_answer">
+            <div className="vt_prdct_pict"><img src={""+found_test.image_path+""} /></div>
             <div className="vt_test_title">{found_test.title}</div>
             <div className="vt_test_descr">{found_test.description}</div>
-            <div className="vt_test_question">{found_test.question}</div>
+            <div className="vt_test_question">> {found_test.question}</div>
           </div>
 
           <div className="answer_test">
