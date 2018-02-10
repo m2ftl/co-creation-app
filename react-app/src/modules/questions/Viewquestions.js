@@ -8,17 +8,19 @@ import { Link } from "react-router-dom";
 class ViewQuestions extends Component {
 
   componentDidMount() {
-    this.props.retrieveQuestions();
+    this.props.retrieveQuestions(this.props.useruuid);
+    this.props.retrieveQuestionsCounter(this.props.useruuid);
   }
 
   render() {
+    console.log(this.props.questions);
     let listQuestions = this.props.questions.map((question, index) => {
-      console.log(question);
       if(this.props.questions.length !== 0){
         return (
           <Link to={'/viewquestion/'+question.id}>
-          <div className="idea_item">
+          <div className="question_item">
             <h3><a href={"#quest"+index}>+</a> {question.title}</h3>
+            <div>{question.date}</div>
             <div id={"quest"+index} className="idea_description">
               <div>{question.description}</div>
               <span>submitted by {question.first_name} {question.last_name}</span>
@@ -36,8 +38,8 @@ class ViewQuestions extends Component {
 
     return (
       <div className="ideas_block">
-        <h1>Questions submitted</h1>
-        <p className="subtitle_listIdeas">We need your answer to develop better products</p>
+        <h1>{this.props.counterquestions} Questions submitted</h1>
+        <p className="subtitle_listIdeas">We need your answer to develop <Link to={"/c25a5bc5-dd78-4820-9a03-c71bbd4a7690"}>better</Link> products</p>
         {listQuestions}
       </div>
     );

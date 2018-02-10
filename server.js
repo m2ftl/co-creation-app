@@ -240,13 +240,31 @@ app.post("/addcomment", function(req, res) {
     });
 });
 
-app.get('/viewquestionsall', function(req, res) {
+app.get('/viewquestionsall/:id', function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
+  console.log("param",req.params.id);
+  client.connect();
+  client.query("SELECT DISTINCT questions.id,title, description, users1.first_name, users1.last_name,questions.status,questions.date,question_topic.topic,answers.id_owner FROM questions INNER JOIN users as users1 ON questions.id_owner=users1.id INNER JOIN question_topic ON question_topic.id_question=questions.id and question_topic.topic=(SELECT level FROM users as users2 WHERE users2.id=$1) LEFT JOIN answers ON answers.id_question=questions.id  and answers.id_owner =$1 WHERE questions.status='open' and answers.id_owner is NULL ORDER BY date DESC",[req.params.id])
+  .then(res1 => {
+    client.end();
+    console.log(res1.rows);
+    res.send(res1.rows);
+  })
+  .catch(error => {
+    console.warn(error);
+  });
+});
+
+app.get('/viewquestionsalladmin', function(req, res) {
   const client = new PG.Client({
     connectionString: process.env.DATABASE_URL,
     ssl: true,
   });
   client.connect();
-  client.query("SELECT questions.id,title, description, users.first_name, users.last_name,status FROM questions INNER JOIN users ON questions.id_owner=users.id")
+  client.query("SELECT questions.id,title, description, users.first_name, users.last_name,status,date FROM questions INNER JOIN users ON questions.id_owner=users.id ORDER BY status DESC,date DESC")
   .then(res1 => {
     client.end();
     res.send(res1.rows);
@@ -358,6 +376,61 @@ app.get("/:id_google/checkuser", function(req, res) {
     });
 });
 
+app.get("/archivequestion/:id", function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  });
+  console.log(req.params.id);
+  client.connect();
+  client
+    .query("UPDATE questions SET status='closed' WHERE id=$1;", [req.params.id])
+    .then(resSQL => {
+      client.end();
+      res.send({ data: "success" });
+    })
+    .catch(e => {
+      client.end();
+      res.send({ data: "failed" });
+      console.warn(e);
+    });
+});
+
+app.get("/reopenquestion/:id", function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  });
+  console.log(req.params.id);
+  client.connect();
+  client
+    .query("UPDATE questions SET status='open' WHERE id=$1;", [req.params.id])
+    .then(resSQL => {
+      client.end();
+      res.send({ data: "success" });
+    })
+    .catch(e => {
+      client.end();
+      res.send({ data: "failed" });
+      console.warn(e);
+    });
+});
+
+app.get('/:id/topics', function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
+  client.connect();
+  client.query("SELECT topic FROM question_topic WHERE id_question=$1;", [req.params.id])
+  .then(res1 => {
+    client.end();
+    res.send(res1.rows);
+  })
+  .catch(error => {
+    console.warn(error);
+  });
+});
 
 app.get("/api/idea/:idea_id/like/count", function(req,res) {
   const client = new PG.Client({
@@ -377,6 +450,62 @@ app.get("/api/idea/:idea_id/like/count", function(req,res) {
       res.send({ result: "Oups something wrong " });
       console.warn(e);
     })
+});
+
+app.post("/editquestion", function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  });
+  console.log(req.body);
+  client.connect();
+  client.query(
+    "UPDATE questions SET title=$1, description=$2 WHERE id=$3",
+    [req.body.title,req.body.description, req.body.id],
+    function(error, res1) {
+      if (error) {
+        console.warn(error);
+        res.send({ result: "failed" });
+      } else {
+        res.send({ result: "success" });
+      }
+    }
+  );
+});
+
+app.get('/viewquestionsallcounter/:id', function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
+  client.connect();
+  client.query("SELECT DISTINCT COUNT (questions.id) FROM questions INNER JOIN users as users1 ON questions.id_owner=users1.id INNER JOIN question_topic ON question_topic.id_question=questions.id and question_topic.topic=(SELECT level FROM users as users2 WHERE users2.id=$1) LEFT JOIN answers ON answers.id_question=questions.id  and answers.id_owner =$1 WHERE questions.status='open' and answers.id_owner is NULL ",[req.params.id])
+  .then(res1 => {
+    client.end();
+    res.send(res1.rows[0].count);
+  })
+  .catch(error => {
+    console.warn(error);
+  });
+});
+
+app.get("/viewusersall", function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  });
+  client.connect();
+  client
+    .query(
+      "SELECT * FROM users ORDER BY users.last_name ASC"
+    )
+    .then(res1 => {
+      client.end();
+      res.send(res1.rows);
+    })
+    .catch(error => {
+      console.warn(error);
+    });
 });
 
 app.get("*", (request, result) => {

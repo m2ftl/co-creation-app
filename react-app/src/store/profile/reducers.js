@@ -20,7 +20,8 @@ let initialState={
   },
   id_google:"",
   completedProfile: null,
-  loggedIn: false
+  loggedIn: false,
+  userslist:[]
 }
 
 export default function profileReducer(state=initialState, action){
@@ -107,6 +108,11 @@ export default function profileReducer(state=initialState, action){
     return{
       ...state,
       completedProfile: false
+    }
+    case "RETRIEVE_USERS":
+    return{
+      ...state,
+      userslist: action.data
     }
     default:
       return state;

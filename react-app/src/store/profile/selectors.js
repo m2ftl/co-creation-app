@@ -14,6 +14,7 @@ export const getUser= (state) => {
       id_google:state.profileReducer.id_google,
       completedProfile:state.profileReducer.completedProfile,
       loggedIn:state.profileReducer.loggedIn
-    }
+    },
+    userslist:state.profileReducer.userslist
   }
 }

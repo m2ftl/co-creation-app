@@ -3,19 +3,23 @@ import "../../App.css";
 import { connect } from 'react-redux';
 import getQuestions from "../../store/questions/selectors";
 import questionsActions from '../../store/questions/actions';
+import { Link } from "react-router-dom";
+
 
 class Questionadmin extends Component {
 
   componentDidMount() {
     if(this.props.questions.length === 0) {
       // TODO: fetch only this idea
-      this.props.retrieveQuestions();
+      this.props.retrieveQuestionsAdmin();
     }
     this.props.retrieveAnswers(this.props.match.params.id);
+    this.props.retrieveTopics(this.props.match.params.id);
   }
 
   componentWillMount() {
     this.props.resetAnswers();
+    this.props.resetTopics();
   }
 
 
@@ -30,20 +34,67 @@ class Questionadmin extends Component {
       )
     });
 
-    const found_question = this.props.questions.find((element) => {
+    let listTopics = this.props.topics.map((topic, index) => {
+      return (
+          <div>{topic.topic}</div>
+      )
+    });
+
+    let found_question = this.props.questions.find((element) => {
       return element.id===this.props.match.params.id;
     }) || [];
-
+    console.log(found_question);
     return (
       <div className="ideas_block">
         <h1>Question details</h1>
-        <div className="idea_item_display">
+        <div className="question_item_display">
           <h3>{found_question.title}</h3>
+          <div>{found_question.date} {found_question.status}</div>
           <div className="idea_description">
             <div>{found_question.description}</div>
             <span>submitted by {found_question.first_name} {found_question.last_name}</span>
           </div>
         </div>
+        <span><form onSubmit={(e)=> {
+          e.preventDefault();
+          this.props.reOpenQuestion(this.props.match.params.id).then((response) => {
+            if(response) {
+              window.location.reload()
+            } else {
+              this.props.history.push('/failed');
+            }
+          })
+        }}>
+        <button className="btn btn-dash" type="submit">reopen Question</button>
+        </form></span>
+        <span><form onSubmit={(e)=> {
+          e.preventDefault();
+          this.props.archiveQuestion(this.props.match.params.id)
+          .then((response) => {
+            if(response) {
+              window.location.reload()
+            } else {
+              this.props.history.push('/failed');
+            }
+          })
+        }}>
+        <button className= "btn btn-dash mt-2" type="submit">Archive Question</button>
+        </form></span>
+        <Link to={'/editquestionadmin/'+this.props.match.params.id}>
+        <button className="btn btn-dash mt-2">Edit question</button>
+        </Link>
+        {this.props.topics.length !== 0
+          ?
+          <div className="ideas_block">
+          <div className="topic_item">
+          {listTopics}
+          </div>
+          </div>
+          : null
+        }
+        <Link to={'/editquestiontopicsadmin/'+this.props.match.params.id}>
+        <button className="btn btn-dash mt-2">Edit question topics</button>
+        </Link>
         {this.props.answers.length !== 0
           ? listComments
           : null

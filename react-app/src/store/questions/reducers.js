@@ -1,6 +1,8 @@
 let initialState={
     questions: [],
-    answers: []
+    answers: [],
+    topics: [],
+    counterquestions: 0
 };
 
 export default function questionsReducer(state=initialState, action){
@@ -10,11 +12,26 @@ export default function questionsReducer(state=initialState, action){
         ...state,
         questions:action.data
       }
+    case "RETRIEVE_COUNTERQUESTIONS":
+        return{
+          ...state,
+          counterquestions:action.data
+        }
     case "RETRIEVE_ANSWERS":
       return{
         ...state,
         answers:action.data
       }
+    case "RETRIEVE_TOPICS":
+        return{
+          ...state,
+          topics:action.data
+      }
+    case "RESET_QUESTIONS":
+        return{
+          ...state,
+          questions:[]
+        }
     default:
       return state;
   }
