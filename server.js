@@ -497,7 +497,7 @@ app.get("/viewusersall", function(req, res) {
   client.connect();
   client
     .query(
-      "SELECT * FROM users"
+      "SELECT * FROM users ORDER BY users.last_name ASC"
     )
     .then(res1 => {
       client.end();

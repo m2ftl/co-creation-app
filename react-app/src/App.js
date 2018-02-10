@@ -24,7 +24,7 @@ import Questionadmin from "./modules/questions/Questionadmin";
 import {profileActions} from './store/profile/actions';
 import Editquestion from "./modules/questions/Editquestion";
 import Editquestiontopics from "./modules/questions/Editquestiontopics";
-import Viewusers from "./modules/user/Viewusers"
+import Viewusers from "./modules/profile/Viewusers"
 
 class App extends Component {
 

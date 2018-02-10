@@ -492,6 +492,38 @@
   cursor: pointer;
 }
 
+.user_item {
+  overflow: hidden;
+  text-align: left;
+  padding-left: 25px;
+  padding-bottom: 8px;
+  width: 600px;
+  height: 70px;
+  margin: 10px;
+  border: 1px solid #CECECE;
+  transition: height 1s;
+}
+
+.user_item:hover {
+  height: 220px;
+}
+
+.user_description {
+  margin-top: 30px;
+  margin-left: 25px;
+  margin-right: 15px;
+  padding: 3px;
+  background-color: #CECECE;
+}
+
+.user_description span {
+  font-style: italic;
+  color: #CECECE;
+  float:right;
+  padding-right: 20px;
+  margin-top: 5px;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
