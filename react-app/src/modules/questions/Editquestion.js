@@ -8,8 +8,8 @@ class Editquestion extends Component{
   constructor(props){
     super(props);
     this.state = {
-      current_texttitle: '',
-      current_textdescription: ''
+      current_texttitle: null,
+      current_textdescription: null
     }
   }
     componentDidMount() {
@@ -17,6 +17,13 @@ class Editquestion extends Component{
         // TODO: fetch only this idea
         this.props.retrieveQuestionsAdmin();
       }
+      let found_question = this.props.questions.find((element) => {
+        return element.id===this.props.match.params.id;
+      }) || [];
+      this.setState({
+        current_texttitle: found_question.title,
+        current_textdescription: found_question.description
+      });
     }
 
     handleInputtitle = (event) => {
@@ -33,6 +40,7 @@ class Editquestion extends Component{
 
     onSubmit = (event) => {
       event.preventDefault();
+      console.log("state",this.state);
       this.props.Inserteditquestion(this.state.current_texttitle, this.state.current_textdescription, this.props.match.params.id)
       .then((response) => {
         if(response) {
@@ -45,19 +53,17 @@ class Editquestion extends Component{
     }
 
   render() {
-    let found_question = this.props.questions.find((element) => {
-      return element.id===this.props.match.params.id;
-    }) || [];
+
     return (
       <div>
       <form onSubmit={this.onSubmit}>
       <div>
         <label className="topTitle">Question Title:</label>
-        <input type="text" placeholder={found_question.title} className="form-control formset" onChange={this.handleInputtitle} />
+        <input type="text" value={this.state.current_texttitle} className="form-control formset" onChange={this.handleInputtitle} />
       </div>
       <label className="topTitle">Question:</label>
       <div>
-          <textarea className="form-control formset" placeholder={found_question.description} onChange={this.handleInputdescription} />
+          <textarea className="form-control formset" value={this.state.current_textdescription} onChange={this.handleInputdescription} />
       </div>
       <button type="submit" className="btn submitset" >
           Update
