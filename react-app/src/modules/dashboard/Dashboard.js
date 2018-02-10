@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import '../../App.css';
 import inesis_logo from '../../images/inesis-logo.png';
 import { Link } from "react-router-dom";
-
+import dash_icons_got_idea from '../../images/dash_icons_got_idea.png';
+import dash_icons_view_ideas from '../../images/dash_icons_view_ideas.png';
+import dash_icons_questions from '../../images/dash_icons_questions.png';
+import dash_icons_tests from '../../images/dash_icons_tests.png';
 
 export default class Dashboard extends Component {
   render() {
@@ -11,7 +14,7 @@ export default class Dashboard extends Component {
 
         <div className="dash_row">
           <div className="item_dash">
-            <img src={inesis_logo} alt="logo" width={"50px"} />
+            <img src={dash_icons_got_idea} alt="logo" width={"50px"} />
             <div>
               <h5>New Idea</h5>
               <p>Lorem Ipsum dolor sit amet</p>
@@ -21,7 +24,7 @@ export default class Dashboard extends Component {
             </div>
           </div>
           <div className="item_dash">
-            <img src={inesis_logo} alt="logo" width={"50px"} />
+            <img src={dash_icons_view_ideas} alt="logo" width={"50px"} />
             <div>
               <h5>View Ideas</h5>
               <p>Lorem Ipsum dolor sit amet</p>
@@ -34,7 +37,7 @@ export default class Dashboard extends Component {
 
         <div className="dash_row">
           <div className="item_dash">
-            <img src={inesis_logo} alt="logo" width={"50px"} />
+            <img src={dash_icons_questions} alt="logo" width={"50px"} />
             <div>
               <h5>Questions</h5>
               <p>Lorem Ipsum dolor sit amet</p>
@@ -44,7 +47,7 @@ export default class Dashboard extends Component {
             </div>
           </div>
           <div className="item_dash">
-            <img src={inesis_logo} alt="logo" width={"50px"} />
+            <img src={dash_icons_tests} alt="logo" width={"50px"} />
             <div>
               <h5>Tests</h5>
               <p>Lorem Ipsum dolor sit amet</p>
