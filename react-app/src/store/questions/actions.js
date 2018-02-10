@@ -131,5 +131,29 @@ export default function questionsActions(dispatch){
             dispatch({ type: "RETRIEVE_COUNTERQUESTIONS", data: data })
           });
       },
+      Inserteditquestiontopics: (topic,id) =>
+        {
+          const input = {
+            topic:topic,
+            id: id
+          };
+           return fetch('/editquestiontopics', {
+               method: 'POST',
+               headers: {
+                 'Accept': 'application/json',
+                 'Content-Type': 'application/json'
+                },
+               body: JSON.stringify(input)
+             })
+             .then(response => response.json())
+             .then(data => {
+               if (data.result === "success") {
+                 return true;// dispatch a success
+               } else {
+                 console.warn(data);
+                 return false;
+               }
+             });
+        }
   }
 }

@@ -45,12 +45,9 @@ class Editquestion extends Component{
     }
 
   render() {
-    console.log(this.props.questions)
     let found_question = this.props.questions.find((element) => {
       return element.id===this.props.match.params.id;
     }) || [];
-    console.log("title",found_question.title);
-    console.log(this.props.match.params.id);
     return (
       <div>
       <form onSubmit={this.onSubmit}>
