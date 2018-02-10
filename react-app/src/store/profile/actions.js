@@ -58,6 +58,15 @@ export function profileActions(dispatch) {
           return false
           }
         });
+    },
+    retrieveUsers: () => {
+      return fetch('/viewusersall', {
+          method: 'GET',
+        })
+        .then(response => response.json())
+        .then(data => {
+          dispatch({ type: "RETRIEVE_USERS", data: data })
+        });
     }
   };
 }

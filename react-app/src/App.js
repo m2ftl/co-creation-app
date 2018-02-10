@@ -24,7 +24,7 @@ import Questionadmin from "./modules/questions/Questionadmin";
 import {profileActions} from './store/profile/actions';
 import Editquestion from "./modules/questions/Editquestion";
 import Editquestiontopics from "./modules/questions/Editquestiontopics";
-
+import Viewusers from "./modules/user/Viewusers"
 
 class App extends Component {
 
@@ -75,6 +75,7 @@ class App extends Component {
           <Route path="/viewtest/:id" render={(routerProps) => <Test {...routerProps}/>} />
           <Route path="/editquestionadmin/:id" render={(routerProps) => <Editquestion {...routerProps} onSubmit={this.submit}/>} />
           <Route path="/editquestiontopicsadmin/:id" render={(routerProps) => <Editquestiontopics {...routerProps} onSubmit={this.submit}/>} />
+          <Route path="/viewusers" render={() => <Viewusers />} />
           <Route path="/sign-out" render={() => (
             this.props.user.loggedIn && !this.props.user.completedProfile
               ? <SignOut />
