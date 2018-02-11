@@ -180,14 +180,19 @@
 
 /* View Ideas */
 
-.ideas_block {
+.list_ideas_block {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.idea_item {
+.subtitle_listIdeas {
+  font-style: italic;
+  color: grey;
+}
+
+.list_ideas_item {
   overflow: hidden;
   text-align: left;
   padding-left: 25px;
@@ -197,7 +202,168 @@
   margin: 10px;
   border: 1px solid #CECECE;
   transition: height 1s;
+  color: #363636;
 }
+
+.list_ideas_item a {
+  text-decoration: none;
+  color: #363636;
+}
+
+.list_ideas_item:hover {
+  text-decoration: none;
+  height: 160px;
+}
+
+.idea_description {
+  margin-top: 30px;
+  margin-left: 25px;
+  margin-right: 15px;
+  padding: 3px;
+  background-color: #CECECE;
+}
+
+.idea_description span {
+  font-style: italic;
+  color: #CECECE;
+  float:right;
+  padding-right: 20px;
+  margin-top: 5px;
+}
+
+
+/* Idea Details page */
+
+.idea_page_global {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.idea_item {
+  display: grid;
+  grid-template-columns: 55% 42% 3%;
+  width: 700px;
+  height: 300px;
+  margin-top: 20px;
+  background-image: url(./images/bckgrd-color_test_answer.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 85%;
+  color: white;
+  text-align: left;
+  margin-bottom: 40px;
+}
+
+.idea_item_details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 10%;
+  padding-top: 10%;
+  padding-bottom: 10%;
+}
+
+.idea_item_title {
+  font-size: 18px;
+  color: #FFDF00;
+}
+
+.idea_item_description {
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 40px;
+}
+
+.idea_description_owner {
+  font-size: 11px;
+  font-style: italic;
+  font-weight: lighter;
+  color: #CECECE;
+  align-self: flex-end;
+  padding-right: 20px;
+  padding-top: 10px;
+}
+
+.like_block {
+  margin-top: 60px;
+  width: 400px;
+}
+
+.like_block div {
+  display: inline-block;
+}
+
+.like_block button {
+  background-color: #FFDF00;
+  color: #363636;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.like_counter {
+  color: #CECECE;
+  font-style: italic;
+  font-weight: lighter;
+}
+
+.idea_background_picture {
+  height: 300px;
+  background-image: url(./images/bckgrd_tests_004.jpg);
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.6);
+}
+
+/* Idea with comments */
+
+.idea_comments_block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.idea_comments_block form {
+  margin-bottom: 30px;
+}
+
+.idea_comments_block label {
+  margin-right: 10px;
+}
+
+.idea_comments_block input {
+  width: 300px;
+}
+
+.idea_comments_block button {
+  background-color: #FFDF00;
+  color: #363636;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.comment_description {
+  width: 450px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 5px;
+  margin: auto;
+  margin-bottom: 15px;
+}
+
+.comment_description span {
+  font-size: 12px;
+  font-style: italic;
+  color: #CECECE;
+  float:right;
+  padding-right: 20px;
+  margin-top: 15px;
+}
+
+
+
+/* Question Pages */
 
 .question_item {
   overflow: hidden;
@@ -244,53 +410,6 @@
   float: left;
 }
 
-.idea_item_display {
-  text-align: left;
-  padding-left: 25px;
-  padding-bottom: 8px;
-  width: 600px;
-  margin: 10px;
-  border: 1px solid #CECECE;
-}
-
-.idea_item:hover {
-  height: 160px;
-}
-
-.idea_description {
-  margin-top: 30px;
-  margin-left: 25px;
-  margin-right: 15px;
-  padding: 3px;
-  background-color: #CECECE;
-}
-
-.idea_description span {
-  font-style: italic;
-  color: #CECECE;
-  float:right;
-  padding-right: 20px;
-  margin-top: 5px;
-}
-
-.subtitle_listIdeas {
-  font-style: italic;
-  color: grey;
-}
-
-/* Idea with comments */
-
-.comment_description {
-  padding-left: 20px;
-}
-
-.comment_description span {
-  font-style: italic;
-  color: #CECECE;
-  float:right;
-  padding-right: 20px;
-  margin-top: 5px;
-}
 
 /* View Tests */
 

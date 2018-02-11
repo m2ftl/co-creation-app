@@ -17,9 +17,9 @@ class ViewIdeas extends Component {
       if(this.props.ideas.length !== 0){
         return (
           <Link key={index} to={'/viewidea/'+idea.id}>
-            <div className="idea_item">
-              <h3><a href={"#quest"+index}>+</a> {idea.title}</h3>
-              <div id={"quest"+index} className="idea_description">
+            <div className="list_ideas_item">
+              <h3>+ {idea.title}</h3>
+              <div className="idea_description">
                 <div>{idea.description}</div>
                 <span>submitted by {idea.first_name} {idea.last_name}</span>
               </div>
@@ -35,7 +35,7 @@ class ViewIdeas extends Component {
 
 
     return (
-      <div className="ideas_block">
+      <div className="list_ideas_block">
         <h1>Ideas submitted</h1>
         <p className="subtitle_listIdeas">Please feel free to like and/or comment any idea</p>
         {listIdeas}

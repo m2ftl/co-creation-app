@@ -44,9 +44,9 @@ class Question extends Component {
     }) || [];
 
     return (
-      <div className="ideas_block">
+      <div className="list_ideas_block">
         <h1>Question details</h1>
-        <div className="idea_item_display">
+        <div className="idea_item">
           <h3>{found_question.title}</h3>
           <div className="idea_description">
             <div>{found_question.description}</div>
