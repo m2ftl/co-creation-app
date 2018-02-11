@@ -40,9 +40,9 @@ export default class Header extends Component {
           <HeaderNavBar />
         </div>
         <div className={"wrapper_menu "+this.state.wrapperClass}>
-          <WrapperMenu />
-          
-          <WrapperMenuAdmin />
+          <WrapperMenu changeClass={this.changeClass}/>
+
+          <WrapperMenuAdmin changeClass={this.changeClass}/>
         </div>
       </div>
     );

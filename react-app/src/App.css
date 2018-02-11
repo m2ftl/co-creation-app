@@ -114,48 +114,69 @@
 
 /* Dashboard */
 
-.container-flex-dashboard {
-  justify-content: center;
-  background: url("./images/bckgrd_Inesis_dash2.jpg");
+.container-global-dashboard {
+  background: url("./images/bckgd_dashboard.jpg");
+  background-position-x: center;
   background-repeat:no-repeat;
+  background-color: #12110C;
   background-size: 100% 100%;
+  height: 100%;
 }
 
-@media (max-width: 800px) {
-  .container-flex-dashboard {
-  justify-content: center;
-  background-image: none;
+@media (max-width: 850px) {
+  .container-global-dashboard {
+  background: none;
   background-color: #12110C;
   }
 }
 
-.dash_row {
+.dashboard_items_row {
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
-.item_dash {
-  margin: 90px;
+.dashboard_item {
+  margin: 60px;
+  margin-left: 100px;
+  margin-right: 100px;
   padding: 20px;
-  border: 1px solid black;
   background-color: #ffdf00;
   border: 1px solid #363636;
+  border-radius: 15px;
 }
 
-.item_dash img {
-  padding-bottom: 15px;
+@media (max-width: 850px) {
+  .dashboard_item {
+    margin-left: 35px;
+    margin-right: 35px;
+  }
 }
 
-.item_dash a {
+@media (max-width: 564px) {
+  .dashboard_item {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    margin-left: 35px;
+    margin-right: 35px;
+  }
+}
+
+.dashboard_button {
+  background-color: #363636;
+}
+
+.dashboard_item a {
   margin-top: 20px;
   color: #ffdf00;
 }
 
-.btn-dash {
-  background-color: #363636;
-  color: #ffdf00;
+.dashboard_item img {
+  margin-bottom:10px;
 }
+
 
 /* View Ideas */
 

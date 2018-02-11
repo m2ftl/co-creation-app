@@ -9,49 +9,49 @@ import dash_icons_tests from '../../images/dash_icons_tests.png';
 export default class Dashboard extends Component {
   render() {
     return (
-      <div className="container-global-dashboard">
+      <div className="container-flex-dashboard">
 
-        <div className="dashboard_items_row">
-          <div className="dashboard_item">
-            <img src={dash_icons_got_idea} alt="logo" height={"50px"} />
+        <div className="dash_row">
+          <div className="item_dash">
+            <img src={dash_icons_got_idea} alt="logo" width={"50px"} />
             <div>
               <h5>New Idea</h5>
               <p>Lorem Ipsum dolor sit amet</p>
               <Link to="/createidea">
-                <a className="btn dashboard_button">I have an idea!</a>
+                <a className="btn btn-dash">I have an idea!</a>
               </Link>
             </div>
           </div>
-          <div className="dashboard_item">
+          <div className="item_dash">
             <img src={dash_icons_view_ideas} alt="logo" height={"50px"} />
             <div>
               <h5>View Ideas</h5>
               <p>Lorem Ipsum dolor sit amet</p>
               <Link to="/viewideas">
-                <a className="btn dashboard_button">View all</a>
+                <a className="btn btn-dash">View all</a>
               </Link>
             </div>
           </div>
         </div>
 
-        <div className="dashboard_items_row">
-          <div className="dashboard_item">
-            <img src={dash_icons_questions} alt="logo" height={"50px"} />
+        <div className="dash_row">
+          <div className="item_dash">
+            <img src={dash_icons_questions} alt="logo" width={"50px"} />
             <div>
               <h5>Questions</h5>
               <p>Lorem Ipsum dolor sit amet</p>
               <Link to="/viewquestions">
-                <a className="btn dashboard_button">Questions</a>
+                <a className="btn btn-dash">Questions</a>
               </Link>
             </div>
           </div>
-          <div className="dashboard_item">
-            <img src={dash_icons_tests} alt="logo" height={"50px"} />
+          <div className="item_dash">
+            <img src={dash_icons_tests} alt="logo" width={"50px"} />
             <div>
               <h5>Tests</h5>
               <p>Lorem Ipsum dolor sit amet</p>
               <Link to="/viewtests">
-                <a className="btn dashboard_button">Go!</a>
+                <a className="btn btn-dash">Go!</a>
               </Link>
             </div>
           </div>
