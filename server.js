@@ -92,6 +92,7 @@ app.get("/api/profile/:id", function(req, res) {
       client.end();
     })
     .catch(e => {
+      client.end();
       res.send({ result: "Oups something wrong " });
       console.warn(e);
     });
@@ -115,6 +116,7 @@ app.post("/createideanew", function(req, res) {
       client.end();
     })
     .catch(error => {
+      client.end();
       res.send({ result: "failed" });
       console.warn(error);
     });
@@ -139,6 +141,7 @@ app.post("/createquestionnew", function(req, res) {
     function(error, res1) {
       if (error) {
         console.warn(error);
+        client.end();
         res.send({ result: "failed" });
       } else {
         top.forEach(function(element) {
@@ -148,12 +151,14 @@ app.post("/createquestionnew", function(req, res) {
             function(error, res1) {
               if (error) {
                 console.warn(error);
+                client.end();
                 res.send({ result: "failed" });
               }
             }
           );
         });
       }
+      client.end();
       res.send({ result: "success" });
     }
   );
@@ -171,10 +176,11 @@ app.post("/createtestnew", function(req, res) {
       [req.body.title, req.body.description, req.body.uuid, req.body.question]
     )
     .then(res1 => {
-      res.send({ result: "success" });
       client.end();
+      res.send({ result: "success" });
     })
     .catch(error => {
+      client.end();
       res.send({ result: "failed" });
       console.warn(error);
     });
@@ -195,6 +201,7 @@ app.get("/viewideasall", function(req, res) {
       res.send(res1.rows);
     })
     .catch(error => {
+      client.end();
       console.warn(error);
     });
 });
@@ -215,6 +222,7 @@ app.get("/:id/comments", function(req, res) {
       res.send(res1.rows);
     })
     .catch(error => {
+      client.end();
       console.warn(error);
     });
 });
@@ -231,10 +239,11 @@ app.post("/addcomment", function(req, res) {
       [req.body.comment, req.body.owner, req.body.idea_id]
     )
     .then(res1 => {
-      res.send({ result: "success" });
       client.end();
+      res.send({ result: "success" });
     })
     .catch(error => {
+      client.end();
       res.send({ result: "failed" });
       console.warn(error);
     });
@@ -254,6 +263,7 @@ app.get('/viewquestionsall/:id', function(req, res) {
     res.send(res1.rows);
   })
   .catch(error => {
+    client.end();
     console.warn(error);
   });
 });
@@ -270,6 +280,7 @@ app.get('/viewquestionsalladmin', function(req, res) {
     res.send(res1.rows);
   })
   .catch(error => {
+    client.end();
     console.warn(error);
   });
 });
@@ -287,6 +298,7 @@ app.get('/archivetest/:id', function(req, res) {
     res.send(res1.rows);
   })
   .catch(error => {
+    client.end();
     console.warn(error);
   });
 });
@@ -299,9 +311,11 @@ app.post('/addanswerquestion', function(req, res) {
   client.connect();
   client.query("INSERT INTO answers (answer, status, id_owner, id_question, date, id) VALUES ($1,'open',$2,$3,Now(),uuid_generate_v4())", [req.body.answer, req.body.owner, req.body.question_id])
   .then(res1 => {
-    res.send({result:"success"})
-    client.end()})
+    client.end();
+    res.send({result:"success"});
+  })
   .catch(error => {
+    client.end();
     res.send({result:"failed"})
     console.warn(error);
   });
@@ -320,6 +334,7 @@ app.get('/viewtestsall', function(req, res) {
     res.send(res1.rows);
   })
   .catch(error => {
+    client.end();
     console.warn(error);
   });
 });
@@ -336,6 +351,7 @@ app.get('/:id/answers', function(req, res) {
     res.send(res1.rows);
   })
   .catch(error => {
+    client.end();
     console.warn(error);
   });
 });
@@ -348,9 +364,11 @@ app.post('/addanswertest', function(req, res) {
   client.connect();
   client.query("INSERT INTO test_answers (answer, rating, status, id_owner, id_test, id) VALUES ($1,'5','open',$2,$3,uuid_generate_v4())", [req.body.answer, req.body.owner, req.body.test_id])
   .then(res1 => {
-    res.send({result:"success"})
-    client.end()})
+    client.end();
+    res.send({result:"success"});
+  })
   .catch(error => {
+    client.end();
     res.send({result:"failed"})
     console.warn(error);
   });
@@ -428,6 +446,7 @@ app.get('/:id/topics', function(req, res) {
     res.send(res1.rows);
   })
   .catch(error => {
+    client.end();
     console.warn(error);
   });
 });
@@ -465,8 +484,10 @@ app.post("/editquestion", function(req, res) {
     function(error, res1) {
       if (error) {
         console.warn(error);
+        client.end();
         res.send({ result: "failed" });
       } else {
+        client.end();
         res.send({ result: "success" });
       }
     }
@@ -485,6 +506,7 @@ app.get('/viewquestionsallcounter/:id', function(req, res) {
     res.send(res1.rows[0].count);
   })
   .catch(error => {
+    client.end();
     console.warn(error);
   });
 });
@@ -504,6 +526,7 @@ app.get("/viewusersall", function(req, res) {
       res.send(res1.rows);
     })
     .catch(error => {
+      client.end();
       console.warn(error);
     });
 });
@@ -522,6 +545,7 @@ app.post("/editquestiontopics", function(req, res) {
     [req.body.id],
     function(error, res1) {
       if (error) {
+        client.end();
         console.warn(error);
         res.send({ result: "failed" });
       } else {
@@ -532,12 +556,14 @@ app.post("/editquestiontopics", function(req, res) {
             function(error, res1) {
               if (error) {
                 console.warn(error);
+                client.end();
                 res.send({ result: "failed" });
               }
             }
           );
         });
       }
+      client.end();
       res.send({ result: "success" });
     }
   );
