@@ -23,7 +23,7 @@ class ViewTests extends Component {
           <div className="viewtest_item_bckgrd">
             <div className="viewtest_item_content">
               <div className="product_picture">
-                <img src={""+test.image_path+""} alt="product_picture" />
+                <img src={""+test.picture+""} alt="product_picture" />
               </div>
               <h3>{test.title}</h3>
               <div className="viewtest_item_date">submitted: &nbsp;{formated_date}</div>

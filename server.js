@@ -167,8 +167,8 @@ app.post("/createtestnew", function(req, res) {
   client.connect();
   client
     .query(
-      "INSERT INTO tests (id, title, description,status,date,id_owner,question) VALUES (uuid_generate_v4(),$1,$2,'open',Now(),$3,$4)",
-      [req.body.title, req.body.description, req.body.uuid, req.body.question]
+      "INSERT INTO tests (id, title, description,status,date,id_owner,question,picture) VALUES (uuid_generate_v4(),$1,$2,'open',Now(),$3,$4,$5)",
+      [req.body.title, req.body.description, req.body.uuid, req.body.question,req.body.picture]
     )
     .then(res1 => {
       res.send({ result: "success" });
@@ -245,12 +245,10 @@ app.get('/viewquestionsall/:id', function(req, res) {
     connectionString: process.env.DATABASE_URL,
     ssl: true,
   });
-  console.log("param",req.params.id);
   client.connect();
   client.query("SELECT DISTINCT questions.id,title, description, users1.first_name, users1.last_name,questions.status,questions.date,question_topic.topic,answers.id_owner FROM questions INNER JOIN users as users1 ON questions.id_owner=users1.id INNER JOIN question_topic ON question_topic.id_question=questions.id and question_topic.topic=(SELECT level FROM users as users2 WHERE users2.id=$1) LEFT JOIN answers ON answers.id_question=questions.id  and answers.id_owner =$1 WHERE questions.status='open' and answers.id_owner is NULL ORDER BY date DESC",[req.params.id])
   .then(res1 => {
     client.end();
-    console.log(res1.rows);
     res.send(res1.rows);
   })
   .catch(error => {
@@ -274,21 +272,23 @@ app.get('/viewquestionsalladmin', function(req, res) {
   });
 });
 
-app.get('/archivetest/:id', function(req, res) {
+app.get("/archivetest/:id", function(req, res) {
   const client = new PG.Client({
     connectionString: process.env.DATABASE_URL,
-    ssl: true,
+    ssl: true
   });
   client.connect();
-  client.query("UPDATE tests SET status='closed' WHERE id=$1;",
-  [req.params.id])
-  .then(res1 => {
-    client.end();
-    res.send(res1.rows);
-  })
-  .catch(error => {
-    console.warn(error);
-  });
+  client
+    .query("UPDATE tests SET status='closed' WHERE id=$1;", [req.params.id])
+    .then(resSQL => {
+      client.end();
+      res.send({ data: "success" });
+    })
+    .catch(e => {
+      client.end();
+      res.send({ data: "failed" });
+      console.warn(e);
+    });
 });
 
 app.post('/addanswerquestion', function(req, res) {
@@ -314,7 +314,23 @@ app.get('/viewtestsall', function(req, res) {
     ssl: true,
   });
   client.connect();
-  client.query("SELECT * FROM tests WHERE status='open'")
+  client.query("SELECT * FROM tests WHERE status='open' ORDER BY date DESC")
+  .then(res1 => {
+    client.end();
+    res.send(res1.rows);
+  })
+  .catch(error => {
+    console.warn(error);
+  });
+});
+
+app.get('/viewtestsalladmin', function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
+  client.connect();
+  client.query("SELECT * FROM tests ORDER BY status DESC,date DESC")
   .then(res1 => {
     client.end();
     res.send(res1.rows);
@@ -329,7 +345,6 @@ app.get('/:id/answers', function(req, res) {
     connectionString: process.env.DATABASE_URL,
     ssl: true,
   });
-  console.log(req.params.id);
   client.connect();
   client.query("SELECT answer, answers.status, users.first_name, users.last_name, answers.date FROM answers INNER JOIN users ON answers.id_owner=users.id WHERE answers.id_question=$1;", [req.params.id])
   .then(res1 => {
@@ -382,7 +397,6 @@ app.get("/archivequestion/:id", function(req, res) {
     connectionString: process.env.DATABASE_URL,
     ssl: true
   });
-  console.log(req.params.id);
   client.connect();
   client
     .query("UPDATE questions SET status='closed' WHERE id=$1;", [req.params.id])
@@ -402,7 +416,6 @@ app.get("/reopenquestion/:id", function(req, res) {
     connectionString: process.env.DATABASE_URL,
     ssl: true
   });
-  console.log(req.params.id);
   client.connect();
   client
     .query("UPDATE questions SET status='open' WHERE id=$1;", [req.params.id])
@@ -459,7 +472,6 @@ app.post("/editquestion", function(req, res) {
     connectionString: process.env.DATABASE_URL,
     ssl: true
   });
-  console.log(req.body);
   client.connect();
   client.query(
     "UPDATE questions SET title=$1, description=$2 WHERE id=$3",
@@ -561,6 +573,24 @@ app.get('/:id/answerstests', function(req, res) {
   });
 });
 
+app.get("/reopentest/:id", function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  });
+  client.connect();
+  client
+    .query("UPDATE tests SET status='open' WHERE id=$1;", [req.params.id])
+    .then(resSQL => {
+      client.end();
+      res.send({ data: "success" });
+    })
+    .catch(e => {
+      client.end();
+      res.send({ data: "failed" });
+      console.warn(e);
+    });
+});
 
 app.get("/api/idea/:idea_id/:user_id/like/authorize", function(req, res) {
   const client = new PG.Client({
@@ -572,7 +602,45 @@ app.get("/api/idea/:idea_id/:user_id/like/authorize", function(req, res) {
   [req.params.idea_id,req.params.user_id])
     .then(resSQL => res.json(parseInt(resSQL.rows[0].count,10)))
     .catch(e => console.warn(e))
+  });
+
+app.post("/edittest", function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  });
+  client.connect();
+  client.query(
+    "UPDATE tests SET title=$1, description=$2, picture=$3, question=$4 WHERE id=$5",
+    [req.body.title,req.body.description,req.body.picture,req.body.question,req.body.id],
+    function(error, res1) {
+      if (error) {
+        console.warn(error);
+        res.send({ result: "failed" });
+      } else {
+        res.send({ result: "success" });
+      }
+    }
+  );
 });
+
+app.get('/viewtestsallcounter/:id', function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
+  client.connect();
+  client.query("SELECT COUNT (tests.id) FROM tests WHERE tests.status='open' ",[])
+  .then(res1 => {
+    client.end();
+    res.send(res1.rows[0].count);
+  })
+  .catch(error => {
+    console.warn(error);
+  });
+});
+
+
 
 app.post("/api/like/add", function(req, res) {
   const client = new PG.Client({

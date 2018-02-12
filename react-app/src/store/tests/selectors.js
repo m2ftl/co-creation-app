@@ -5,5 +5,6 @@ export default function getTests(state){
     firstName: state.profileReducer.firstName,
     lastName: state.profileReducer.lastName,
     answerstests: state.testsReducer.answerstests,
+    countertests: state.testsReducer.countertests
   }
 }

@@ -25,7 +25,7 @@ const renderField = ({
 }) => (
   <div>
     <label className="topTitle">{label}</label>
-    <input {...input} type={type} placeholder="Your Test Title" className="form-control formset" />
+    <input {...input} type={type} placeholder={label} className="form-control formset" />
     {touched &&
       (error && <span className="errorForm">*{error}</span>)}
   </div>
@@ -35,7 +35,7 @@ const renderTextArea = ({input,label, meta: { touched, error, warning }}) => (
     <div>
         <label className="topTitle">{label}</label>
         <div>
-            <textarea {...input} className="form-control formset"  />
+            <textarea {...input} placeholder={label} className="form-control formset"  />
             {touched && ((error && <span>*{error}</span>) || (warning && <span>{warning}</span>))}
         </div>
     </div>
@@ -52,17 +52,23 @@ class Createtestform extends Component{
                 name="title"
                 type="text"
                 component={renderField}
-                label="Test Title:"
+                label="Test Title"
+              />
+              <Field
+                name="picture"
+                type="text"
+                component={renderField}
+                label="Test Picture"
               />
               <Field
               name="description"
               component={renderTextArea}
-              label="Test description:"
+              label="Test description"
               />
               <Field
               name="question"
               component={renderTextArea}
-              label="Precise the waiting feedback:"
+              label="Precise the waiting feedback"
               />
         </div>
         <button type="submit" className="btn submitset" disabled={invalid || pristine || submitting}>
