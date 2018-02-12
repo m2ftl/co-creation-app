@@ -3,6 +3,7 @@ export default function getTests(state){
     tests: state.testsReducer.tests,
     useruuid: state.profileReducer.id_user,
     firstName: state.profileReducer.firstName,
-    lastName: state.profileReducer.lastName
+    lastName: state.profileReducer.lastName,
+    answerstests: state.testsReducer.answerstests,
   }
 }
