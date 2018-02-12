@@ -88,7 +88,6 @@
   color: black;
 }
 
-
 /* Header > NavBar */
 
 .container-grid-navbar {
@@ -122,7 +121,7 @@
   background-position-x: center;
   background-repeat:no-repeat;
   background-color: #12110C;
-  background-size: 100% 100%;
+  background-size: cover;
   height: 100%;
 }
 

@@ -10,11 +10,28 @@ class Idea extends Component {
     super(props);
     this.state = {
       current_input: '',
-      counterLikes:''
+      counterLikes:'',
+      authorized: null
     }
   }
 
+  componentWillMount() {
+    this.props.resetComments();
+  }
+
+
   componentDidMount() {
+
+    this.props.authorizeLike(this.props.match.params.id,this.props.useruuid)
+    .then(
+      likes => {
+        if(likes>0) {
+          return this.setState({authorized:false});
+        } else {
+          return this.setState({authorized:true});
+        }
+      }
+    )
 
     const counterLikes = this.props.countLikes(this.props.match.params.id)
     .then(count => {
@@ -26,10 +43,6 @@ class Idea extends Component {
       this.props.retrieveIdeas();
     }
     this.props.retrieveComments(this.props.match.params.id);
-  }
-
-  componentWillMount() {
-    this.props.resetComments();
   }
 
   handleInput = (event) => {
@@ -50,6 +63,18 @@ class Idea extends Component {
     });
   }
 
+  handleCountLikes = () => {
+
+    const counterLikesState = parseInt(this.state.counterLikes,10);
+    this.setState({
+      counterLikes:counterLikesState+1
+    })
+  }
+
+  disableLikeBtn = () => {
+    this.setState({authorized:false});
+  }
+
   render() {
 
     let listComments = this.props.comments.map((comment, index) => {
@@ -60,6 +85,10 @@ class Idea extends Component {
         </div>
       )
     });
+
+    let like = (<button className="btn" onClick={() =>  {this.props.like(this.props.match.params.id, this.props.useruuid);
+        this.handleCountLikes();this.disableLikeBtn();
+    }} >Like!</button>);
 
 
     const found_idea = this.props.ideas.find((element) => {
@@ -78,7 +107,11 @@ class Idea extends Component {
               <div className="idea_item_description">{found_idea.description}</div>
               <div className="idea_description_owner">submitted by {found_idea.first_name} {found_idea.last_name}</div>
               <div className="like_block">
-                <button className="btn" onClick={() => this.props.like(this.props.match.params.id, this.props.useruuid)} >Like!</button>
+                {this.state.authorized
+                  ? like
+                  : null
+                }
+
                 <div className="like_counter">Counter: {this.state.counterLikes}</div>
               </div>
             </div>

@@ -329,7 +329,6 @@ app.get('/:id/answers', function(req, res) {
     connectionString: process.env.DATABASE_URL,
     ssl: true,
   });
-  console.log(req.params.id);
   client.connect();
   client.query("SELECT answer, answers.status, users.first_name, users.last_name, answers.date FROM answers INNER JOIN users ON answers.id_owner=users.id WHERE answers.id_question=$1;", [req.params.id])
   .then(res1 => {
@@ -347,7 +346,7 @@ app.post('/addanswertest', function(req, res) {
     ssl: true,
   });
   client.connect();
-  client.query("INSERT INTO test_answers (answer, rating, status, id_owner, id_test, id,date) VALUES ($1,'5','open',$2,$3,uuid_generate_v4(),Now())", [req.body.answer, req.body.owner, req.body.test_id])
+  client.query("INSERT INTO test_answers (answer, rating, status, id_owner, id_test, id) VALUES ($1,'5','open',$2,$3,uuid_generate_v4())", [req.body.answer, req.body.owner, req.body.test_id])
   .then(res1 => {
     res.send({result:"success"})
     client.end()})
@@ -433,25 +432,7 @@ app.get('/:id/topics', function(req, res) {
   });
 });
 
-app.get("/api/idea/:idea_id/like/count", function(req,res) {
-  const client = new PG.Client({
-    connectionString: process.env.DATABASE_URL,
-    ssl: true
-  });
-  client.connect();
-  client
-    .query("SELECT COUNT(id_idea) FROM like_ideas WHERE id_idea=$1;",
-    [req.params.idea_id])
-    .then(resSQL => {
-      client.end();
-      return res.json(resSQL.rows[0].count)
-    })
-    .catch(e => {
-      client.end();
-      res.send({ result: "Oups something wrong " });
-      console.warn(e);
-    })
-});
+
 
 app.post("/editquestion", function(req, res) {
   const client = new PG.Client({
@@ -544,25 +525,41 @@ app.post("/editquestiontopics", function(req, res) {
   );
 });
 
-app.get('/:id/answerstests', function(req, res) {
+
+app.get("/api/idea/:idea_id/:user_id/like/authorize", function(req, res) {
   const client = new PG.Client({
     connectionString: process.env.DATABASE_URL,
-    ssl: true,
+    ssl: true
   });
   client.connect();
-  client.query("SELECT answer, rating, status, users.first_name, users.last_name, test_answers.date FROM test_answers INNER JOIN users ON test_answers.id_owner=users.id WHERE test_answers.id_test=$1 ORDER BY test_answers.date DESC;", [req.params.id])
-  .then(res1 => {
-    client.end();
-    res.send(res1.rows);
-  })
-  .catch(error => {
-    console.warn(error);
-  });
+  client.query("SELECT COUNT(id_user) FROM like_ideas where id_idea=$1 and id_user=$2",
+  [req.params.idea_id,req.params.user_id])
+    .then(resSQL => res.json(parseInt(resSQL.rows[0].count,10)))
+    .catch(e => console.warn(e))
 });
 
-app.get("*", (request, result) => {
-  result.sendFile(path.join(__dirname, "react-app/build/index.html"));
+
+app.get("/api/idea/:idea_id/like/count", function(req,res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  });
+  client.connect();
+  client
+    .query("SELECT COUNT(id_idea) FROM like_ideas WHERE id_idea=$1;",
+    [req.params.idea_id])
+    .then(resSQL => {
+      client.end();
+      return res.json(resSQL.rows[0].count)
+    })
+    .catch(e => {
+      client.end();
+      res.send({ result: "Oups something wrong " });
+      console.warn(e);
+    })
 });
+
+
 
 app.post("/api/like/add", function(req, res) {
   const client = new PG.Client({
@@ -576,13 +573,18 @@ app.post("/api/like/add", function(req, res) {
     )
     .then(resSQL => {
       client.end();
-      console.log("success");
     })
     .catch(e => {
       client.end();
       res.send({ result: "Oups something wrong " });
       console.warn(e);
     });
+});
+
+
+
+app.get("*", (request, result) => {
+  result.sendFile(path.join(__dirname, "react-app/build/index.html"));
 });
 
 app.listen(port, function listening() {
