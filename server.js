@@ -537,6 +537,7 @@ app.get("/api/idea/:idea_id/:user_id/like/authorize", function(req, res) {
     .catch(e => console.warn(e))
 });
 
+
 app.get("/api/idea/:idea_id/like/count", function(req,res) {
   const client = new PG.Client({
     connectionString: process.env.DATABASE_URL,
@@ -557,6 +558,8 @@ app.get("/api/idea/:idea_id/like/count", function(req,res) {
     })
 });
 
+
+
 app.post("/api/like/add", function(req, res) {
   const client = new PG.Client({
     connectionString: process.env.DATABASE_URL,
@@ -576,6 +579,7 @@ app.post("/api/like/add", function(req, res) {
       console.warn(e);
     });
 });
+
 
 
 app.get("*", (request, result) => {
