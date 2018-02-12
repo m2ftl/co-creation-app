@@ -61,6 +61,12 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        {/* Here to ensure login when reloading page but invisible */}
+        <div
+          style={{visibility: "hidden"}}
+          className="g-signin2"
+          data-onsuccess="googleConnectCallback"
+        />
         <Switch>
           <Route path="/complete-profile" render={(routerProps) => <Profile {...routerProps} completedProfile={this.props.user.completedProfile}/>} />
           <Route path="/dashboard" render={() => <Dashboard />} />
