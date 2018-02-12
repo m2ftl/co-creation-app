@@ -9,7 +9,6 @@ class ViewQuestions extends Component {
 
   componentDidMount() {
     this.props.retrieveQuestions(this.props.useruuid);
-    this.props.retrieveQuestionsCounter(this.props.useruuid);
   }
 
   render() {

@@ -63,7 +63,7 @@ class App extends Component {
         <Header />
         {/* Here to ensure login when reloading page but invisible */}
         <div
-          style={{visibility: "hidden"}}
+          style={{visibility: "hidden", height: 0}}
           className="g-signin2"
           data-onsuccess="googleConnectCallback"
         />
