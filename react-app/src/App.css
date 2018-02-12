@@ -26,7 +26,7 @@
 
 .container-header {
   display: grid;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: 20% 60% 20%;
   align-items: flex-start;
 }
 
@@ -92,7 +92,7 @@
 
 .container-grid-navbar {
   display: grid;
-  grid-template-columns: 70% 30%;
+  grid-template-columns: 100%;
   height: 70px;
   background-color: #363636;
   color: white;
@@ -106,6 +106,11 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+  .item-navbar_empty {
+  background-color: #363636;
+  height: 70px;
 }
 
 .user_pic {
