@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import getQuestions from "../../store/questions/selectors";
 import questionsActions from '../../store/questions/actions';
 
-class Editquestion extends Component{
+class Editquestiontopics extends Component{
   constructor(props) {
   super(props);
   this.state = {
@@ -41,7 +41,7 @@ class Editquestion extends Component{
      this.props.Inserteditquestiontopics(this.state, this.props.match.params.id)
      .then((response) => {
      if(response) {
-       this.props.history.push('/viewquestionadmin/'+this.props.match.params.id);
+       this.props.history.push('/viewquestionsadmin/');
        window.location.reload()
      } else {
        this.props.history.push('/failed');
@@ -82,4 +82,4 @@ class Editquestion extends Component{
   }
 }
 
-export default connect(getQuestions,questionsActions)(Editquestion);
+export default connect(getQuestions,questionsActions)(Editquestiontopics);
