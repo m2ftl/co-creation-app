@@ -1,5 +1,6 @@
 let initialState={
-    tests: []
+    tests: [],
+    answerstests: []
 };
 
 export default function testsReducer(state=initialState, action){
@@ -8,6 +9,11 @@ export default function testsReducer(state=initialState, action){
       return{
         ...state,
         tests:action.data
+      }
+    case "RETRIEVE_ANSWERSTESTS":
+      return{
+        ...state,
+        answerstests:action.data
       }
     default:
       return state;

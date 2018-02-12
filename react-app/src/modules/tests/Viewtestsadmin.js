@@ -5,7 +5,7 @@ import getTests from "../../store/tests/selectors";
 import testsActions from '../../store/tests/actions';
 import { Link } from "react-router-dom";
 
-class ViewTests extends Component {
+class ViewTestsadmin extends Component {
 
   componentDidMount() {
     this.props.retrieveTests();
@@ -27,8 +27,8 @@ class ViewTests extends Component {
               </div>
               <h3>{test.title}</h3>
               <div className="viewtest_item_date">submitted: &nbsp;{formated_date}</div>
-              <Link to={"/viewtest/"+test.id}>
-                <div className="viewtest_item_button">Answer Test</div>
+              <Link to={"/viewtestadmin/"+test.id}>
+                <div className="viewtest_item_button">Test Report</div>
               </Link>
               <form onSubmit={(e)=> {
                 e.preventDefault();
@@ -46,12 +46,11 @@ class ViewTests extends Component {
 
     return (
       <div className="ideas_block">
-        <h1>Tests</h1>
-        <p className="subtitle_listIdeas">Test our products and let us know your opinion about it</p>
+        <h1>Tests Reports</h1>
         <div className="div_glob_tests">{listTests}</div>
       </div>
     );
   }
 }
 
-export default connect(getTests, testsActions)(ViewTests);
+export default connect(getTests, testsActions)(ViewTestsadmin);

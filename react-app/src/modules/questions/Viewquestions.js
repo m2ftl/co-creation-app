@@ -13,11 +13,10 @@ class ViewQuestions extends Component {
   }
 
   render() {
-    console.log(this.props.questions);
     let listQuestions = this.props.questions.map((question, index) => {
 
       let format_date = new Date(question.date);
-      let formated_date = format_date.getDate()+'/'+(format_date.getMonth())+1+'/'+format_date.getFullYear();
+      let formated_date = format_date.getDate()+'/'+(format_date.getMonth()+1)+'/'+format_date.getFullYear();
 
       if(this.props.questions.length !== 0){
         return (

@@ -11,8 +11,13 @@ class Viewusers extends Component {
   }
 
   render() {
+
+
   let listUsers = this.props.userslist.map((user, index) => {
     console.log(user);
+    let format_date = new Date(user.birthdate);
+    let formated_date = format_date.getDate()+'/'+(format_date.getMonth()+1)+'/'+format_date.getFullYear();
+
     if(this.props.userslist.length !== 0){
       return (
         <div className="user_item">
@@ -23,7 +28,7 @@ class Viewusers extends Component {
             <div>Phone: {user.phone}</div>
             <div>Level: {user.level}</div>
             <div>Player index: {user.player_index}</div>
-            <div>Birthdate: {user.birthdate}</div>
+            <div>Birthdate: {formated_date}</div>
           </div>
         </div>
       )
