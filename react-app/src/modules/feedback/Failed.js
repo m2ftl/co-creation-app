@@ -9,7 +9,7 @@ class Failed extends Component{
         <div className="feedbacks">
           <div className="feedback_baseline">Sorry we receive an error please try again later...</div>
           <Link to="/dashboard">
-          <button className="btn btn-dash">Dashboard</button>
+          <button className="btn dashboard_button">Dashboard</button>
           </Link>
         </div>
     );

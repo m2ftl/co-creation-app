@@ -55,40 +55,51 @@ class Idea extends Component {
     let listComments = this.props.comments.map((comment, index) => {
       return (
         <div className="comment_description">
-          <div>{comment.comment}</div>
-          <span>submitted by {comment.first_name} {comment.last_name}</span>
+          <div>&laquo; {comment.comment} &raquo;</div>
+          <span>~ &nbsp; {comment.first_name} {comment.last_name}</span>
         </div>
       )
     });
 
 
-    const found_comment = this.props.ideas.find((element) => {
+    const found_idea = this.props.ideas.find((element) => {
       return element.id===this.props.match.params.id;
     }) || [];
 
     return (
-      <div className="ideas_block">
+      <div className="idea_page_global">
         <h1>Idea details</h1>
-        <div className="idea_item_display">
-          <h3>{found_comment.title}</h3>
-          <div className="idea_description">
-            <div>{found_comment.description}</div>
-            <span>submitted by {found_comment.first_name} {found_comment.last_name}</span>
+
+        <div className="div_global_idea">
+
+          <div className="idea_item">
+            <div className="idea_item_details">
+              <div className="idea_item_title">{found_idea.title}</div>
+              <div className="idea_item_description">{found_idea.description}</div>
+              <div className="idea_description_owner">submitted by {found_idea.first_name} {found_idea.last_name}</div>
+              <div className="like_block">
+                <button className="btn" onClick={() => this.props.like(this.props.match.params.id, this.props.useruuid)} >Like!</button>
+                <div className="like_counter">Counter: {this.state.counterLikes}</div>
+              </div>
+            </div>
+
+            <div className="idea_background_picture">
+            </div>
           </div>
+
         </div>
-          <div>
-            <button onClick={() => this.props.like(this.props.match.params.id, this.props.useruuid)} >Like!</button>
-          </div>
-          <div>ICI COUNTER DE LIKE : {this.state.counterLikes}</div>
-        <form onSubmit={this.onSubmit}>
-          <label>Write a comment</label>
-          <input type="text" onChange={this.handleInput}/>
-          <button type="submit">Send</button>
-        </form>
-        {this.props.comments.length !== 0
-          ? listComments
-          : null
-        }
+
+        <div className="idea_comments_block">
+          <form onSubmit={this.onSubmit}>
+            <label>Write a comment:</label>
+            <input type="text" onChange={this.handleInput}/>
+            <button className="btn" type="submit">Send</button>
+          </form>
+          {this.props.comments.length !== 0
+            ? listComments
+            : null
+          }
+        </div>
       </div>
     );
   }

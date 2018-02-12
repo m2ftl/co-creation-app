@@ -15,12 +15,16 @@ class ViewQuestions extends Component {
   render() {
     console.log(this.props.questions);
     let listQuestions = this.props.questions.map((question, index) => {
+
+      let format_date = new Date(question.date);
+      let formated_date = format_date.getDate()+'/'+(format_date.getMonth())+1+'/'+format_date.getFullYear();
+
       if(this.props.questions.length !== 0){
         return (
           <Link to={'/viewquestion/'+question.id}>
           <div className="question_item">
             <h3><a href={"#quest"+index}>+</a> {question.title}</h3>
-            <div>{question.date}</div>
+            <div>{formated_date}</div>
             <div id={"quest"+index} className="idea_description">
               <div>{question.description}</div>
               <span>submitted by {question.first_name} {question.last_name}</span>

@@ -24,98 +24,87 @@
 
 /* Header */
 
-.item-header-block {
-  display: inline;
+.container-header {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  align-items: flex-start;
 }
 
-.burger-menu {
-  float: left;
-  padding-left: 10px;
-  padding-top: 10px;
+.div_burger_menu {
+  text-align: left;
   height: 70px;
   background-color: #363636;
+  color: white;
+}
+
+.button_burger_menu {
+  margin-left: 25px;
+  margin-top: 10px;
+  background-color: #363636;
+  border-radius: 10px;
+}
+
+.button_burger_menu:focus {
+  outline:0;
+}
+
+.button_burger_menu img {
+  padding: 5px;
+}
+
+.wrapper_menu {
+  position: absolute;
+  width: 230px;
+  overflow: hidden;
   text-align: left;
-  width: 130px;
+  height: 0px;
+  transition: height 0.8s;
 }
 
-.burger-menu button {
-  margin-top: 7px;
-  background-color: #363636;
-  border: 1px solid #FFF;
-  border-radius: 5px;
-  color: #FFF;
-  width: 40px;
-  height: 35px;
+.display_menu {
+  height: 490px;
 }
 
-.burger-menuadmin {
-  float: left;
-  padding-left: 10px;
-  padding-top: 10px;
-  height: 70px;
-  background-color: #363636;
-  text-align: left;
-  width: 130px;
+.wrapper_menu_items div {
+  color: white;
+  padding: 15px 0 15px 20px;
+  border-top: 1px solid #363636;
+  background: linear-gradient(to bottom right, black, #363636);
 }
 
-.burger-menuadmin button {
-  margin-top: 7px;
-  background-color: #363636;
-  border: 1px solid #FFF;
-  border-radius: 5px;
-  color: #FFF;
-  width: 40px;
-  height: 35px;
+.wrapper_menu_items_admin div:not(.sep_admin_menu) {
+  color: white;
+  padding: 15px 0 15px 20px;
+  border-top: 1px solid #363636;
+  background: linear-gradient(to bottom right, black, #363636);
 }
 
-#menuadmin {
-  padding-top: 30px;
-  text-align: left;
-  width: 130px;
-  background-color: #363636;
-  color: #FFF;
+.sep_admin_menu {
+  padding: 4px;
+  background-color: #CECECE;
+  font-weight: bold;
+  font-style: italic;
+  text-decoration: underline;
+  color: black;
 }
 
-#menuadmin div {
-  padding-bottom: 15px;
-  margin-left: 15px;
-}
-
-#menuadmin a {
-  color: #FFF;
-  text-decoration: none;
-}
-
-#menu {
-  padding-top: 30px;
-  text-align: left;
-  width: 130px;
-  background-color: #363636;
-  color: #FFF;
-}
-
-#menu div {
-  padding-bottom: 15px;
-  margin-left: 15px;
-}
-
-#menu a {
-  color: #FFF;
-  text-decoration: none;
-}
 
 /* Header > NavBar */
 
 .container-grid-navbar {
   display: grid;
   grid-template-columns: 80% 20%;
-  align-items: center;
   height: 70px;
   background-color: #363636;
   color: white;
 }
 
-.inesis_logo {
+.item-navbar_inesis {
+  margin-top: 15px;
+}
+
+.item-navbar {
+  margin-top: 8px;
 }
 
 .user_pic {
@@ -125,59 +114,85 @@
 
 /* Dashboard */
 
-.container-flex-dashboard {
-  justify-content: center;
-  background: url("./images/bckgrd_Inesis_dash2.jpg");
+.container-global-dashboard {
+  background: url("./images/bckgd_dashboard.jpg");
+  background-position-x: center;
   background-repeat:no-repeat;
+  background-color: #12110C;
   background-size: 100% 100%;
+  height: 100%;
 }
 
-@media (max-width: 800px) {
-  .container-flex-dashboard {
-  justify-content: center;
-  background-image: none;
+@media (max-width: 850px) {
+  .container-global-dashboard {
+  background: none;
   background-color: #12110C;
   }
 }
 
-.dash_row {
+.dashboard_items_row {
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
-.item_dash {
-  margin: 90px;
+.dashboard_item {
+  margin: 60px;
+  margin-left: 100px;
+  margin-right: 100px;
   padding: 20px;
-  border: 1px solid black;
   background-color: #ffdf00;
   border: 1px solid #363636;
+  border-radius: 15px;
 }
 
-.item_dash img {
-  padding-bottom: 15px;
+@media (max-width: 850px) {
+  .dashboard_item {
+    margin-left: 35px;
+    margin-right: 35px;
+  }
 }
 
-.item_dash a {
+@media (max-width: 564px) {
+  .dashboard_item {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    margin-left: 35px;
+    margin-right: 35px;
+  }
+}
+
+.dashboard_button {
+  background-color: #363636;
+}
+
+.dashboard_item a {
   margin-top: 20px;
   color: #ffdf00;
 }
 
-.btn-dash {
-  background-color: #363636;
-  color: #ffdf00;
+.dashboard_item img {
+  margin-bottom:10px;
 }
+
 
 /* View Ideas */
 
-.ideas_block {
+.list_ideas_block {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.idea_item {
+.subtitle_listIdeas {
+  font-style: italic;
+  color: grey;
+}
+
+.list_ideas_item {
   overflow: hidden;
   text-align: left;
   padding-left: 25px;
@@ -187,7 +202,168 @@
   margin: 10px;
   border: 1px solid #CECECE;
   transition: height 1s;
+  color: #363636;
 }
+
+.list_ideas_item a {
+  text-decoration: none;
+  color: #363636;
+}
+
+.list_ideas_item:hover {
+  text-decoration: none;
+  height: 160px;
+}
+
+.idea_description {
+  margin-top: 30px;
+  margin-left: 25px;
+  margin-right: 15px;
+  padding: 3px;
+  background-color: #CECECE;
+}
+
+.idea_description span {
+  font-style: italic;
+  color: #CECECE;
+  float:right;
+  padding-right: 20px;
+  margin-top: 5px;
+}
+
+
+/* Idea Details page */
+
+.idea_page_global {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.idea_item {
+  display: grid;
+  grid-template-columns: 55% 42% 3%;
+  width: 700px;
+  height: 300px;
+  margin-top: 20px;
+  background-image: url(./images/bckgrd-color_test_answer.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 85%;
+  color: white;
+  text-align: left;
+  margin-bottom: 40px;
+}
+
+.idea_item_details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 10%;
+  padding-top: 10%;
+  padding-bottom: 10%;
+}
+
+.idea_item_title {
+  font-size: 18px;
+  color: #FFDF00;
+}
+
+.idea_item_description {
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 40px;
+}
+
+.idea_description_owner {
+  font-size: 11px;
+  font-style: italic;
+  font-weight: lighter;
+  color: #CECECE;
+  align-self: flex-end;
+  padding-right: 20px;
+  padding-top: 10px;
+}
+
+.like_block {
+  margin-top: 60px;
+  width: 400px;
+}
+
+.like_block div {
+  display: inline-block;
+}
+
+.like_block button {
+  background-color: #FFDF00;
+  color: #363636;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.like_counter {
+  color: #CECECE;
+  font-style: italic;
+  font-weight: lighter;
+}
+
+.idea_background_picture {
+  height: 300px;
+  background-image: url(./images/bckgrd_tests_004.jpg);
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.6);
+}
+
+/* Idea with comments */
+
+.idea_comments_block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.idea_comments_block form {
+  margin-bottom: 30px;
+}
+
+.idea_comments_block label {
+  margin-right: 10px;
+}
+
+.idea_comments_block input {
+  width: 300px;
+}
+
+.idea_comments_block button {
+  background-color: #FFDF00;
+  color: #363636;
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.comment_description {
+  width: 450px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 5px;
+  margin: auto;
+  margin-bottom: 15px;
+}
+
+.comment_description span {
+  font-size: 12px;
+  font-style: italic;
+  color: #CECECE;
+  float:right;
+  padding-right: 20px;
+  margin-top: 15px;
+}
+
+
+
+/* Question Pages */
 
 .question_item {
   overflow: hidden;
@@ -234,53 +410,6 @@
   float: left;
 }
 
-.idea_item_display {
-  text-align: left;
-  padding-left: 25px;
-  padding-bottom: 8px;
-  width: 600px;
-  margin: 10px;
-  border: 1px solid #CECECE;
-}
-
-.idea_item:hover {
-  height: 160px;
-}
-
-.idea_description {
-  margin-top: 30px;
-  margin-left: 25px;
-  margin-right: 15px;
-  padding: 3px;
-  background-color: #CECECE;
-}
-
-.idea_description span {
-  font-style: italic;
-  color: #CECECE;
-  float:right;
-  padding-right: 20px;
-  margin-top: 5px;
-}
-
-.subtitle_listIdeas {
-  font-style: italic;
-  color: grey;
-}
-
-/* Idea with comments */
-
-.comment_description {
-  padding-left: 20px;
-}
-
-.comment_description span {
-  font-style: italic;
-  color: #CECECE;
-  float:right;
-  padding-right: 20px;
-  margin-top: 5px;
-}
 
 /* View Tests */
 

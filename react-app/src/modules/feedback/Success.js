@@ -9,7 +9,7 @@ class Success extends Component{
         <div className="feedbacks">
           <div className="feedback_baseline">Thank you for your feedback</div>
           <Link to="/dashboard">
-          <button className="btn btn-dash">Dashboard</button>
+          <button className="btn dashboard_button">Dashboard</button>
           </Link>
         </div>
     );
