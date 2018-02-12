@@ -45,7 +45,7 @@ class Questionadmin extends Component {
     }) || [];
     console.log(found_question);
     return (
-      <div className="ideas_block">
+      <div className="list_ideas_block">
         <h1>Question details</h1>
         <div className="question_item_display">
           <h3>{found_question.title}</h3>
@@ -65,7 +65,7 @@ class Questionadmin extends Component {
             }
           })
         }}>
-        <button className="btn btn-dash" type="submit">reopen Question</button>
+        <button className="btn dashboard_button" type="submit">reopen Question</button>
         </form></span>
         <span><form onSubmit={(e)=> {
           e.preventDefault();
@@ -78,14 +78,14 @@ class Questionadmin extends Component {
             }
           })
         }}>
-        <button className= "btn btn-dash mt-2" type="submit">Archive Question</button>
+        <button className= "btn dashboard_button mt-2" type="submit">Archive Question</button>
         </form></span>
         <Link to={'/editquestionadmin/'+this.props.match.params.id}>
-        <button className="btn btn-dash mt-2">Edit question</button>
+        <button className="btn dashboard_button mt-2">Edit question</button>
         </Link>
         {this.props.topics.length !== 0
           ?
-          <div className="ideas_block">
+          <div className="list_ideas_block">
           <div className="topic_item">
           {listTopics}
           </div>
@@ -93,7 +93,7 @@ class Questionadmin extends Component {
           : null
         }
         <Link to={'/editquestiontopicsadmin/'+this.props.match.params.id}>
-        <button className="btn btn-dash mt-2">Edit question topics</button>
+        <button className="btn dashboard_button mt-2">Edit question topics</button>
         </Link>
         {this.props.answers.length !== 0
           ? listComments

@@ -35,7 +35,7 @@ class Viewusers extends Component {
   });
 
     return (
-      <div className="ideas_block">
+      <div className="list_ideas_block">
         <h1>Users List</h1>
         {listUsers}
       </div>

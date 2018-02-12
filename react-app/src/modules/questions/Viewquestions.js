@@ -41,7 +41,7 @@ class ViewQuestions extends Component {
 
 
     return (
-      <div className="ideas_block">
+      <div className="list_ideas_block">
         <h1>{this.props.counterquestions} Questions submitted</h1>
         <p className="subtitle_listIdeas">We need your answer to develop <Link to={"/c25a5bc5-dd78-4820-9a03-c71bbd4a7690"}>better</Link> products</p>
         {listQuestions}
