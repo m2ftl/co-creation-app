@@ -433,6 +433,7 @@ app.get('/:id/topics', function(req, res) {
   });
 });
 
+
 app.get("/api/idea/:idea_id/like/count", function(req,res) {
   const client = new PG.Client({
     connectionString: process.env.DATABASE_URL,
@@ -560,8 +561,17 @@ app.get('/:id/answerstests', function(req, res) {
   });
 });
 
-app.get("*", (request, result) => {
-  result.sendFile(path.join(__dirname, "react-app/build/index.html"));
+
+app.get("/api/idea/:idea_id/:user_id/like/authorize", function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  });
+  client.connect();
+  client.query("SELECT COUNT(id_user) FROM like_ideas where id_idea=$1 and id_user=$2",
+  [req.params.idea_id,req.params.user_id])
+    .then(resSQL => res.json(parseInt(resSQL.rows[0].count,10)))
+    .catch(e => console.warn(e))
 });
 
 app.post("/api/like/add", function(req, res) {
@@ -576,13 +586,16 @@ app.post("/api/like/add", function(req, res) {
     )
     .then(resSQL => {
       client.end();
-      console.log("success");
     })
     .catch(e => {
       client.end();
       res.send({ result: "Oups something wrong " });
       console.warn(e);
     });
+});
+
+app.get("*", (request, result) => {
+  result.sendFile(path.join(__dirname, "react-app/build/index.html"));
 });
 
 app.listen(port, function listening() {
