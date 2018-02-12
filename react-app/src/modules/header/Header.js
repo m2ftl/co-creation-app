@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import '../../App.css';
 import BurgerMenuButton from './BurgerMenuButton';
-import HeaderNavBar from './HeaderNavBar';
+import LogoInesis from './LogoInesis';
+import UserWelcoming from './UserWelcoming';
 import WrapperMenu from './WrapperMenu';
 import WrapperMenuAdmin from './WrapperMenuAdmin';
+import {getUserState} from '../../store/user/selectors';
+import { connect } from 'react-redux';
 
-export default class Header extends Component {
+
+class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,8 +40,17 @@ export default class Header extends Component {
     return(
       <div>
         <div className="container-header">
-          <BurgerMenuButton changeClass={this.changeClass}/>
-          <HeaderNavBar />
+          {this.props.googleUser.loggedIn
+            ?
+            <BurgerMenuButton changeClass={this.changeClass}/>
+            : <div className="item-navbar_empty"></div>
+          }
+          <LogoInesis />
+          {this.props.googleUser.loggedIn
+            ?
+            <UserWelcoming />
+            : <div className="item-navbar_empty"></div>
+          }
         </div>
         <div className={"wrapper_menu "+this.state.wrapperClass}>
           <WrapperMenu changeClass={this.changeClass}/>
@@ -48,3 +61,5 @@ export default class Header extends Component {
     );
   }
 }
+
+export default connect(getUserState)(Header);
