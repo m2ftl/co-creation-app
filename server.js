@@ -309,6 +309,7 @@ app.get('/:id/answers', function(req, res) {
     connectionString: process.env.DATABASE_URL,
     ssl: true,
   });
+  console.log(req.params.id);
   client.connect();
   client.query("SELECT answer, answers.status, users.first_name, users.last_name, answers.date FROM answers INNER JOIN users ON answers.id_owner=users.id WHERE answers.id_question=$1;", [req.params.id])
   .then(res1 => {
@@ -326,7 +327,7 @@ app.post('/addanswer', function(req, res) {
     ssl: true,
   });
   client.connect();
-  client.query("INSERT INTO test_answers (answer, rating, status, id_owner, id_test, id) VALUES ($1,'5','open',$2,$3,uuid_generate_v4())", [req.body.answer, req.body.owner, req.body.test_id])
+  client.query("INSERT INTO test_answers (answer, rating, status, id_owner, id_test, id,date) VALUES ($1,'5','open',$2,$3,uuid_generate_v4(),Now())", [req.body.answer, req.body.owner, req.body.test_id])
   .then(res1 => {
     res.send({result:"success"})
     client.end()})
@@ -356,6 +357,27 @@ app.get("/:id_google/checkuser", function(req, res) {
     });
 });
 
+// LIKES SECTION
+
+app.post("/api/like/add", function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  });
+  client.connect();
+  client.query(
+      "INSERT INTO like_ideas (id_idea, id_user) VALUES ($1,$2);",
+      [req.body.idea_id,req.body.owner_id]
+    )
+    .then(resSQL => {
+      client.end();
+    })
+    .catch(e => {
+      client.end();
+      res.send({ result: "Oups something wrong " });
+      console.warn(e);
+    });
+});
 
 app.get("/api/idea/:idea_id/:user_id/like/authorize", function(req, res) {
   const client = new PG.Client({
@@ -389,31 +411,119 @@ app.get("/api/idea/:idea_id/like/count", function(req,res) {
     })
 });
 
-app.get("*", (request, result) => {
-  result.sendFile(path.join(__dirname, "react-app/build/index.html"));
+// END OF LIKES SECTION
+
+
+app.post("/editquestion", function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  });
+  console.log(req.body);
+  client.connect();
+  client.query(
+    "UPDATE questions SET title=$1, description=$2 WHERE id=$3",
+    [req.body.title,req.body.description, req.body.id],
+    function(error, res1) {
+      if (error) {
+        console.warn(error);
+        res.send({ result: "failed" });
+      } else {
+        res.send({ result: "success" });
+      }
+    }
+  );
 });
 
-app.post("/api/like/add", function(req, res) {
+app.get('/viewquestionsallcounter/:id', function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
+  client.connect();
+  client.query("SELECT DISTINCT COUNT (questions.id) FROM questions INNER JOIN users as users1 ON questions.id_owner=users1.id INNER JOIN question_topic ON question_topic.id_question=questions.id and question_topic.topic=(SELECT level FROM users as users2 WHERE users2.id=$1) LEFT JOIN answers ON answers.id_question=questions.id  and answers.id_owner =$1 WHERE questions.status='open' and answers.id_owner is NULL ",[req.params.id])
+  .then(res1 => {
+    client.end();
+    res.send(res1.rows[0].count);
+  })
+  .catch(error => {
+    console.warn(error);
+  });
+});
+
+app.get("/viewusersall", function(req, res) {
   const client = new PG.Client({
     connectionString: process.env.DATABASE_URL,
     ssl: true
   });
   client.connect();
-  client.query(
-      "INSERT INTO like_ideas (id_idea, id_user) VALUES ($1,$2);",
-      [req.body.idea_id,req.body.owner_id]
+  client
+    .query(
+      "SELECT * FROM users ORDER BY users.last_name ASC"
     )
-    .then(resSQL => {
+    .then(res1 => {
       client.end();
+      res.send(res1.rows);
     })
-    .catch(e => {
-      client.end();
-      res.send({ result: "Oups something wrong " });
-      console.warn(e);
+    .catch(error => {
+      console.warn(error);
     });
 });
 
+app.post("/editquestiontopics", function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  });
+  const top = Object.keys(req.body.topic).filter(
+    key => req.body.topic[key] === true
+  );
+  client.connect();
+  client.query(
+    "DELETE FROM question_topic WHERE id_question=$1",
+    [req.body.id],
+    function(error, res1) {
+      if (error) {
+        console.warn(error);
+        res.send({ result: "failed" });
+      } else {
+        top.forEach(function(element) {
+          client.query(
+            "INSERT INTO question_topic (id_question, topic) VALUES ($1,$2)",
+            [req.body.id, element],
+            function(error, res1) {
+              if (error) {
+                console.warn(error);
+                res.send({ result: "failed" });
+              }
+            }
+          );
+        });
+      }
+      res.send({ result: "success" });
+    }
+  );
+});
 
+app.get('/:id/answerstests', function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
+  client.connect();
+  client.query("SELECT answer, rating, status, users.first_name, users.last_name, test_answers.date FROM test_answers INNER JOIN users ON test_answers.id_owner=users.id WHERE test_answers.id_test=$1 ORDER BY test_answers.date DESC;", [req.params.id])
+  .then(res1 => {
+    client.end();
+    res.send(res1.rows);
+  })
+  .catch(error => {
+    console.warn(error);
+  });
+});
+
+app.get("*", (request, result) => {
+  result.sendFile(path.join(__dirname, "react-app/build/index.html"));
+});
 
 app.listen(port, function listening() {
   console.log("Listening on port ", port);

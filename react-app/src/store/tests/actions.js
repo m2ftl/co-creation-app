@@ -38,6 +38,15 @@ export default function testsActions(dispatch){
             return false;
           }
         });
-    }
+    },
+    retrieveAnswerstests: (test) => {
+      return fetch(`/${test}/answerstests`, {
+          method: 'GET'
+        })
+        .then(response => response.json())
+        .then(data => {
+          dispatch({ type: "RETRIEVE_ANSWERSTESTS", data: data })
+        });
+    },
   }
 }

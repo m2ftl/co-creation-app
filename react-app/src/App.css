@@ -92,7 +92,7 @@
 
 .container-grid-navbar {
   display: grid;
-  grid-template-columns: 80% 20%;
+  grid-template-columns: 70% 30%;
   height: 70px;
   background-color: #363636;
   color: white;
@@ -102,12 +102,15 @@
   margin-top: 15px;
 }
 
-.item-navbar {
-  margin-top: 8px;
+.item-navbar_user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .user_pic {
   margin-right: 20px;
+  height: 60px;
 }
 
 
