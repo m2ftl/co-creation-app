@@ -356,7 +356,6 @@ app.get("/:id_google/checkuser", function(req, res) {
     });
 });
 
-
 app.get("/api/idea/:idea_id/like/count", function(req,res) {
   const client = new PG.Client({
     connectionString: process.env.DATABASE_URL,
