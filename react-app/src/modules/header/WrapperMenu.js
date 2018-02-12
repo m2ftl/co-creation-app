@@ -13,6 +13,7 @@ class WrapperMenu extends Component {
         <Link to="/createidea"><div>Submit an idea</div></Link>
         <Link to="/viewideas"><div>View ideas</div></Link>
         <Link to="/viewtests"><div>Tests</div></Link>
+        <Link to="/viewquestions"><div>Questions</div></Link>
         <Link to="/dashboard"><div>My Profile</div></Link>
         <Link to="/signoutmenu">
           <div><span className="glyphicon glyphicon-log-in"></span>&nbsp;Log out</div>

@@ -35,7 +35,7 @@ class ViewQuestionsadmin extends Component {
 
 
     return (
-      <div className="ideas_block">
+      <div className="list_ideas_block">
         <h1>Questions submitted</h1>
         <p className="subtitle_listIdeas">We need your answer to develop better products</p>
         {listQuestions}

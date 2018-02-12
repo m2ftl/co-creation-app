@@ -13,6 +13,7 @@ class WrapperMenu extends Component {
         <Link to="/createtest"><div>Create a test</div></Link>
         <Link to="/createquestion"><div>Create a question</div></Link>
         <Link to="/viewquestionsadmin"><div>Admin questions</div></Link>
+        <Link to="/viewusers"><div>View users</div></Link>
       </div>
     );
   }

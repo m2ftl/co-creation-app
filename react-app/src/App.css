@@ -62,7 +62,7 @@
 }
 
 .display_menu {
-  height: 490px;
+  height: 590px;
 }
 
 .wrapper_menu_items div {
@@ -166,6 +166,7 @@
 
 .dashboard_button {
   background-color: #363636;
+  color: #ffdf00;
 }
 
 .dashboard_item a {

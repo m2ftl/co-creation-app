@@ -508,6 +508,41 @@ app.get("/viewusersall", function(req, res) {
     });
 });
 
+app.post("/editquestiontopics", function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  });
+  const top = Object.keys(req.body.topic).filter(
+    key => req.body.topic[key] === true
+  );
+  client.connect();
+  client.query(
+    "DELETE FROM question_topic WHERE id_question=$1",
+    [req.body.id],
+    function(error, res1) {
+      if (error) {
+        console.warn(error);
+        res.send({ result: "failed" });
+      } else {
+        top.forEach(function(element) {
+          client.query(
+            "INSERT INTO question_topic (id_question, topic) VALUES ($1,$2)",
+            [req.body.id, element],
+            function(error, res1) {
+              if (error) {
+                console.warn(error);
+                res.send({ result: "failed" });
+              }
+            }
+          );
+        });
+      }
+      res.send({ result: "success" });
+    }
+  );
+});
+
 app.get("*", (request, result) => {
   result.sendFile(path.join(__dirname, "react-app/build/index.html"));
 });
