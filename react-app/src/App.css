@@ -92,6 +92,19 @@ html, body, #root, .App {
   color: black;
 }
 
+.wrapper_overlay {
+  display: none;
+  position: absolute;
+  top: 70px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+}
+
+.overlay_active {
+  display: block;
+}
+
 /* Header > NavBar */
 
 .container-grid-navbar {
