@@ -5,7 +5,7 @@ import LogoInesis from './LogoInesis';
 import UserWelcoming from './UserWelcoming';
 import WrapperMenu from './WrapperMenu';
 import WrapperMenuAdmin from './WrapperMenuAdmin';
-import {getUserState} from '../../store/user/selectors';
+import {getUser} from '../../store/profile/selectors';
 import { connect } from 'react-redux';
 
 
@@ -40,13 +40,13 @@ class Header extends Component {
     return(
       <div>
         <div className="container-header">
-          {this.props.googleUser.loggedIn
+          {this.props.user.loggedIn
             ?
             <BurgerMenuButton changeClass={this.changeClass}/>
             : <div className="item-navbar_empty"></div>
           }
           <LogoInesis />
-          {this.props.googleUser.loggedIn
+          {this.props.user.loggedIn
             ?
             <UserWelcoming />
             : <div className="item-navbar_empty"></div>
@@ -62,4 +62,4 @@ class Header extends Component {
   }
 }
 
-export default connect(getUserState)(Header);
+export default connect(getUser)(Header);
