@@ -62,7 +62,7 @@
 }
 
 .display_menu {
-  height: 640px;
+  height: 635px;
 }
 
 .wrapper_menu_items div {
@@ -87,7 +87,6 @@
   text-decoration: underline;
   color: black;
 }
-
 
 /* Header > NavBar */
 

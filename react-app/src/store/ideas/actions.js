@@ -60,7 +60,7 @@ export default function ideasActions(dispatch){
         .then(response => response.json())
         .then(data => {
           if (data.result === "success") {
-            console.log("success");
+            console.log("like added");
           } else {
             console.warn(data);
           }
@@ -71,11 +71,17 @@ export default function ideasActions(dispatch){
           method: 'GET'
         })
         .then(res => {
-          console.log("success");
           return res.json();
           })
         .catch(e=>console.log(e))
-
-    }
+    },
+    authorizeLike: (idea_id, owner_id) => {
+      return fetch(`/api/idea/${idea_id}/${owner_id}/like/authorize`, {
+          method: 'GET'
+        })
+        .then(response => response.json())
+        .then(data => data)
+        .catch(e => console.log(e))
+      }
   }
 }
