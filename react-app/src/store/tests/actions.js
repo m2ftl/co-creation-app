@@ -109,16 +109,6 @@ export default function testsActions(dispatch){
                return false;
              }
            });
-    },
-    retrieveTestsCounter: (id) => {
-      return fetch(`/viewtestsallcounter/${id}`, {
-          method: 'GET',
-        })
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-          dispatch({ type: "RETRIEVE_COUNTERTESTS", data: data })
-        });
     }
   }
 }
