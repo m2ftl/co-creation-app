@@ -1,6 +1,7 @@
 let initialState={
     tests: [],
-    answerstests: []
+    testsadmin: [],
+    answerstests: [],
 };
 
 export default function testsReducer(state=initialState, action){

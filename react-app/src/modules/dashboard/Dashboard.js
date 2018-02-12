@@ -5,9 +5,29 @@ import dash_icons_got_idea from '../../images/dash_icons_got_idea.png';
 import dash_icons_view_ideas from '../../images/dash_icons_view_ideas.png';
 import dash_icons_questions from '../../images/dash_icons_questions.png';
 import dash_icons_tests from '../../images/dash_icons_tests.png';
+import getDashboard from "../../store/dashboard/selectors";
+import dashboardActions from '../../store/dashboard/actions';
+import { connect } from 'react-redux';
 
-export default class Dashboard extends Component {
+class Dashboard extends Component {
+
+  componentDidMount() {
+    this.props.retrieveQuestionsCounter(this.props.useruuid);
+    this.props.retrieveTestsCounter(this.props.useruuid);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.counterquestions) {
+      this.props.retrieveQuestionsCounter(this.props.useruuid);
+    }
+    if (nextProps.countertests) {
+      this.props.retrieveTestsCounter(this.props.useruuid);
+    }
+  }
+
   render() {
+    console.log("quest",this.props.counterquestions);
+    console.log("test",this.props.countertests);
     return (
       <div className="container-global-dashboard">
 
@@ -36,7 +56,10 @@ export default class Dashboard extends Component {
 
         <div className="dashboard_items_row">
           <div className="dashboard_item">
+            <div>
             <img src={dash_icons_questions} alt="logo" height={"50px"} />
+            <div class="circle">{this.props.counterquestions}</div>
+            </div>
             <div>
               <h5>Questions</h5>
               <p>Lorem Ipsum dolor sit amet</p>
@@ -47,6 +70,7 @@ export default class Dashboard extends Component {
           </div>
           <div className="dashboard_item">
             <img src={dash_icons_tests} alt="logo" height={"50px"} />
+            <div class="circle">{this.props.countertests}</div>
             <div>
               <h5>Tests</h5>
               <p>Lorem Ipsum dolor sit amet</p>
@@ -61,3 +85,5 @@ export default class Dashboard extends Component {
     );
   }
 }
+
+export default connect(getDashboard, dashboardActions)(Dashboard);

@@ -27,7 +27,6 @@ class Createtest extends Component{
   }
 
   render() {
-    console.log(this.state.testfirsttime);
     return (
       <div>
       {this.state.testfirsttime &&

@@ -3,13 +3,16 @@ import "../../App.css";
 import { connect } from 'react-redux';
 import getTests from "../../store/tests/selectors";
 import testsActions from '../../store/tests/actions';
+import { Link } from "react-router-dom";
+
 
 
 class Testadmin extends Component {
   componentDidMount() {
+
     if(this.props.tests.length === 0) {
-      // TODO: fetch only this test
-      this.props.retrieveTests();
+      // TODO: fetch only this idea
+      this.props.retrieveTestsadmin();
     }
     this.props.retrieveAnswerstests(this.props.match.params.id);
   }
@@ -35,17 +38,53 @@ class Testadmin extends Component {
 
     return (
       <div>
+      {this.props.answerstests.length !== 0
+        ? (
+      <div>
       <div className="div_global_test">
         <div className="test_item">
 
           <div className="description_test_for_answer">
-            <div className="vt_prdct_pict"><img src={""+found_test.image_path+""} alt="product_picture" /></div>
+            <div className="vt_prdct_pict"><img src={""+found_test.picture+""} alt="product_picture" /></div>
             <div className="vt_test_title">{found_test.title}</div>
+            <div className="vt_test_title">{found_test.status}</div>
             <div className="vt_test_descr">{found_test.description}</div>
             <div className="vt_test_question">> {found_test.question}</div>
           </div>
         </div>
       </div>
+      <div>
+        <span><form onSubmit={(e)=> {
+          e.preventDefault();
+          this.props.reOpentest(this.props.match.params.id).then((response) => {
+            if(response) {
+              window.location.reload()
+            } else {
+              this.props.history.push('/failed');
+            }
+          })
+        }}>
+        <button className="btn dashboard_button" type="submit">Reopen Test</button>
+        </form></span>
+        <span><form onSubmit={(e)=> {
+          e.preventDefault();
+          this.props.archiveTest(this.props.match.params.id)
+          .then((response) => {
+            if(response) {
+              console.log("toto");
+              window.location.reload()
+            } else {
+              this.props.history.push('/failed');
+            }
+          })
+        }}>
+        <button className= "btn dashboard_button mt-2" type="submit">Archive Test</button>
+        </form></span>
+        <Link to={'/edittest/'+this.props.match.params.id}>
+        <button className="btn dashboard_button mt-2">Edit test</button>
+        </Link>
+      </div>
+      </div>) :null}
 
           {this.props.answerstests.length !== 0
             ? listanswers

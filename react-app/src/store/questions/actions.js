@@ -121,16 +121,6 @@ export default function questionsActions(dispatch){
              }
            });
       },
-      retrieveQuestionsCounter: (id) => {
-        return fetch(`/viewquestionsallcounter/${id}`, {
-            method: 'GET',
-          })
-          .then(response => response.json())
-          .then(data => {
-            console.log(data);
-            dispatch({ type: "RETRIEVE_COUNTERQUESTIONS", data: data })
-          });
-      },
       Inserteditquestiontopics: (topic,id) =>
         {
           const input = {
