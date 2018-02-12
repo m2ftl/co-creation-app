@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import getTests from "../../store/tests/selectors";
 import testsActions from '../../store/tests/actions';
 import { Link } from "react-router-dom";
-
+import ReactStars from "react-stars";
 
 
 class Testadmin extends Component {
@@ -22,19 +22,29 @@ class Testadmin extends Component {
     const found_test = this.props.tests.find((element) => {
       return element.id===this.props.match.params.id;
     }) || [];
-
     let listanswers = this.props.answerstests.map((answer, index) => {
       let format_date = new Date(answer.date);
       let formated_date = format_date.getDate()+'/'+(format_date.getMonth()+1)+'/'+format_date.getFullYear();
-
       return (
         <div className="comment_description mb-5">
           <div>{answer.answer}</div>
+          <ReactStars count={5} value={answer.rating} size={15} edit={false} color2={"#ffdf00"} />
           <div>{formated_date}</div>
           <span>submitted by {answer.first_name} {answer.last_name}</span>
         </div>
       )
     });
+    let total_rating =0;
+    total_rating = this.props.answerstests.map((answer, index) => {
+      total_rating=total_rating+answer.rating;
+      console.log(total_rating);
+      console.log(answer.rating);
+      if (this.props.answerstests.length===(index+1)) {
+        total_rating=total_rating/this.props.answerstests.length;
+      return (
+        <ReactStars count={5} value={total_rating} size={30} edit={false} color2={"#ffdf00"} />)
+    }
+    else return null})
 
     return (
       <div>
@@ -49,7 +59,8 @@ class Testadmin extends Component {
             <div className="vt_test_title">{found_test.title}</div>
             <div className="vt_test_title">{found_test.status}</div>
             <div className="vt_test_descr">{found_test.description}</div>
-            <div className="vt_test_question">> {found_test.question}</div>
+            {total_rating}
+            <div className="vt_test_question"> {found_test.question}</div>
           </div>
         </div>
       </div>

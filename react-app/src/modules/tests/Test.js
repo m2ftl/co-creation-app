@@ -3,13 +3,14 @@ import "../../App.css";
 import { connect } from 'react-redux';
 import getTests from "../../store/tests/selectors";
 import testsActions from '../../store/tests/actions';
-
+import ReactStars from "react-stars";
 
 class Test extends Component {
   constructor(props){
     super(props);
     this.state = {
-      current_textarea: ''
+      current_textarea: '',
+      rating:0
     }
   }
 
@@ -26,9 +27,16 @@ class Test extends Component {
     });
   }
 
+  ratingChanged = (newRating) => {
+  console.log(newRating);
+  this.setState({
+    rating: newRating
+  });
+  }
+
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.addAnswerTest(this.state.current_textarea, this.props.useruuid, this.props.match.params.id)
+    this.props.addAnswerTest(this.state.current_textarea, this.props.useruuid, this.props.match.params.id,this.state.rating)
     .then((response) => {
       if(response) {
         this.props.history.push('/success');
@@ -57,12 +65,13 @@ class Test extends Component {
 
           <div className="answer_test">
             <form onSubmit={this.onSubmit}>
-              <div className="label_test_answer">Write your answer:</div>
+              <div className="label_test_answer mt-3">Write your answer:</div>
               <div><textarea onChange={this.handleInput}></textarea></div>
+              <div className="label_test_answer">Evaluate the product:</div>
+              <ReactStars count={5} value={this.state.rating} size={20} edit={true} onChange={this.ratingChanged} color2={"#ffdf00"} />
               <div><button type="submit" className="btn">Send</button></div>
             </form>
           </div>
-
         </div>
       </div>
     );

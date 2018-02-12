@@ -23,11 +23,12 @@ export default function testsActions(dispatch){
         }
       });
     },
-    addAnswerTest: (answer, useruuid, test_id) => {
+    addAnswerTest: (answer, useruuid, test_id,rating) => {
       const input = {
         answer: answer,
         owner: useruuid,
-        test_id: test_id
+        test_id: test_id,
+        rating:rating
       }
       return fetch("/addanswertest", {
           method: 'POST',

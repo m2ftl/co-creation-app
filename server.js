@@ -371,7 +371,7 @@ app.post('/addanswertest', function(req, res) {
     ssl: true,
   });
   client.connect();
-  client.query("INSERT INTO test_answers (answer, rating, status, id_owner, id_test, id,date) VALUES ($1,'5','open',$2,$3,uuid_generate_v4(),Now())", [req.body.answer, req.body.owner, req.body.test_id])
+  client.query("INSERT INTO test_answers (answer, rating, status, id_owner, id_test, id,date) VALUES ($1,$4,'open',$2,$3,uuid_generate_v4(),Now())", [req.body.answer, req.body.owner, req.body.test_id,req.body.rating])
   .then(res1 => {
     client.end();
     res.send({result:"success"})
@@ -550,6 +550,7 @@ app.post("/editquestiontopics", function(req, res) {
     function(error, res1) {
       if (error) {
         console.warn(error);
+        client.end();
         res.send({ result: "failed" });
       } else {
         top.forEach(function(element) {
@@ -559,12 +560,14 @@ app.post("/editquestiontopics", function(req, res) {
             function(error, res1) {
               if (error) {
                 console.warn(error);
+                client.end();
                 res.send({ result: "failed" });
               }
             }
           );
         });
       }
+      client.end();
       res.send({ result: "success" });
     }
   );
@@ -629,8 +632,10 @@ app.post("/edittest", function(req, res) {
     function(error, res1) {
       if (error) {
         console.warn(error);
+        client.end();
         res.send({ result: "failed" });
       } else {
+        client.end();
         res.send({ result: "success" });
       }
     }
