@@ -10,11 +10,11 @@ class WrapperMenu extends Component {
     return(
       <div className="wrapper_menu_items_admin">
         <div className="sep_admin_menu">Admin Menu</div>
-        <Link to="/createtest"><div>Create a test</div></Link>
-        <Link to="/viewtestsadmin"><div>Admin tests</div></Link>
-        <Link to="/createquestion"><div>Create a question</div></Link>
-        <Link to="/viewquestionsadmin"><div>Admin questions</div></Link>
-        <Link to="/viewusers"><div>View users</div></Link>
+        <Link to="/createtest"><div onClick={this.props.disable_menu}>Create a test</div></Link>
+        <Link to="/viewtestsadmin"><div onClick={this.props.disable_menu}>Admin tests</div></Link>
+        <Link to="/createquestion"><div onClick={this.props.disable_menu}>Create a question</div></Link>
+        <Link to="/viewquestionsadmin"><div onClick={this.props.disable_menu}>Admin questions</div></Link>
+        <Link to="/viewusers"><div onClick={this.props.disable_menu}>View users</div></Link>
       </div>
     );
   }

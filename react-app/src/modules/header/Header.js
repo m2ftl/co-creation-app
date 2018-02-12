@@ -14,7 +14,8 @@ class Header extends Component {
     super(props);
     this.state = {
       sideClass: "",
-      buttonpush: 0
+      buttonpush: 0,
+      active: ""
     };
   }
 
@@ -23,18 +24,28 @@ class Header extends Component {
       if (this.state.buttonpush === 0) {
         this.setState({
           wrapperClass:"display_menu",
-          buttonpush:1
+          buttonpush:1,
+          active: "overlay_active"
         });
         this.forceUpdate();
       }
       else {
         this.setState({
           wrapperClass:"",
-          buttonpush:0
+          buttonpush:0,
+          active: ""
         });
         this.forceUpdate();
       }
-  };
+  }
+
+  disable_menu = (event) => {
+    this.setState({
+      wrapperClass:"",
+      buttonpush:0,
+      active: ""
+    });
+  }
 
   render(){
     return(
@@ -45,6 +56,7 @@ class Header extends Component {
             <BurgerMenuButton changeClass={this.changeClass}/>
             : <div className="item-navbar_empty"></div>
           }
+          <div className={"wrapper_overlay "+this.state.active} onClick={this.disable_menu}></div>
           <LogoInesis />
           {this.props.user.loggedIn
             ?
@@ -53,9 +65,8 @@ class Header extends Component {
           }
         </div>
         <div className={"wrapper_menu "+this.state.wrapperClass}>
-          <WrapperMenu changeClass={this.changeClass}/>
-
-          <WrapperMenuAdmin changeClass={this.changeClass}/>
+          <WrapperMenu disable_menu={this.disable_menu}/>
+          <WrapperMenuAdmin disable_menu={this.disable_menu}/>
         </div>
       </div>
     );
