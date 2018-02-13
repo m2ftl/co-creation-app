@@ -749,6 +749,11 @@ app.post("/update_profile", function(req, res) {
     key => req.body.weather[key] === true
   );
 
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  });
+  
   client.connect();
   client.query(
     "UPDATE users SET first_name=$1, last_name=$2, email=$3, birthdate=$4, gender=$5, phone=$6, player_index=$7, level=$8 WHERE id=$9",
