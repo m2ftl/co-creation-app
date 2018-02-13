@@ -36,13 +36,23 @@ app.post("/api/profile/create", function(req, res) {
     key => req.body.weather[key] === true
   );
 
+  function knowCategory(index){
+  if (index <=4.4){ return 'category1'}
+  else if (index <= 11.4){ return 'category2'}
+  else if (index <=18.4){ return 'category3'}
+  else if (index <=26.4){ return 'category4'}
+  else if (index <=36){ return 'category5'}
+  else {return'category6'}
+}
+  const indexCategory=knowCategory(req.body.index)
+
   const client = new PG.Client({
     connectionString: process.env.DATABASE_URL,
     ssl: true
   });
   client.connect();
   client.query(
-      "INSERT INTO users (id,first_name,last_name,email,birthdate,gender,phone,is_admin,player_index,id_google, level, is_admin) VALUES (uuid_generate_v4(),$1,$2,$3,$4,$5,$6,false,$7,$8,$9,'FALSE') RETURNING id",
+      "INSERT INTO users (id,first_name,last_name,email,birthdate,gender,phone,player_index,id_google, level, is_admin, id_index_category) VALUES (uuid_generate_v4(),$1,$2,$3,$4,$5,$6,$7,$8,$9,false,$10) RETURNING id",
       [
         req.body.firstName,
         req.body.lastName,
@@ -52,7 +62,8 @@ app.post("/api/profile/create", function(req, res) {
         req.body.phone,
         req.body.index,
         req.body.id_google,
-        req.body.level
+        req.body.level,
+        indexCategory
       ]
     )
     .then(resSQL => {
@@ -628,11 +639,11 @@ app.get("/api/idea/:idea_id/:user_id/like/authorize", function(req, res) {
     .then(resSQL => {
       client.end();
       res.json(parseInt(resSQL.rows[0].count,10));
-    )}
+    })
     .catch(e => {
       client.end();
       console.warn(e);
-    )};
+    });
   });
 
 app.post("/edittest", function(req, res) {
@@ -674,22 +685,22 @@ app.get('/viewtestsallcounter/:id', function(req, res) {
   });
 });
 
-app.get('/isadmin/:id_user', function(req, res) {
-  const client = new PG.Client({
-    connectionString: process.env.DATABASE_URL,
-    ssl: true,
-  });
-  client.connect();
-  client.query("SELECT is_admin FROM users WHERE id=$1 ",[req.params.id_user])
-  .then(res1 => {
-    client.end();
-    res.json(res1.rows[0].is_admin);
-  })
-  .catch(error => {
-    client.end();
-    console.warn(error);
-  });
-});
+// app.get('/isadmin/:id_user', function(req, res) {
+//   const client = new PG.Client({
+//     connectionString: process.env.DATABASE_URL,
+//     ssl: true,
+//   });
+//   client.connect();
+//   client.query("SELECT is_admin FROM users WHERE id=$1 ",[req.params.id_user])
+//   .then(res1 => {
+//     client.end();
+//     res.json(res1.rows[0].is_admin);
+//   })
+//   .catch(error => {
+//     client.end();
+//     console.warn(error);
+//   });
+// });
 
 
 app.post("/api/like/add", function(req, res) {
