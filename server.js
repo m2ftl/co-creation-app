@@ -43,7 +43,7 @@ app.post("/api/profile/create", function(req, res) {
   });
   client.connect();
   client.query(
-      "INSERT INTO users (id,first_name,last_name,email,birthdate,gender,phone,is_admin,player_index,id_google, level) VALUES (uuid_generate_v4(),$1,$2,$3,$4,$5,$6,false,$7,$8,$9) RETURNING id",
+      "INSERT INTO users (id,first_name,last_name,email,birthdate,gender,phone,is_admin,player_index,id_google, level, is_admin) VALUES (uuid_generate_v4(),$1,$2,$3,$4,$5,$6,false,$7,$8,$9,'FALSE') RETURNING id",
       [
         req.body.firstName,
         req.body.lastName,
