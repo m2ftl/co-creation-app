@@ -57,9 +57,7 @@ class Questionadmin extends Component {
         <h1>Question details</h1>
         <div className="question_item_display">
           <h3>{found_question.title}</h3>
-
           <div>{formated_date} {found_question.status}</div>
-
           <div className="idea_description">
             <div>{found_question.description}</div>
             <span>submitted by {found_question.first_name} {found_question.last_name}</span>
