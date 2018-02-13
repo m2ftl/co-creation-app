@@ -136,13 +136,13 @@ app.post("/createquestionnew", function(req, res) {
 
   client.connect();
   client.query(
-    "INSERT INTO questions (id, title, description,status,date,id_owner) VALUES (uuid_generate_v4(),$1,$2,'open',Now(),$3) RETURNING *",
-    [req.body.title, req.body.description, req.body.uuid],
+    "INSERT INTO questions (id, title, description,status,date,id_owner,answer1,answer2,answer3,answer4) VALUES (uuid_generate_v4(),$1,$2,'open',Now(),$3,$4,$5,$6,$7) RETURNING *",
+    [req.body.title, req.body.description, req.body.uuid,req.body.answer1,req.body.answer2,req.body.answer3,req.body.answer4],
     function(error, res1) {
       if (error) {
         console.warn(error);
-        client.end();
         res.send({ result: "failed" });
+        client.end();
       } else {
         top.forEach(function(element) {
           client.query(
@@ -151,14 +151,12 @@ app.post("/createquestionnew", function(req, res) {
             function(error, res1) {
               if (error) {
                 console.warn(error);
-                client.end();
                 res.send({ result: "failed" });
               }
             }
           );
         });
       }
-      client.end();
       res.send({ result: "success" });
     }
   );
@@ -485,8 +483,8 @@ app.post("/editquestion", function(req, res) {
   });
   client.connect();
   client.query(
-    "UPDATE questions SET title=$1, description=$2 WHERE id=$3",
-    [req.body.title,req.body.description, req.body.id],
+    "UPDATE questions SET title=$1, description=$2,title=$3,title=$4,title=$5,title=$6 WHERE id=$7",
+    [req.body.title,req.body.description,req.body.answer1,req.body.answer2,req.body.answer3,req.body.answer4, req.body.id],
     function(error, res1) {
       if (error) {
         client.end();
@@ -567,7 +565,6 @@ app.post("/editquestiontopics", function(req, res) {
           );
         });
       }
-      client.end();
       res.send({ result: "success" });
     }
   );
