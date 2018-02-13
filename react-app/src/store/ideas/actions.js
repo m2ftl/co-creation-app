@@ -10,7 +10,7 @@ export default function ideasActions(dispatch){
         });
     },
     retrieveIdeasByLikes: () => {
-      return fetch('/viewideasallbylike', {
+      return fetch('/viewideasallbylikes', {
           method: 'GET',
         })
         .then(response => response.json())
