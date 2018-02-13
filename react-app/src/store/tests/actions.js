@@ -58,18 +58,15 @@ export default function testsActions(dispatch){
         });
     },
     retrieveTestsadmin: () => {
-      console.log("tata");
       return fetch('/viewtestsalladmin', {
           method: 'GET',
         })
         .then(response => response.json())
         .then(data => {
-          console.log(data);
-          dispatch({ type: "RETRIEVE_TESTS", data: data })
+          dispatch({ type: "RETRIEVE_TESTSADMIN", data: data })
         });
     },
     reOpentest: (id) => {
-      console.log(id);
       return fetch(`/reopentest/${id}`, {
       method: 'GET',
       })
