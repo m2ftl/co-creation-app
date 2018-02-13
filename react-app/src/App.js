@@ -36,6 +36,7 @@ class App extends Component {
   componentWillReceiveProps(nextProps) {
     if (!this.props.user.loggedIn && nextProps.user.loggedIn) {
       this.props.checkUser(nextProps.user.id_google);
+      this.props.isAdminAction(nextProps.user.id_google);
     }
   }
 

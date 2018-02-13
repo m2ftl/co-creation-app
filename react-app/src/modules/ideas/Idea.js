@@ -82,7 +82,7 @@ class Idea extends Component {
       return (
         <div key={index} className="comment_description">
           <div>&laquo; {comment.comment} &raquo;</div>
-          <span>~ &nbsp; {comment.first_name} {comment.last_name} / {comment.date}</span>
+          <span>~ &nbsp; {comment.first_name} {comment.last_name}</span>
         </div>
       )
     });

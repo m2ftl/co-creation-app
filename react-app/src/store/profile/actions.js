@@ -96,6 +96,17 @@ export function profileActions(dispatch) {
         .then(data => {
           dispatch({ type: "RETRIEVE_USERS", data: data })
         });
+    },
+    isAdminAction: (id_google) => {
+      return fetch(`/isadmin/${id_google}`, {
+        method: 'GET',
+      })
+      .then(response => response.json())
+      .then(data =>{
+        if (data === true){
+        dispatch({ type: "IS_ADMIN"})
+      }
+      });
     }
   };
 }
