@@ -22,6 +22,13 @@ class Questionadmin extends Component {
     this.props.resetTopics();
   }
 
+  retrieveDate(date) {
+    let format_date = new Date(date);
+    if (typeof date !== "undefined")  {
+      return format_date.getDate()+'/'+(format_date.getMonth()+1)+'/'+format_date.getFullYear();}
+    else {
+      return ""}
+  }
 
   render() {
 
@@ -43,9 +50,8 @@ class Questionadmin extends Component {
     let found_question = this.props.questions.find((element) => {
       return element.id===this.props.match.params.id;
     }) || [];
-    let format_date = new Date(found_question.date);
-    let formated_date = format_date.getDate()+'/'+(format_date.getMonth()+1)+'/'+format_date.getFullYear();
 
+    let formated_date =this.retrieveDate(found_question.date);
     return (
       <div className="list_ideas_block">
         <h1>Question details</h1>
