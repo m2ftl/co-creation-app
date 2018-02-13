@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Profile from "./modules/profile/profile.js";
+import EditProfile from "./modules/profile/EditProfile.js";
 import Header from './modules/header/Header';
 import Dashboard from './modules/dashboard/Dashboard';
 import CreateIdea from "./modules/ideas/Createidea";
@@ -69,6 +70,7 @@ class App extends Component {
         />
         <Switch>
           <Route path="/complete-profile" render={(routerProps) => <Profile {...routerProps} completedProfile={this.props.user.completedProfile}/>} />
+          <Route path="/edit-profile" render={(routerProps) => <EditProfile {...routerProps} />} />
           <Route path="/dashboard" render={() => <Dashboard />} />
           <Route path="/createidea" render={() => <CreateIdea />} />
           <Route path="/createquestion" render={() => <Createquestion />} />

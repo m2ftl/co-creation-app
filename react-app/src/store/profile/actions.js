@@ -23,6 +23,10 @@ export function profileActions(dispatch) {
         })
         .catch(e => console.warn(e));
     },
+    updateFirstName: event =>
+      dispatch({ type: "UPDATE_FIRST_NAME", firstName: event.target.value }),
+    updateLastName: event =>
+      dispatch({ type: "UPDATE_LAST_NAME", lastName: event.target.value }),
     updateGender: event =>
       dispatch({
         type: "UPDATE_GENDER",
@@ -32,6 +36,8 @@ export function profileActions(dispatch) {
       }),
     updateBirthdate: event =>
       dispatch({ type: "UPDATE_BIRTHDATE", birthdate: event.target.value }),
+    updateEmail: event =>
+      dispatch({ type: "UPDATE_EMAIL", email: event.target.value }),
     updatePhone: event =>
       dispatch({ type: "UPDATE_PHONE", phone: event.target.value }),
     updateIndex: event =>
@@ -49,15 +55,38 @@ export function profileActions(dispatch) {
         .then(response => response.json())
         .then(data => {
           if (data!=="no_user_in_DB") {
-          localStorage.setItem("id_user",data);
-          dispatch({ type: "USER_EXISTS" })
-          return true
+            // console.log(data);
+            dispatch({ type: "USER_EXISTS", profile:data })
+            localStorage.setItem("id_user",data.id);
+            return true
           }
           else {
-          dispatch({ type: "USER_NOTEXISTS" })
-          return false
+            dispatch({ type: "USER_NOTEXISTS" })
+            return false
           }
         });
+    },
+    UpdateProfile: (user) => {
+      return fetch('/update_profile', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          birthdate: user.birthdate,
+          gender: user.gender,
+          phone: user.phone,
+          level: user.level,
+          index: user.index,
+          weather: user.weather,
+          id_google: user.id_google,
+          id: user.id_user
+        })
+      })
+        .then(res => res.json())
+        .then(data => data)
+        .catch(e => console.warn(e));
     },
     retrieveUsers: () => {
       return fetch('/viewusersall', {

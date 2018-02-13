@@ -408,10 +408,10 @@ app.get("/:id_google/checkuser", function(req, res) {
   });
   client.connect();
   client
-    .query("SELECT id FROM users WHERE id_google=$1;", [req.params.id_google])
+    .query("SELECT * FROM users WHERE id_google=$1;", [req.params.id_google])
     .then(resSQL => {
       client.end();
-      res.json(resSQL.rows.length>0?resSQL.rows[0].id:"no_user_in_DB");
+      res.json(resSQL.rows.length>0?resSQL.rows[0]:"no_user_in_DB");
     })
     .catch(e => {
       client.end();
@@ -721,6 +721,39 @@ app.post("/api/like/add", function(req, res) {
       res.send({ result: "Oups something wrong " });
       console.warn(e);
     });
+});
+
+app.post("/update_profile", function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  });
+  console.log(req.body.firstName);
+  client.connect();
+  client.query(
+    "UPDATE users SET first_name=$1, last_name=$2, email=$3, birthdate=$4, gender=$5, phone=$6, player_index=$7, level=$8 WHERE id=$9",
+    [
+      req.body.firstName,
+      req.body.lastName,
+      req.body.email,
+      req.body.birthdate,
+      req.body.gender,
+      req.body.phone,
+      req.body.index,
+      req.body.level,
+      req.body.id
+    ],
+    function(error, res1) {
+      if (error) {
+        console.warn(error);
+        client.end();
+        res.send({ result: "failed" });
+      } else {
+        client.end();
+        res.send({ result: "success" });
+      }
+    }
+  );
 });
 
 app.get("*", (request, result) => {
