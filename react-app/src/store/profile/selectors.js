@@ -13,8 +13,9 @@ export const getUser= (state) => {
       weather:state.profileReducer.weather,
       id_google:state.profileReducer.id_google,
       completedProfile:state.profileReducer.completedProfile,
-      loggedIn:state.profileReducer.loggedIn
+      loggedIn:state.profileReducer.loggedIn,
+      isAdmin:state.googleUserReducer.isAdmin
     },
-    userslist:state.profileReducer.userslist
+    userslist:state.profileReducer.userslist,
   }
 }

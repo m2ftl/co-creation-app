@@ -3,10 +3,16 @@ import '../../App.css';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import { signOut } from '../../store/user/actions';
+import { getUser} from '../../store/profile/selectors';
 
 class WrapperMenu extends Component {
-
+  componentDidMount(){
+    this.props.isAdminAction(this.props.user.id_user);
+    console.log(this.props.user)
+  }
   render(){
+    if (this.props.user.isAdmin)
+    {
     return(
       <div className="wrapper_menu_items_admin">
         <div className="sep_admin_menu">Admin Menu</div>
@@ -17,7 +23,11 @@ class WrapperMenu extends Component {
         <Link to="/viewusers"><div onClick={this.props.disable_menu}>View users</div></Link>
       </div>
     );
+    }
+    else {
+      return <div />
+    }
   }
 }
 
-export default connect(null, signOut)(WrapperMenu);
+export default connect(getUser, signOut)(WrapperMenu);

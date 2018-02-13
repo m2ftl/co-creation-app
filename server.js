@@ -656,6 +656,22 @@ app.get('/viewtestsallcounter/:id', function(req, res) {
   });
 });
 
+app.get('/isadmin/:id_user', function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
+  client.connect();
+  client.query("SELECT is_admin FROM users WHERE id=$1 ",[req.params.id_user])
+  .then(res1 => {
+    client.end();
+    console.log(res1);
+    res.json(res1.rows[0].is_admin);
+  })
+  .catch(error => {
+    console.warn(error);
+  });
+});
 
 
 app.post("/api/like/add", function(req, res) {

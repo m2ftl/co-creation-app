@@ -5,7 +5,8 @@ const initialState = {
   familyName: null,
   avatar: null,
   email: null,
-  loggedIn: false
+  loggedIn: false,
+  isAdmin: false,
 };
 
 export default function googleUserReducer(state = initialState, action) {
@@ -22,6 +23,11 @@ export default function googleUserReducer(state = initialState, action) {
       };
     case "SIGN_OUT":
       return initialState;
+    case "IS_ADMIN":
+    return{
+      ...state,
+      isAdmin: true
+    }
     default:
       return state;
   }
