@@ -5,7 +5,7 @@ import likeBtnGrey from '../../images/likeG.png';
 import { connect } from 'react-redux';
 import getIdeas from "../../store/ideas/selectors";
 import ideasActions from '../../store/ideas/actions';
-
+import { Link } from "react-router-dom";
 
 class Idea extends Component {
   constructor(props){
@@ -124,6 +124,13 @@ class Idea extends Component {
           </div>
 
         </div>
+        {this.props.useruuid === found_idea.id_owner && this.props.comments.length===0 &&
+          <div>
+          <Link to={"/editidea/"+this.props.match.params.id}>
+          <button className="btn" type="submit">Edit idea</button>
+          </Link>
+          </div>
+        }
 
         <div className="idea_comments_block">
           <form onSubmit={this.onSubmit}>

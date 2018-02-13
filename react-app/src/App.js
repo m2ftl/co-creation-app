@@ -30,6 +30,7 @@ import Hidden from './modules/feedback/Hidden';
 import ViewTestsadmin from "./modules/tests/Viewtestsadmin";
 import Testadmin from "./modules/tests/Testadmin";
 import Edittest from "./modules/tests/Edittest";
+import Editidea from "./modules/ideas/Editidea";
 
 class App extends Component {
 
@@ -93,6 +94,7 @@ class App extends Component {
           <Route path="/viewtestsadmin" render={() => <ViewTestsadmin />} />
           <Route path="/viewtestadmin/:id" render={(routerProps) => <Testadmin {...routerProps}/>} />
           <Route path="/edittest/:id" render={(routerProps) => <Edittest {...routerProps} onSubmit={this.submit}/>} />
+          <Route path="/editidea/:id" render={(routerProps) => <Editidea {...routerProps} onSubmit={this.submit}/>} />
           <Route path="/sign-out" render={() => (
             this.props.user.loggedIn && !this.props.user.completedProfile
               ? <SignOut />
