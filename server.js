@@ -193,7 +193,7 @@ app.get("/viewideasall", function(req, res) {
   client.connect();
   client
     .query(
-      "SELECT ideas.id,title, description, users.first_name, users.last_name, ideas.id_owner FROM ideas INNER JOIN users ON ideas.id_owner=users.id"
+      "SELECT ideas.id,title, description, users.first_name, users.last_name, ideas.id_owner, ideas.date FROM ideas INNER JOIN users ON ideas.id_owner=users.id ORDER BY ideas.date DESC"
     )
     .then(res1 => {
       client.end();
@@ -204,7 +204,7 @@ app.get("/viewideasall", function(req, res) {
     });
 });
 
-app.get("/:id/comments", function(req, res) {
+app.get("/:ideaid/comments", function(req, res) {
   const client = new PG.Client({
     connectionString: process.env.DATABASE_URL,
     ssl: true
@@ -212,8 +212,8 @@ app.get("/:id/comments", function(req, res) {
   client.connect();
   client
     .query(
-      "SELECT comment, comments.status, users.first_name, users.last_name, comments.date FROM comments INNER JOIN users ON comments.id_owner=users.id WHERE comments.id_idea=$1;",
-      [req.params.id]
+      "SELECT comment, comments.status, users.first_name, users.last_name, comments.date FROM comments INNER JOIN users ON comments.id_owner=users.id WHERE comments.id_idea=$1 ORDER BY comments.date DESC;",
+      [req.params.ideaid]
     )
     .then(res1 => {
       client.end();
