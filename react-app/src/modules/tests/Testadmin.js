@@ -18,8 +18,7 @@ class Testadmin extends Component {
   }
 
   render() {
-
-    const found_test = this.props.tests.find((element) => {
+    const found_test = this.props.testsadmin.find((element) => {
       return element.id===this.props.match.params.id;
     }) || [];
     let listanswers = this.props.answerstests.map((answer, index) => {
@@ -37,8 +36,6 @@ class Testadmin extends Component {
     let total_rating =0;
     total_rating = this.props.answerstests.map((answer, index) => {
       total_rating=total_rating+answer.rating;
-      console.log(total_rating);
-      console.log(answer.rating);
       if (this.props.answerstests.length===(index+1)) {
         total_rating=total_rating/this.props.answerstests.length;
       return (
@@ -48,8 +45,6 @@ class Testadmin extends Component {
 
     return (
       <div>
-      {this.props.answerstests.length !== 0
-        ? (
       <div>
       <div className="div_global_test">
         <div className="test_item">
@@ -82,7 +77,6 @@ class Testadmin extends Component {
           this.props.archiveTest(this.props.match.params.id)
           .then((response) => {
             if(response) {
-              console.log("toto");
               window.location.reload()
             } else {
               this.props.history.push('/failed');
@@ -95,7 +89,7 @@ class Testadmin extends Component {
         <button className="btn dashboard_button mt-2">Edit test</button>
         </Link>
       </div>
-      </div>) :null}
+      </div>
 
           {this.props.answerstests.length !== 0
             ? listanswers

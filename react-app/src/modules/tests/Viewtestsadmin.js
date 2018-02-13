@@ -8,18 +8,15 @@ import { Link } from "react-router-dom";
 class ViewTestsadmin extends Component {
 
   componentDidMount() {
-    console.log("toto");
     this.props.retrieveTestsadmin();
   }
 
   render() {
-    console.log("testa",this.props.tests);
-    let listTestsadmin = this.props.tests.map((test, index) => {
-      if(this.props.tests.length !== 0) {
+    let listTestsadmin = this.props.testsadmin.map((test, index) => {
+      if(this.props.testsadmin.length !== 0) {
         let format_date = new Date(test.date);
         let formated_date = format_date.getDate()+'/'+(format_date.getMonth()+1)+'/'+format_date.getFullYear();
 
-        console.log(this.props.tests);
         return (
           <div className="viewtest_item_bckgrd">
             <div className="viewtest_item_content">

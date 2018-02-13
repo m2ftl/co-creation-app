@@ -11,6 +11,11 @@ export default function testsReducer(state=initialState, action){
         ...state,
         tests:action.data
       }
+    case "RETRIEVE_TESTSADMIN":
+      return{
+          ...state,
+          testsadmin:action.data
+      }
     case "RETRIEVE_ANSWERSTESTS":
       return{
         ...state,
