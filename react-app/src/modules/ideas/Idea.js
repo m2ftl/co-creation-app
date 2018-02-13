@@ -93,10 +93,6 @@ class Idea extends Component {
 
     let likebtnGrey = (<img src={likeBtnGrey} className="likeBtnGrey" alt="logo" width={'30px'} />);
 
-    let like = (<button className="btn" onClick={() =>  {this.props.like(this.props.match.params.id, this.props.useruuid);
-        this.handleCountLikes();this.disableLikeBtn();
-    }} >Like!</button>);
-
 
     const found_idea = this.props.ideas.find((element) => {
       return element.id===this.props.match.params.id;

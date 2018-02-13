@@ -199,6 +199,7 @@ app.get("/viewideasall", function(req, res) {
       res.send(res1.rows);
     })
     .catch(error => {
+      client.end();
       console.warn(error);
     });
 });
@@ -219,6 +220,7 @@ app.get("/:ideaid/comments", function(req, res) {
       res.send(res1.rows);
     })
     .catch(error => {
+      client.end();
       console.warn(error);
     });
 });
@@ -258,6 +260,7 @@ app.get('/viewquestionsall/:id', function(req, res) {
     res.send(res1.rows);
   })
   .catch(error => {
+    client.end();
     console.warn(error);
   });
 });
@@ -274,6 +277,7 @@ app.get('/viewquestionsalladmin', function(req, res) {
     res.send(res1.rows);
   })
   .catch(error => {
+    client.end();
     console.warn(error);
   });
 });
@@ -328,6 +332,7 @@ app.get('/viewtestsall', function(req, res) {
     res.send(res1.rows);
   })
   .catch(error => {
+    client.end();
     console.warn(error);
   });
 });
@@ -344,6 +349,7 @@ app.get('/viewtestsalladmin', function(req, res) {
     res.send(res1.rows);
   })
   .catch(error => {
+    client.end();
     console.warn(error);
   });
 });
@@ -360,6 +366,7 @@ app.get('/:id/answers', function(req, res) {
     res.send(res1.rows);
   })
   .catch(error => {
+    client.end();
     console.warn(error);
   });
 });
@@ -452,6 +459,7 @@ app.get('/:id/topics', function(req, res) {
     res.send(res1.rows);
   })
   .catch(error => {
+    client.end();
     console.warn(error);
   });
 });
@@ -511,6 +519,7 @@ app.get('/viewquestionsallcounter/:id', function(req, res) {
     res.send(res1.rows[0].count);
   })
   .catch(error => {
+    client.end();
     console.warn(error);
   });
 });
@@ -530,6 +539,7 @@ app.get("/viewusersall", function(req, res) {
       res.send(res1.rows);
     })
     .catch(error => {
+      client.end();
       console.warn(error);
     });
 });
@@ -583,6 +593,7 @@ app.get('/:id/answerstests', function(req, res) {
     res.send(res1.rows);
   })
   .catch(error => {
+    client.end();
     console.warn(error);
   });
 });
@@ -614,8 +625,14 @@ app.get("/api/idea/:idea_id/:user_id/like/authorize", function(req, res) {
   client.connect();
   client.query("SELECT COUNT(id_user) FROM like_ideas where id_idea=$1 and id_user=$2",
   [req.params.idea_id,req.params.user_id])
-    .then(resSQL => res.json(parseInt(resSQL.rows[0].count,10)))
-    .catch(e => console.warn(e))
+    .then(resSQL => {
+      client.end();
+      res.json(parseInt(resSQL.rows[0].count,10));
+    )}
+    .catch(e => {
+      client.end();
+      console.warn(e);
+    )};
   });
 
 app.post("/edittest", function(req, res) {
@@ -652,6 +669,7 @@ app.get('/viewtestsallcounter/:id', function(req, res) {
     res.send(res1.rows[0].count);
   })
   .catch(error => {
+    client.end();
     console.warn(error);
   });
 });
@@ -668,6 +686,7 @@ app.get('/isadmin/:id_user', function(req, res) {
     res.json(res1.rows[0].is_admin);
   })
   .catch(error => {
+    client.end();
     console.warn(error);
   });
 });
