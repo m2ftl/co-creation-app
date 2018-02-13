@@ -91,6 +91,32 @@ export default function ideasActions(dispatch){
         .then(response => response.json())
         .then(data => data)
         .catch(e => console.warn(e))
+      },
+      Inserteditidea: (title,description,id) =>
+        {
+          const input = {
+            title:title,
+            description:description,
+            id: id
+          };
+
+           return fetch('/editidea', {
+               method: 'POST',
+               headers: {
+                 'Accept': 'application/json',
+                 'Content-Type': 'application/json'
+                },
+               body: JSON.stringify(input)
+             })
+             .then(response => response.json())
+             .then(data => {
+               if (data.result === "success") {
+                 return true;// dispatch a success
+               } else {
+                 console.warn(data);
+                 return false;
+               }
+             });
       }
   }
 }

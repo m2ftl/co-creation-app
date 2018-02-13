@@ -753,7 +753,7 @@ app.post("/update_profile", function(req, res) {
     connectionString: process.env.DATABASE_URL,
     ssl: true
   });
-  
+
   client.connect();
   client.query(
     "UPDATE users SET first_name=$1, last_name=$2, email=$3, birthdate=$4, gender=$5, phone=$6, player_index=$7, level=$8 WHERE id=$9",
@@ -804,6 +804,27 @@ app.post("/update_profile", function(req, res) {
   });
 });
 
+app.post("/editidea", function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  });
+  client.connect();
+  client.query(
+    "UPDATE ideas SET title=$1, description=$2 WHERE id=$3",
+    [req.body.title,req.body.description,req.body.id],
+    function(error, res1) {
+      if (error) {
+        console.warn(error);
+        client.end();
+        res.send({ result: "failed" });
+      } else {
+        client.end();
+        res.send({ result: "success" });
+      }
+    }
+  );
+});
 
 app.get("*", (request, result) => {
   result.sendFile(path.join(__dirname, "react-app/build/index.html"));
