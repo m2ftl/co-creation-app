@@ -21,7 +21,6 @@ class Idea extends Component {
     this.props.resetComments();
   }
 
-
   componentDidMount() {
 
     this.props.authorizeLike(this.props.match.params.id,this.props.useruuid)
@@ -100,6 +99,7 @@ class Idea extends Component {
 
     return (
       <div className="idea_page_global">
+
         <h1>Idea details</h1>
 
         <div className="div_global_idea">
@@ -136,6 +136,7 @@ class Idea extends Component {
             : null
           }
         </div>
+
       </div>
     );
   }

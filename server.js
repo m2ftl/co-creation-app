@@ -723,16 +723,37 @@ app.post("/api/like/add", function(req, res) {
     });
 });
 
-app.post("/update_profile", function(req, res) {
+app.get("/viewideasallbylikes", function(req,res) {
   const client = new PG.Client({
     connectionString: process.env.DATABASE_URL,
     ssl: true
   });
+  client.connect();
+  client
+    .query(
+      "SELECT ideas.id,title, description, users.first_name, users.last_name, ideas.id_owner, ideas.date, count(ideas.id) AS counter FROM ideas INNER JOIN like_ideas ON ideas.id = like_ideas.id_idea INNER JOIN users ON ideas.id_owner=users.id GROUP BY (ideas.id,title, description, users.first_name, users.last_name, ideas.id_owner, ideas.date) ORDER BY counter DESC"
+    )
+    .then(res1 => {
+      client.end();
+      res.send(res1.rows);
+    })
+    .catch(error => {
+      client.end();
+      console.warn(error);
+    });
+});
+
+app.post("/update_profile", function(req, res) {
 
   const values = Object.keys(req.body.weather).filter(
     key => req.body.weather[key] === true
   );
 
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  });
+  
   client.connect();
   client.query(
     "UPDATE users SET first_name=$1, last_name=$2, email=$3, birthdate=$4, gender=$5, phone=$6, player_index=$7, level=$8 WHERE id=$9",
@@ -780,9 +801,9 @@ app.post("/update_profile", function(req, res) {
           }
         );
       }
-    }
-  );
+  });
 });
+
 
 app.get("*", (request, result) => {
   result.sendFile(path.join(__dirname, "react-app/build/index.html"));
