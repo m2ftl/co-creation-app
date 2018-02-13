@@ -34,11 +34,26 @@ export default function profileReducer(state=initialState, action){
         lastName: action.familyName,
         email: action.email,
         loggedIn: true,
-      };
+      }
+    case "UPDATE_FIRST_NAME":
+      return {
+        ...state,
+        firstName: action.firstName
+      }
+    case "UPDATE_LAST_NAME":
+      return {
+        ...state,
+        lastName: action.lastName
+      }
     case "UPDATE_GENDER":
       return{
         ...state,
         gender:action.gender
+      }
+    case "UPDATE_EMAIL":
+      return{
+        ...state,
+        email:action.email
       }
     case "UPDATE_BIRTHDATE":
       return{
@@ -102,7 +117,21 @@ export default function profileReducer(state=initialState, action){
     case "USER_EXISTS":
     return{
       ...state,
-      completedProfile: true
+      completedProfile: true,
+      firstName: action.profile.first_name,
+      lastName: action.profile.last_name,
+      gender: action.profile.gender,
+      birthdate: action.profile.birthdate,
+      email: action.profile.email,
+      phone: action.profile.phone,
+      level: action.profile.level,
+      index: action.profile.player_index,
+      weather:{
+        rain:false,
+        cold:false,
+        mild:false,
+        sunny:false
+      },
     }
     case "USER_NOTEXISTS":
     return{

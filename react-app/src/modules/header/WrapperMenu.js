@@ -14,7 +14,7 @@ class WrapperMenu extends Component {
         <Link to="/viewideas"><div onClick={this.props.disable_menu}>View ideas</div></Link>
         <Link to="/viewtests"><div onClick={this.props.disable_menu}>Tests</div></Link>
         <Link to="/viewquestions"><div onClick={this.props.disable_menu}>Questions</div></Link>
-        <Link to="/dashboard"><div onClick={this.props.disable_menu}>My Profile</div></Link>
+        <Link to="/edit-profile"><div onClick={this.props.disable_menu}>My Profile</div></Link>
         <Link to="/signoutmenu">
           <div onClick={this.props.disable_menu}><span className="glyphicon glyphicon-log-in"></span>&nbsp;Log out</div>
         </Link>
