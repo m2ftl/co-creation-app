@@ -93,10 +93,10 @@ class EditProfile extends React.Component {
             <div className="edit_profile_row">
               <p>
                 Weather Conditions :<br />
-                <input onClick={this.props.updateRain} type="checkbox" name="rain" value="rain"/>Rain
-                <input onClick={this.props.updateCold} type="checkbox" name="cold" value="cold"/>Cold
-                <input onClick={this.props.updateMild} type="checkbox" name="mild" value="mild"/>Mild
-                <input onClick={this.props.updateSunny} type="checkbox" name="sunny" value="sunny"/>Sunny
+                <input onChange={this.props.updateRain} type="checkbox" checked={this.props.user.weather.rain} name="rain" value="rain"/>Rain
+                <input onChange={this.props.updateCold} type="checkbox" checked={this.props.user.weather.cold} name="cold" value="cold"/>Cold
+                <input onChange={this.props.updateMild} type="checkbox" checked={this.props.user.weather.mild} name="mild" value="mild"/>Mild
+                <input onChange={this.props.updateSunny} type="checkbox" checked={this.props.user.weather.sunny} name="sunny" value="sunny"/>Sunny
               </p>
             </div>
             <div className="edit_profile_row">
