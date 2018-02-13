@@ -685,22 +685,22 @@ app.get('/viewtestsallcounter/:id', function(req, res) {
   });
 });
 
-// app.get('/isadmin/:id_user', function(req, res) {
-//   const client = new PG.Client({
-//     connectionString: process.env.DATABASE_URL,
-//     ssl: true,
-//   });
-//   client.connect();
-//   client.query("SELECT is_admin FROM users WHERE id=$1 ",[req.params.id_user])
-//   .then(res1 => {
-//     client.end();
-//     res.json(res1.rows[0].is_admin);
-//   })
-//   .catch(error => {
-//     client.end();
-//     console.warn(error);
-//   });
-// });
+app.get('/isadmin/:id_google', function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
+  client.connect();
+  client.query("SELECT is_admin FROM users WHERE id_google=$1 ",[req.params.id_google])
+  .then(resSQL => {
+    client.end();
+    res.json(resSQL.rows.length>0?resSQL.rows[0].is_admin:"no_user_in_DB");
+  })
+  .catch(error => {
+    client.end();
+    console.warn(error);
+  });
+});
 
 
 app.post("/api/like/add", function(req, res) {
