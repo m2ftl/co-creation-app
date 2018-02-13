@@ -26,8 +26,6 @@ class Dashboard extends Component {
   }
 
   render() {
-    console.log("quest",this.props.counterquestions);
-    console.log("test",this.props.countertests);
     return (
       <div className="container-global-dashboard">
 

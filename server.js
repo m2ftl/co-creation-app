@@ -43,7 +43,7 @@ app.post("/api/profile/create", function(req, res) {
   });
   client.connect();
   client.query(
-      "INSERT INTO users (id,first_name,last_name,email,birthdate,gender,phone,is_admin,player_index,id_google, level) VALUES (uuid_generate_v4(),$1,$2,$3,$4,$5,$6,false,$7,$8,$9) RETURNING id",
+      "INSERT INTO users (id,first_name,last_name,email,birthdate,gender,phone,is_admin,player_index,id_google, level, is_admin) VALUES (uuid_generate_v4(),$1,$2,$3,$4,$5,$6,false,$7,$8,$9,'FALSE') RETURNING id",
       [
         req.body.firstName,
         req.body.lastName,
@@ -656,6 +656,22 @@ app.get('/viewtestsallcounter/:id', function(req, res) {
   });
 });
 
+app.get('/isadmin/:id_user', function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
+  client.connect();
+  client.query("SELECT is_admin FROM users WHERE id=$1 ",[req.params.id_user])
+  .then(res1 => {
+    client.end();
+    console.log(res1);
+    res.json(res1.rows[0].is_admin);
+  })
+  .catch(error => {
+    console.warn(error);
+  });
+});
 
 
 app.post("/api/like/add", function(req, res) {

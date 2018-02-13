@@ -7,7 +7,7 @@ export const getUserState = (state) => {
       familyName: state.googleUserReducer.familyName,
       avatar: state.googleUserReducer.avatar,
       email: state.googleUserReducer.email,
-      loggedIn:state.googleUserReducer.loggedIn
+      loggedIn:state.googleUserReducer.loggedIn,
     }
   };
 }
