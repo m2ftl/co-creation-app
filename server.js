@@ -728,7 +728,11 @@ app.post("/update_profile", function(req, res) {
     connectionString: process.env.DATABASE_URL,
     ssl: true
   });
-  console.log(req.body.firstName);
+
+  const values = Object.keys(req.body.weather).filter(
+    key => req.body.weather[key] === true
+  );
+
   client.connect();
   client.query(
     "UPDATE users SET first_name=$1, last_name=$2, email=$3, birthdate=$4, gender=$5, phone=$6, player_index=$7, level=$8 WHERE id=$9",
@@ -748,9 +752,33 @@ app.post("/update_profile", function(req, res) {
         console.warn(error);
         client.end();
         res.send({ result: "failed" });
-      } else {
-        client.end();
-        res.send({ result: "success" });
+      }
+      else {
+        client.query(
+          "DELETE FROM user_weather WHERE id_user=$1",
+          [req.body.id],
+          function(error, res1) {
+            if (error) {
+              console.warn(error);
+              client.end();
+              res.send({ result: "failed" });
+            }
+            else {
+              client.query(
+                `INSERT INTO user_weather (id_user, weather) VALUES ${values.map((weather, index) => `($1, $${index + 2})`)}`,
+                [req.body.id, ...values],
+                function(error, res1) {
+                  client.end();
+                  if (error) {
+                    console.warn(error);
+                    res.send({ result: "failed" });
+                  }
+                }
+              );
+            }
+            res.send({ result: "success" });
+          }
+        );
       }
     }
   );
