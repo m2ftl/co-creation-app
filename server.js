@@ -158,7 +158,6 @@ app.post("/createquestionnew", function(req, res) {
           );
         });
       }
-      client.end();
       res.send({ result: "success" });
     }
   );
@@ -567,7 +566,6 @@ app.post("/editquestiontopics", function(req, res) {
           );
         });
       }
-      client.end();
       res.send({ result: "success" });
     }
   );
