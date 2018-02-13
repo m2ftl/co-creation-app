@@ -35,7 +35,6 @@ app.post("/api/profile/create", function(req, res) {
   const weatherbool = Object.keys(req.body.weather).filter(
     key => req.body.weather[key] === true
   );
-  console.log(weatherbool);
 
   const client = new PG.Client({
     connectionString: process.env.DATABASE_URL,
@@ -666,7 +665,6 @@ app.get('/isadmin/:id_user', function(req, res) {
   client.query("SELECT is_admin FROM users WHERE id=$1 ",[req.params.id_user])
   .then(res1 => {
     client.end();
-    console.log(res1);
     res.json(res1.rows[0].is_admin);
   })
   .catch(error => {

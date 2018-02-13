@@ -73,7 +73,7 @@ export default function ideasActions(dispatch){
         .then(res => {
           return res.json();
           })
-        .catch(e=>console.log(e))
+        .catch(e=>console.warn(e))
     },
     authorizeLike: (idea_id, owner_id) => {
       return fetch(`/api/idea/${idea_id}/${owner_id}/like/authorize`, {
@@ -81,7 +81,7 @@ export default function ideasActions(dispatch){
         })
         .then(response => response.json())
         .then(data => data)
-        .catch(e => console.log(e))
+        .catch(e => console.warn(e))
       }
   }
 }

@@ -35,7 +35,7 @@ class Idea extends Component {
       }
     )
 
-    const counterLikes = this.props.countLikes(this.props.match.params.id)
+    this.props.countLikes(this.props.match.params.id)
     .then(count => {
       this.setState({counterLikes:count})
       });
@@ -80,7 +80,7 @@ class Idea extends Component {
 
     let listComments = this.props.comments.map((comment, index) => {
       return (
-        <div className="comment_description">
+        <div key={index} className="comment_description">
           <div>&laquo; {comment.comment} &raquo;</div>
           <span>~ &nbsp; {comment.first_name} {comment.last_name} / {comment.date}</span>
         </div>

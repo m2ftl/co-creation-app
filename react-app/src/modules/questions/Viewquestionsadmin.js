@@ -20,7 +20,7 @@ class ViewQuestionsadmin extends Component {
 
       if(this.props.questions.length !== 0){
         return (
-          <Link to={'/viewquestionadmin/'+question.id}>
+          <Link key={index} to={'/viewquestionadmin/'+question.id}>
           <div className="question_item">
             <h3> {question.title}</h3>
             <div>{formated_date} {question.status}</div>

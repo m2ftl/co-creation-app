@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 
 class LogoInesis extends Component {
   render(){
-    console.log();
     return(
         <div className="container-grid-navbar">
           <div className="item-navbar_inesis">

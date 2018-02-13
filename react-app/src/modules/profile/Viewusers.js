@@ -14,13 +14,12 @@ class Viewusers extends Component {
 
 
   let listUsers = this.props.userslist.map((user, index) => {
-    console.log(user);
     let format_date = new Date(user.birthdate);
     let formated_date = format_date.getDate()+'/'+(format_date.getMonth()+1)+'/'+format_date.getFullYear();
 
     if(this.props.userslist.length !== 0){
       return (
-        <div className="user_item">
+        <div key={index} className="user_item">
           <h3> {user.first_name} {user.last_name}</h3>
           <div className="user_description">
             <div>Gender: {user.gender}</div>

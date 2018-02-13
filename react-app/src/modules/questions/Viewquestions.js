@@ -19,9 +19,9 @@ class ViewQuestions extends Component {
 
       if(this.props.questions.length !== 0){
         return (
-          <Link to={'/viewquestion/'+question.id}>
+          <Link key={index} to={'/viewquestion/'+question.id}>
           <div className="question_item">
-            <h3><a href={"#quest"+index}>+</a> {question.title}</h3>
+            <h3><p href={"#quest"+index}>+</p> {question.title}</h3>
             <div>{formated_date}</div>
             <div id={"quest"+index} className="idea_description">
               <div>{question.description}</div>

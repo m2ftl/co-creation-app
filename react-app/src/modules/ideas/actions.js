@@ -5,7 +5,6 @@ export default function Insertidea(values,useruuid)
       ...values,
       uuid: useruuid
     };
-    console.log(input);
 
      // On submit of the form, send a POST request with the data to the server.
      return fetch('/createideanew', {

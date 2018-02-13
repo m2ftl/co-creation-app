@@ -46,7 +46,6 @@ export default function questionsActions(dispatch){
       return dispatch({ type: "RESET_ANSWERS" })
     },
     archiveQuestion: (id) => {
-      console.log(id);
       return fetch(`/archivequestion/${id}`, {
       method: 'GET',
       })
@@ -61,7 +60,6 @@ export default function questionsActions(dispatch){
       });
     },
     reOpenQuestion: (id) => {
-      console.log(id);
       return fetch(`/reopenquestion/${id}`, {
       method: 'GET',
       })

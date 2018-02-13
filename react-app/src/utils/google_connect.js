@@ -20,6 +20,6 @@ window.googleConnectCallback = function(googleUser) {
   });
 
   // The ID token you'd need to pass to your backend:
-  const id_token = googleUser.getAuthResponse().id_token;
+  //const id_token = googleUser.getAuthResponse().id_token;
 //  console.log("ID Token: " + id_token);
 };

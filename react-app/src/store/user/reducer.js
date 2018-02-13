@@ -1,3 +1,6 @@
+const adminIs = localStorage.getItem("is_admin")
+  ? localStorage.getItem("is_admin"): "false";
+
 const initialState = {
   id: null,
   fullname: null,
@@ -6,7 +9,7 @@ const initialState = {
   avatar: null,
   email: null,
   loggedIn: false,
-  isAdmin: false,
+  isAdmin: adminIs,
 };
 
 export default function googleUserReducer(state = initialState, action) {
@@ -24,6 +27,7 @@ export default function googleUserReducer(state = initialState, action) {
     case "SIGN_OUT":
       return initialState;
     case "IS_ADMIN":
+    localStorage.setItem("is_admin", true);
     return{
       ...state,
       isAdmin: true

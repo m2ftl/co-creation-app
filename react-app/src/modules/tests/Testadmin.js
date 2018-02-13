@@ -25,7 +25,7 @@ class Testadmin extends Component {
       let format_date = new Date(answer.date);
       let formated_date = format_date.getDate()+'/'+(format_date.getMonth()+1)+'/'+format_date.getFullYear();
       return (
-        <div className="comment_description mb-5">
+        <div key={index} className="comment_description mb-5">
           <div>{answer.answer}</div>
           <ReactStars count={5} value={answer.rating} size={15} edit={false} color2={"#ffdf00"} />
           <div>{formated_date}</div>
@@ -39,7 +39,7 @@ class Testadmin extends Component {
       if (this.props.answerstests.length===(index+1)) {
         total_rating=total_rating/this.props.answerstests.length;
       return (
-        <ReactStars count={5} value={total_rating} size={30} edit={false} color2={"#ffdf00"} />)
+        <ReactStars key={index} count={5} value={total_rating} size={30} edit={false} color2={"#ffdf00"} />)
     }
     else return null})
 

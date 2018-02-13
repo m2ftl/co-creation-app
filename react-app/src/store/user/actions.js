@@ -16,7 +16,7 @@ export function signOut(dispatch) {
       .then(response => response.json())
       .then(data =>{
         if (data){
-        dispatch({ type: "IS_ADMIN", data: data})
+        dispatch({ type: "IS_ADMIN"})
       }
       });
     }
