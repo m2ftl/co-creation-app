@@ -15,9 +15,6 @@ class Profile extends React.Component {
     }else{
       content =
       <div>
-      <div className="signout" onClick={() => this.props.history.replace("/sign-out")}>
-        Sign out
-      </div>
         <span style={{ textAlign: "left" }}>
           <h1>Complete your Profile</h1>
         </span>
