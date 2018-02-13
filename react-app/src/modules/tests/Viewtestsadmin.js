@@ -18,7 +18,7 @@ class ViewTestsadmin extends Component {
         let formated_date = format_date.getDate()+'/'+(format_date.getMonth()+1)+'/'+format_date.getFullYear();
 
         return (
-          <div className="viewtest_item_bckgrd">
+          <div key={index} className="viewtest_item_bckgrd">
             <div className="viewtest_item_content">
               <div className="product_picture">
                 <img src={""+test.picture+""} alt="product_picture" />

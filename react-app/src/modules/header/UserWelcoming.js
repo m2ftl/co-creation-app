@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 
 class UserWelcoming extends Component {
   render(){
-    console.log();
     return(
         <div className="container-grid-navbar">
           <div className="item-navbar_user">

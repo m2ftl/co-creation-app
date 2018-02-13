@@ -13,7 +13,6 @@ class ViewIdeas extends Component {
 
   render() {
     let listIdeas = this.props.ideas.map((idea, index) => {
-      console.log(idea);
       if(this.props.ideas.length !== 0){
         return (
           <Link key={index} to={'/viewidea/'+idea.id}>

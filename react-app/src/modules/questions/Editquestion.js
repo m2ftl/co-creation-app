@@ -40,7 +40,6 @@ class Editquestion extends Component{
 
     onSubmit = (event) => {
       event.preventDefault();
-      console.log("state",this.state);
       this.props.Inserteditquestion(this.state.current_texttitle, this.state.current_textdescription, this.props.match.params.id)
       .then((response) => {
         if(response) {

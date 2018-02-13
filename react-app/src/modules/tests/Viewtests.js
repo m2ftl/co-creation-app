@@ -18,9 +18,9 @@ class ViewTests extends Component {
         let format_date = new Date(test.date);
         let formated_date = format_date.getDate()+'/'+(format_date.getMonth()+1)+'/'+format_date.getFullYear();
 
-        console.log(this.props.tests);
+
         return (
-          <div className="viewtest_item_bckgrd">
+          <div key={index} className="viewtest_item_bckgrd">
             <div className="viewtest_item_content">
               <div className="product_picture">
                 <img src={""+test.picture+""} alt="product_picture" />

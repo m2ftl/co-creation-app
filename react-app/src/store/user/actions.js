@@ -9,16 +9,16 @@ export function signOut(dispatch) {
         .then(() => dispatch({ type: "SIGN_OUT" }))
         .then(() => window.location.reload()); // unfortunately, the signin button can only appear when we load the page
     },
-    isAdminAction: (id_user) => {
-      return fetch(`/isadmin/${id_user}`, {
-        method: 'GET',
-      })
-      .then(response => response.json())
-      .then(data =>{
-        if (data){
-        dispatch({ type: "IS_ADMIN", data: data})
-      }
-      });
-    }
+    // isAdminAction: (id_user) => {
+    //   return fetch(`/isadmin/${id_user}`, {
+    //     method: 'GET',
+    //   })
+    //   .then(response => response.json())
+    //   .then(data =>{
+    //     if (data){
+    //     dispatch({ type: "IS_ADMIN"})
+    //   }
+    //   });
+    // }
   };
 }

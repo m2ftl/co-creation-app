@@ -6,10 +6,9 @@ import { signOut } from '../../store/user/actions';
 import { getUser} from '../../store/profile/selectors';
 
 class WrapperMenu extends Component {
-  componentDidMount(){
-    this.props.isAdminAction(this.props.user.id_user);
-    console.log(this.props.user)
-  }
+  // componentDidMount(){
+  //   this.props.isAdminAction(this.props.user.id_user);
+  // }
   render(){
     if (this.props.user.isAdmin)
     {

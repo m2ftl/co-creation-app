@@ -36,7 +36,7 @@ class Dashboard extends Component {
               <h5>New Idea</h5>
               <p>Lorem Ipsum dolor sit amet</p>
               <Link to="/createidea">
-                <a className="btn dashboard_button">I have an idea!</a>
+                <p className="btn dashboard_button">I have an idea!</p>
               </Link>
             </div>
           </div>
@@ -46,7 +46,7 @@ class Dashboard extends Component {
               <h5>View Ideas</h5>
               <p>Lorem Ipsum dolor sit amet</p>
               <Link to="/viewideas">
-                <a className="btn dashboard_button">View all</a>
+                <p className="btn dashboard_button">View all</p>
               </Link>
             </div>
           </div>
@@ -56,24 +56,24 @@ class Dashboard extends Component {
           <div className="dashboard_item">
             <div>
             <img src={dash_icons_questions} alt="logo" height={"50px"} />
-            <div class="circle">{this.props.counterquestions}</div>
+            <div className="circle">{this.props.counterquestions}</div>
             </div>
             <div>
               <h5>Questions</h5>
               <p>Lorem Ipsum dolor sit amet</p>
               <Link to="/viewquestions">
-                <a className="btn dashboard_button">Questions</a>
+                <p className="btn dashboard_button">Questions</p>
               </Link>
             </div>
           </div>
           <div className="dashboard_item">
             <img src={dash_icons_tests} alt="logo" height={"50px"} />
-            <div class="circle">{this.props.countertests}</div>
+            <div className="circle">{this.props.countertests}</div>
             <div>
               <h5>Tests</h5>
               <p>Lorem Ipsum dolor sit amet</p>
               <Link to="/viewtests">
-                <a className="btn dashboard_button">Go!</a>
+                <p className="btn dashboard_button">Go!</p>
               </Link>
             </div>
           </div>
