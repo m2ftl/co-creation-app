@@ -15,11 +15,11 @@ class Edittest extends Component{
     }
   }
     componentDidMount() {
-      if(this.props.tests.length === 0) {
+      if(this.props.testsadmin.length === 0) {
         // TODO: fetch only this idea
         this.props.retrieveTestsadmin();
       }
-      let found_test = this.props.tests.find((element) => {
+      let found_test = this.props.testsadmin.find((element) => {
         return element.id===this.props.match.params.id;
       }) || [];
       this.setState({
@@ -56,7 +56,6 @@ class Edittest extends Component{
 
     onSubmit = (event) => {
       event.preventDefault();
-      console.log("state",this.state);
       this.props.Insertedittest(this.state.current_texttitle, this.state.current_textdescription,this.state.current_textpicture,this.state.current_textquestion,this.props.match.params.id)
       .then((response) => {
         if(response) {

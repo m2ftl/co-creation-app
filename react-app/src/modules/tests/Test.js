@@ -28,7 +28,6 @@ class Test extends Component {
   }
 
   ratingChanged = (newRating) => {
-  console.log(newRating);
   this.setState({
     rating: newRating
   });
