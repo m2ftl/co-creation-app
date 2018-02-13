@@ -1,5 +1,6 @@
 let initialState={
     ideas: [],
+    ideasByLikes: [],
     comments: []
 };
 
@@ -9,6 +10,11 @@ export default function ideasReducer(state=initialState, action){
       return{
         ...state,
         ideas:action.data
+      }
+    case "RETRIEVE_IDEAS_BY_LIKES":
+      return{
+        ...state,
+        ideasByLikes:action.data
       }
     case "RETRIEVE_COMMENTS":
       return{
@@ -21,7 +27,7 @@ export default function ideasReducer(state=initialState, action){
         comments: []
       }
     case "ADD_COMMENT":
-      
+
       return{
         ...state,
         comments: []
