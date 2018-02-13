@@ -22,6 +22,13 @@ class Questionadmin extends Component {
     this.props.resetTopics();
   }
 
+  retrieveDate(date) {
+      console.log(typeof date);
+        if (typeof date !== 'Invalid Date')  {
+      return date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear();}
+      else {
+      return ""}
+  }
 
   render() {
 
@@ -43,15 +50,17 @@ class Questionadmin extends Component {
     let found_question = this.props.questions.find((element) => {
       return element.id===this.props.match.params.id;
     }) || [];
-    let format_date = new Date(found_question.date);
-    let formated_date = format_date.getDate()+'/'+(format_date.getMonth()+1)+'/'+format_date.getFullYear();
 
+    let format_date = new Date(found_question.date);
+    console.log(format_date);
+    let formated_date =this.retrieveDate(format_date);
+    console.log(formated_date);
     return (
       <div className="list_ideas_block">
         <h1>Question details</h1>
         <div className="question_item_display">
           <h3>{found_question.title}</h3>
-          <div>{formated_date} {found_question.status}</div>
+          <div> {found_question.status}</div>
           <div className="idea_description">
             <div>{found_question.description}</div>
             <span>submitted by {found_question.first_name} {found_question.last_name}</span>
