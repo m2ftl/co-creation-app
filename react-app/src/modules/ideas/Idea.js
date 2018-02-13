@@ -101,7 +101,7 @@ class Idea extends Component {
     return (
       <div className="idea_page_global">
         <h1>Idea details</h1>
-
+        
         <div className="div_global_idea">
 
           <div className="idea_item">
