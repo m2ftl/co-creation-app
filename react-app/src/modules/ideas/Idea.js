@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import "../../App.css";
+import likeBtnYellow from '../../images/likeY.png';
+import likeBtnGrey from '../../images/likeG.png';
 import { connect } from 'react-redux';
 import getIdeas from "../../store/ideas/selectors";
 import ideasActions from '../../store/ideas/actions';
@@ -64,7 +66,6 @@ class Idea extends Component {
   }
 
   handleCountLikes = () => {
-
     const counterLikesState = parseInt(this.state.counterLikes,10);
     this.setState({
       counterLikes:counterLikesState+1
@@ -85,6 +86,12 @@ class Idea extends Component {
         </div>
       )
     });
+
+    let likebtnYellow = (<img src={likeBtnYellow} className="likeBtnYellow pointer" alt="logo" width={'30px'} onClick={() =>  {this.props.like(this.props.match.params.id, this.props.useruuid);
+        this.handleCountLikes();this.disableLikeBtn();
+    }}/>);
+
+    let likebtnGrey = (<img src={likeBtnGrey} className="likeBtnGrey" alt="logo" width={'30px'} />);
 
     let like = (<button className="btn" onClick={() =>  {this.props.like(this.props.match.params.id, this.props.useruuid);
         this.handleCountLikes();this.disableLikeBtn();
@@ -108,11 +115,11 @@ class Idea extends Component {
               <div className="idea_description_owner">submitted by {found_idea.first_name} {found_idea.last_name}</div>
               <div className="like_block">
                 {this.state.authorized
-                  ? like
-                  : null
+                  ? likebtnYellow
+                  : likebtnGrey
                 }
 
-                <div className="like_counter">Counter: {this.state.counterLikes}</div>
+                <div className="like_counter"> {this.state.counterLikes}</div>
               </div>
             </div>
 

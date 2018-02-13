@@ -331,7 +331,12 @@ html, body, #root, .App {
   color: #CECECE;
   font-style: italic;
   font-weight: lighter;
+  position: relative;
+  top: 5px;
+  left: 5px;
 }
+
+img.pointer {cursor:pointer;}
 
 .idea_background_picture {
   height: 300px;
