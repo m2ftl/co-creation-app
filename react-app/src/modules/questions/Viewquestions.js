@@ -19,7 +19,7 @@ class ViewQuestions extends Component {
 
       if(this.props.questions.length !== 0){
         return (
-          <Link key={index} to={'/viewquestion/'+question.id}>
+          <Link className="link" key={index} to={'/viewquestion/'+question.id}>
           <div className="question_item">
             <h3>{question.title}</h3>
             <div>{formated_date}</div>
@@ -39,7 +39,7 @@ class ViewQuestions extends Component {
 
 
     return (
-      <div className="list_ideas_block">
+      <div className="list_questions_block">
         <h1>Questions submitted</h1>
         <p className="subtitle_listIdeas">We need your answer to develop <Link to={"/c25a5bc5-dd78-4820-9a03-c71bbd4a7690"}>better</Link> products</p>
         {listQuestions}

@@ -66,9 +66,8 @@ class Viewusers extends Component {
       <div className="list_ideas_block">
         <h1>Users List</h1>
         <form onSubmit={this.onSubmit}>
-        <button className="btn dashboard_button mb-5" type="submit">Export User List</button>
+        <button className="btn dashboard_button mb-2" type="submit">Export User List</button>
         </form>
-
         <div className="stats_users">
           <div className="stats_users_level">
             <p>Beginners: {BeginnerUsers.length}/{this.props.userslist.length} users</p>

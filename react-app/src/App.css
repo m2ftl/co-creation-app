@@ -42,7 +42,7 @@ html, body, #root, .App {
 }
 
 .button_burger_menu {
-  margin-left: 25px;
+  margin-left: 20px;
   margin-top: 10px;
   background-color: #363636;
   border-radius: 10px;
@@ -66,7 +66,7 @@ html, body, #root, .App {
 }
 
 .display_menu {
-  height: 640px;
+  height: 690px;
 }
 
 .wrapper_menu_items div {
@@ -220,7 +220,12 @@ html, body, #root, .App {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+}
+
+.list_questions_block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .subtitle_listIdeas {
@@ -235,7 +240,7 @@ html, body, #root, .App {
   padding-bottom: 8px;
   width: 600px;
   height: 70px;
-  margin: 10px;
+  margin: 10px auto;
   border: 1px solid #CECECE;
   transition: height 1s;
   color: #363636;
@@ -439,28 +444,69 @@ img.pointer {cursor:pointer;}
   margin-top: 15px;
 }
 
-
-
-/* Question Pages */
-
 .question_item {
   overflow: hidden;
   text-align: left;
-  padding-left: 25px;
-  padding-bottom: 8px;
-  width: 600px;
-  height: 100px;
-  margin: 10px;
+  padding: 20px 20px 8px 20px;
+  height: 90px;
+  margin: 10px auto;
   border: 1px solid #CECECE;
   transition: height 0.5s;
 }
+
+.link {
+  text-decoration: none;
+  color: #363636;
+}
+
+/* Question Pages */
+@media (min-width: 576px) {
+  .question_item {
+    width: 300px;
+  }
+  .list_ideas_item {
+  width: 300px;
+  }
+}
+
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .question_item {
+    width: 400px;
+  }
+  .list_ideas_item {
+  width: 400px;
+  }
+ }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .question_item {
+    width: 600px;
+  }
+  .list_ideas_item {
+  width: 600px;
+  }
+ }
+
+@media (min-width: 1200px) {
+  .question_item {
+    width: 800px;
+  }
+  .list_ideas_item {
+  width: 800px;
+  }
+}
+
+
 
 .question_answer {
   text-align: left;
   padding-left: 25px;
   padding-bottom: 8px;
   width: 600px;
-  margin: 10px;
+  margin: 10px auto;
 }
 
 .btn-send {
@@ -718,9 +764,9 @@ img.pointer {cursor:pointer;}
   text-align: left;
   padding-left: 25px;
   padding-bottom: 8px;
-  width: 80%;
-  height: 60px;
-  margin: 10px;
+  width: 600px;
+  height: 70px;
+  margin: 10px auto;
   border: 1px solid #CECECE;
   transition: height 1s;
 }
@@ -855,6 +901,7 @@ img.pointer {cursor:pointer;}
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin:0 auto;
 }
 
 .stats_users_level {
@@ -876,4 +923,8 @@ img.pointer {cursor:pointer;}
   height: 20px;
   width: 80px;
   background-color: MediumOrchid;
+}
+
+.inputfield {
+  width:300px;
 }

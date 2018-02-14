@@ -15,7 +15,6 @@ class Profile extends React.Component {
     }else{
       content =
       <div className="edit_profile_page">
-      <h3>My Profile</h3>
       <div>
         <span><h1>Complete your Profile</h1></span>
         <form onSubmit={(e)=> {
@@ -83,7 +82,7 @@ class Profile extends React.Component {
               </p>
             </div>
             <div className="edit_profile_row">
-          <button type="submit">
+          <button className="btn btn-send" type="submit">
             Validate your registration
           </button>
           </div>
