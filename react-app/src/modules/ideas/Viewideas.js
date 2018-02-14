@@ -36,7 +36,7 @@ class ViewIdeas extends Component {
       top_idea = (
         <div className="top_idea_global">
           <div className="top_idea_pics">
-            <img src={lightbulb} />
+            <img src={lightbulb} alt="lightbulb"/>
           </div>
           <div className="top_idea">
             <p className="topIdea_title">{this.props.ideasByLikes[0].title}</p>
