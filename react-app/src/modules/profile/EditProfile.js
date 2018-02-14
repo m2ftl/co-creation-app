@@ -106,7 +106,6 @@ class EditProfile extends React.Component {
             </div>
             <div className="edit_profile_row mt-2">
               Level: <select name="Level" onChange={this.props.updateLevel} required>
-                <option selected={selected_level_choose} value="">Select your Level</option>
                 <option selected={selected_beginner} value="beginner">Beginner</option>
                 <option selected={selected_advanced} value="advanced">Advanced</option>
                 <option selected={selected_expert} value="expert">Expert</option>
