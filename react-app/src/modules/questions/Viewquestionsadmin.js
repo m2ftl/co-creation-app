@@ -24,7 +24,7 @@ class ViewQuestionsadmin extends Component {
           <Link key={index} to={'/viewquestionadmin/'+question.id}>
           <div className="question_item">
             <h3> {question.title}</h3>
-            <div>{formated_date} {question.status}</div>
+            <div>{formated_date}</div>
             <div className="idea_description">
               <div>{question.description}</div>
               <span>submitted by {question.first_name} {question.last_name}</span>
@@ -44,7 +44,7 @@ class ViewQuestionsadmin extends Component {
           <Link key={index} to={'/viewquestionadmin/'+question.id}>
           <div className="question_item">
             <h3> {question.title}</h3>
-            <div>{formated_date} {question.status}</div>
+            <div>{formated_date}</div>
             <div className="idea_description">
               <div>{question.description}</div>
               <span>submitted by {question.first_name} {question.last_name}</span>
