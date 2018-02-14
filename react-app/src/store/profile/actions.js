@@ -107,6 +107,12 @@ export function profileActions(dispatch) {
         dispatch({ type: "IS_ADMIN"})
       }
       });
+    },
+    exportUsers: () => {
+      return fetch("/users/export", {
+        method: 'GET',
+      })
+      .then(res => console.log(res))
     }
   };
 }
