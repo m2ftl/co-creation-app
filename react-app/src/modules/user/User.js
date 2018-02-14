@@ -11,7 +11,7 @@ class User extends Component {
 
   render() {
     return (
-      <div className="navbar">
+      <div className="navbar navbar-center">
         {this.props.googleUser.id ? (
         <div>
           <img alt={this.props.googleUser.givenName} src={this.props.googleUser.avatar} width={"70px"}/>
