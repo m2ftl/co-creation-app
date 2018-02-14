@@ -164,6 +164,7 @@ html, body, #root, .App {
 
 .dashboard_item {
   margin: 60px;
+  width: 200px;
   margin-left: 100px;
   margin-right: 100px;
   padding: 20px;
@@ -722,7 +723,7 @@ img.pointer {cursor:pointer;}
 }
 
 .circle{
-    margin-left:70px;
+    margin-left:60px;
     width:30px;
     background:#363636;
     height:30px;

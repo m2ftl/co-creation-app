@@ -17,6 +17,15 @@ export default function dashboardActions(dispatch){
           .then(data => {
             dispatch({ type: "RETRIEVE_COUNTERTESTS", data: data })
           });
+      },
+      retrieveIdeasCounter: (id) => {
+        return fetch(`/viewideasallcounter/${id}`, {
+            method: 'GET',
+          })
+          .then(response => response.json())
+          .then(data => {
+            dispatch({ type: "RETRIEVE_COUNTERIDEAS", data: data })
+          });
       }
   }
 }
