@@ -12,7 +12,15 @@ class Viewusers extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.exportUsers();
+    this.props.exportUsers()
+    .then(csv => {
+      const csvExport = document.createElement('a')
+      csvExport.href= 'data:text/csv;charset=utf-8,' + encodeURI(csv)
+      console.log(csvExport.href);
+      csvExport.target= "_blank"
+      csvExport.downloard= "users.csv"
+      csvExport.click();
+    })
   }
 
   render() {

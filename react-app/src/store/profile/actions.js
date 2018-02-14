@@ -1,3 +1,6 @@
+const converter = require('json-2-csv');
+
+
 export function profileActions(dispatch) {
   return {
     createUser: user => {
@@ -112,7 +115,15 @@ export function profileActions(dispatch) {
       return fetch("/users/export", {
         method: 'GET',
       })
-      .then(res => console.log(res))
+      .then(res => res.json())
+      .then(res => {
+        return new Promise((resolve, reject) => {
+          converter.json2csv(res, function (err, csv) {
+            if (err) reject(err);
+            resolve(csv);
+          })
+        })
+      })
     }
   };
 }

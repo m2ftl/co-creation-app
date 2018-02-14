@@ -870,10 +870,10 @@ app.get('/users/export', function(req, res) {
     ssl: true,
   });
   client.connect();
-  client.query("SELECT * FROM users")
-  .then((res) => {
+  client.query("SELECT first_name, last_name, gender, email, phone, player_index, id_index_category, birthdate, level FROM users",[])
+  .then(resSQL => {
     client.end();
-    res.json(res);
+    res.json(resSQL.rows);
   })
   .catch(error => {
     client.end();
