@@ -10,8 +10,20 @@ class Viewusers extends Component {
     this.props.retrieveUsers();
   }
 
-  render() {
+  onSubmit = (event) => {
+    event.preventDefault();
+    this.props.exportUsers()
+    .then(csv => {
+      const csvExport = document.createElement('a')
+      csvExport.href= 'data:text/csv;charset=utf-8,' + encodeURI(csv)
+      console.log(csvExport.href);
+      csvExport.target= "_blank"
+      csvExport.downloard= "users.csv"
+      csvExport.click();
+    })
+  }
 
+  render() {
 
   let listUsers = this.props.userslist.map((user, index) => {
     let format_date = new Date(user.birthdate);
@@ -41,6 +53,9 @@ class Viewusers extends Component {
     return (
       <div className="list_ideas_block">
         <h1>Users List</h1>
+        <form onSubmit={this.onSubmit}>
+        <button className="btn dashboard_button" type="submit">Export User List</button>
+        </form>
         {listUsers}
       </div>
     );
