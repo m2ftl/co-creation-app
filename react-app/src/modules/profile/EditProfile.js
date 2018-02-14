@@ -80,15 +80,6 @@ class EditProfile extends React.Component {
               </div>
             <div className="edit_profile_row">
               <input
-                placeholder="Birthdate"
-                name="birthdate"
-                type="text"
-                onChange={this.props.updateBirthdate}
-                value={this.props.user.birthdate}
-              />
-            </div>
-            <div className="edit_profile_row">
-              <input
                 placeholder="Email"
                 name="email"
                 type="text"
@@ -105,7 +96,7 @@ class EditProfile extends React.Component {
             </div>
             <div className="edit_profile_row">
               <select name="Level" onChange={this.props.updateLevel}>
-                <option value="">Select your Level</option>
+                <option selected={selected_level_choose} value="">Select your Level</option>
                 <option selected={selected_beginner} value="beginner">Beginner</option>
                 <option selected={selected_advanced} value="advanced">Advanced</option>
                 <option selected={selected_expert} value="expert">Expert</option>
