@@ -734,6 +734,7 @@ img.pointer {cursor:pointer;}
 
 .circle{
     margin-left:60px;
+    padding: 4px;
     width:30px;
     background:#363636;
     height:30px;
