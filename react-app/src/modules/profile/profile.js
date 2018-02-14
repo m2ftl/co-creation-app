@@ -14,83 +14,83 @@ class Profile extends React.Component {
       content = <Redirect to = "/dashboard" />
     }else{
       content =
+      <div className="edit_profile_page">
+      <h3>My Profile</h3>
       <div>
-        <span style={{ textAlign: "left" }}>
-          <h1>Complete your Profile</h1>
-        </span>
+        <span><h1>Complete your Profile</h1></span>
         <form onSubmit={(e)=> {
             e.preventDefault();
             this.props.createUser(this.props.user)
           }}>
-          <div>
-            <div className="row">
-              <div>
-                <input
-                  placeholder="First Name"
-                  name="firstName"
-                  type="text"
-                  value={this.props.user.firstName}
-                />
-                <input
-                  placeholder="Last Name"
-                  name="lastName"
-                  type="text"
-                  value={this.props.user.lastName}
-                />
-                <select name="Gender" id="Gender" onChange={this.props.updateGender}>
+          <div className="edit_profile_globalform">
+          <div className="edit_profile_row mb-2">
+          {this.props.user.firstName} {this.props.user.lastName}
+          </div>
+          <div className="edit_profile_row mb-2">
+                {this.props.user.email}
+          </div>
+          <div className="edit_profile_row mb-2">
+                <select name="Gender" id="Gender" onChange={this.props.updateGender} required>
                   <option value="">Select your Gender</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>
+          </div>
+          <div className="edit_profile_row mb-2">
                 <input
                   placeholder="Birthdate"
                   name="birthdate"
-                  type="text"
+                  type="date"
                   onChange={this.props.updateBirthdate}
+                  required
                 />
-              </div>
-              <div>
-                <input
-                  placeholder="Email"
-                  name="email"
-                  type="text"
-                  value={this.props.user.email}
-                />
+          </div>
+          <div className="edit_profile_row mb-2">
                 <input
                   placeholder="Phone Number"
                   name="phone"
-                  type="text"
+                  type="tel"
+                  pattern="^[0-9\-\+\s\(\)]*$"
                   onChange={this.props.updatePhone}
+                  required
                 />
-              </div>
             </div>
-            <div className="row">
-              <select name="Level" onChange={this.props.updateLevel}>
+            <div className="edit_profile_row mb-2">
+              <select name="Level" onChange={this.props.updateLevel} required>
                 <option value="">Select your Level</option>
                 <option value="beginner">Beginner</option>
                 <option value="advanced">Advanced</option>
                 <option value="expert">Expert</option>
               </select>
+              </div>
+              <div className="edit_profile_row mb-2">
               <input
                 placeholder="Index"
                 name="index"
-                type="text"
+                type="number"
+                step="0.1"
                 onChange={this.props.updateIndex}
+                required
               />
+              </div>
+              <div className="edit_profile_row mb-2">
               <p>
                 Weather Conditions :<br />
-                <input onClick={this.props.updateRain} type="checkbox" name="rain" value="rain"/>Rain
-                <input onClick={this.props.updateCold} type="checkbox" name="cold" value="cold"/>Cold
-                <input onClick={this.props.updateMild} type="checkbox" name="mild" value="mild"/>Mild
-                <input onClick={this.props.updateSunny} type="checkbox" name="sunny" value="sunny"/>Sunny
+                Rain: <input onClick={this.props.updateRain} checked={this.props.user.weather.rain} className="mr-2" type="checkbox" name="rain" value="rain"/>
+                Cold: <input onClick={this.props.updateCold} checked={this.props.user.weather.cold} className="mr-2" type="checkbox" name="cold" value="cold"/>
+                Mild: <input onClick={this.props.updateMild} checked={this.props.user.weather.mild} className="mr-2" type="checkbox" name="mild" value="mild"/>
+                Sunny: <input onClick={this.props.updateSunny} checked={this.props.user.weather.sunny} className="mr-2" type="checkbox" name="sunny" value="sunny"/>
               </p>
             </div>
-          </div>
+            <div className="edit_profile_row">
           <button type="submit">
             Validate your registration
           </button>
+          </div>
+          </div>
         </form>
-      </div>}
+      </div>
+    </div>}
     return (
       content
     );
