@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import './stylesDallas.css';
 import Profile from "./modules/profile/profile.js";
 import EditProfile from "./modules/profile/EditProfile.js";
 import ProfileEdited from "./modules/profile/ProfileEdited.js";
