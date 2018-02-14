@@ -13,10 +13,10 @@ let initialState={
   level:"",
   index:"",
   weather:{
-    rain:false,
-    cold:false,
-    mild:false,
-    sunny:false
+    rain:true,
+    cold:true,
+    mild:true,
+    sunny:true
   },
   id_google:"",
   completedProfile: null,

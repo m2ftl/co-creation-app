@@ -797,4 +797,8 @@ img.pointer {cursor:pointer;}
   display: block;
 }
 
+.inputtextprofile {
+  width: 400px
+}
+
 /* END OF REACT TABS */
