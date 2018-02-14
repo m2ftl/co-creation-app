@@ -37,7 +37,7 @@ class Createidea extends Component{
         <div>
         <div> Your idea has been successfully created!!!! </div>
         <Link to="/dashboard">
-        <button className="btn btn-dash">Dashboard</button>
+        <button className="btn dashboard_button">Dashboard</button>
         </Link>
         </div>
       }
@@ -45,7 +45,7 @@ class Createidea extends Component{
         <div>
         <div> Sorry we receive an error please try again later... </div>
         <Link to="/dashboard">
-        <button className="btn btn-dash">Dashboard</button>
+        <button className="btn dashboard_button">Dashboard</button>
         </Link>
         </div>
       }

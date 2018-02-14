@@ -64,7 +64,7 @@ class Editquestion extends Component{
       <div>
           <textarea className="form-control formset" value={this.state.current_textdescription} onChange={this.handleInputdescription} />
       </div>
-      <button type="submit" className="btn submitset" >
+      <button type="submit" className="btn submitset dashboard_button" >
           Update
       </button>
       </form>

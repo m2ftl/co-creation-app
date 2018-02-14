@@ -56,7 +56,7 @@ class Question extends Component {
         <form onSubmit={this.onSubmit}>
           <label>Write your answer</label>
           <input type="text" onChange={this.handleInput}/>
-          <button type="submit">Send</button>
+          <button type="submit" className="btn">Send</button>
         </form>
       </div>
     );

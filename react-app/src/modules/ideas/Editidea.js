@@ -64,7 +64,7 @@ class Editidea extends Component{
           <label className="topTitle">Idea Description:</label>
           <textarea className="form-control formset" value={this.state.current_textdescription} onChange={this.handleInputdescription} />
       </div>
-      <button type="submit" className="btn submitset" >
+      <button type="submit" className="btn submitset dashboard_button" >
           Update
       </button>
       </form>
