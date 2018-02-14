@@ -73,7 +73,10 @@ class Questionadmin extends Component {
             }
           })
         }}>
-        <button className="btn dashboard_button" type="submit">reopen Question</button>
+        {found_question.status === "closed"
+        ? <button className="btn dashboard_button" type="submit">reopen Question</button>
+        : null
+      }
         </form></span>
         <span><form onSubmit={(e)=> {
           e.preventDefault();
@@ -86,11 +89,17 @@ class Questionadmin extends Component {
             }
           })
         }}>
-        <button className= "btn dashboard_button mt-2" type="submit">Archive Question</button>
+        {found_question.status === "open"
+        ? <button className= "btn dashboard_button mt-2" type="submit">Archive Question</button>
+        : null
+      }
         </form></span>
-        <Link to={'/editquestionadmin/'+this.props.match.params.id}>
+        {found_question.status === "open"
+        ? <Link to={'/editquestionadmin/'+this.props.match.params.id}>
         <button className="btn dashboard_button mt-2">Edit question</button>
         </Link>
+        : null
+      }
         {this.props.topics.length !== 0
           ?
           <div className="list_ideas_block">
@@ -100,9 +109,12 @@ class Questionadmin extends Component {
           </div>
           : null
         }
-        <Link to={'/editquestiontopicsadmin/'+this.props.match.params.id}>
-        <button className="btn dashboard_button mt-2">Edit question topics</button>
-        </Link>
+        {found_question.status === "open"
+        ? <Link to={'/editquestiontopicsadmin/'+this.props.match.params.id}>
+          <button className="btn dashboard_button mt-2">Edit question topics</button>
+          </Link>
+        : null
+      }
         {this.props.answers.length !== 0
           ? listComments
           : null
