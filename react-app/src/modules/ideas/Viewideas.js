@@ -54,9 +54,9 @@ class ViewIdeas extends Component {
       let formated_date = this.formatDate(idea.date);
       if(this.props.ideas.length !== 0){
         return (
-          <Link key={index} to={'/viewidea/'+idea.id}>
-            <div className="list_ideas_item">
-              <h3>+ {idea.title}</h3>
+          <Link className="link" key={index} to={'/viewidea/'+idea.id}>
+            <div className="question_item">
+              <h3>{idea.title}</h3>
               <span>{formated_date}</span>
               <div className="idea_description">
                 <div>{idea.description}</div>
@@ -83,9 +83,9 @@ class ViewIdeas extends Component {
       let formated_date = this.formatDate(idea.date);
       if(this.props.ideasByLikes.length !== 0){
         return (
-          <Link key={index} to={'/viewidea/'+idea.id}>
-            <div className="list_ideas_item">
-              <h3>+ {idea.title}
+          <Link className="link" key={index} to={'/viewidea/'+idea.id}>
+            <div className="question_item">
+              <h3>{idea.title}
                 <span className="counterbtn">{likebtnGrey}</span>
                 <span className="counter"> {idea.counter}</span>
               </h3>
@@ -113,9 +113,9 @@ class ViewIdeas extends Component {
       let formated_date = this.formatDate(idea.date);
       if(this.props.userIdeas.length !== 0){
         return (
-          <Link key={index} to={'/viewidea/'+idea.id }>
-            <div className="list_ideas_item">
-              <h3>+ {idea.title}
+          <Link className="link" key={index} to={'/viewidea/'+idea.id }>
+            <div className="question_item">
+              <h3>{idea.title}
                 <span className="counterbtn">{likebtnGrey}</span>
                 <span className="counter"> {idea.counter}</span>
               </h3>

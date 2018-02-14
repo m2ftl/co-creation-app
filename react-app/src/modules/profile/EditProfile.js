@@ -57,66 +57,83 @@ class EditProfile extends React.Component {
                 placeholder="First Name"
                 name="firstName"
                 type="text"
+                className="inputfield"
                 value={this.props.user.firstName}
                 onChange={this.props.updateFirstName}
+                required
               />
+            </div>
+            <div className="edit_profile_row mt-2">
               <input
                 placeholder="Last Name"
                 name="lastName"
                 type="text"
+                className="inputfield"
                 value={this.props.user.lastName}
                 onChange={this.props.updateLastName}
+                required
               />
             </div>
-            <div className="edit_profile_row">
-              <select name="Gender" id="Gender" onChange={this.props.updateGender}>
+            <div className="edit_profile_row mt-2">
+              Gender: <select name="Gender" id="Gender" onChange={this.props.updateGender} required>
                 <option selected={selected_gender_choose} value="">Select your Gender</option>
                 <option selected={selected_male} value="Male">Male</option>
                 <option selected={selected_female} value="Female">Female</option>
               </select>
               </div>
-            <div className="edit_profile_row">
+            <div className="edit_profile_row mt-2">
               <input
                 placeholder="Email"
                 name="email"
+                className="inputfield"
                 type="text"
                 onChange={this.props.updateEmail}
                 value={this.props.user.email}
+                required
               />
+            </div>
+            <div className="edit_profile_row mt-2">
               <input
                 placeholder="Phone Number"
                 name="phone"
-                type="text"
+                type="tel"
+                pattern="^[0-9\-\+\s\(\)]*$"
+                className="inputfield"
                 onChange={this.props.updatePhone}
                 value={this.props.user.phone}
+                required
               />
             </div>
-            <div className="edit_profile_row">
-              <select name="Level" onChange={this.props.updateLevel}>
+            <div className="edit_profile_row mt-2">
+              Level: <select name="Level" onChange={this.props.updateLevel} required>
                 <option selected={selected_beginner} value="beginner">Beginner</option>
                 <option selected={selected_advanced} value="advanced">Advanced</option>
                 <option selected={selected_expert} value="expert">Expert</option>
               </select>
-              <input
+            </div>
+            <div className="edit_profile_row mt-2">
+              Index: <input
                 placeholder="Index"
                 name="index"
-                type="text"
+                type="number"
+                step="0.1"
                 onChange={this.props.updateIndex}
                 value={this.props.user.index}
+                required
               />
             </div>
-            <div className="edit_profile_row">
+            <div className="edit_profile_row mt-2">
               <p>
                 Weather Conditions :<br />
-                <input onChange={this.props.updateRain} type="checkbox" checked={this.props.user.weather.rain} name="rain" value="rain"/>Rain
-                <input onChange={this.props.updateCold} type="checkbox" checked={this.props.user.weather.cold} name="cold" value="cold"/>Cold
-                <input onChange={this.props.updateMild} type="checkbox" checked={this.props.user.weather.mild} name="mild" value="mild"/>Mild
-                <input onChange={this.props.updateSunny} type="checkbox" checked={this.props.user.weather.sunny} name="sunny" value="sunny"/>Sunny
+                Rain: <input onChange={this.props.updateRain} type="checkbox" checked={this.props.user.weather.rain} className="mr-2" name="rain" value="rain"/>
+                Cold: <input onChange={this.props.updateCold} type="checkbox" checked={this.props.user.weather.cold} className="mr-2" name="cold" value="cold"/>
+                Mild: <input onChange={this.props.updateMild} type="checkbox" checked={this.props.user.weather.mild} className="mr-2" name="mild" value="mild"/>
+                Sunny: <input onChange={this.props.updateSunny} type="checkbox" checked={this.props.user.weather.sunny} className="mr-2" name="sunny" value="sunny"/>
               </p>
             </div>
             <div className="edit_profile_row">
-              <button type="submit">
-                Edit my profile
+              <button className="btn btn-send" type="submit">
+                Save my profile
               </button>
             </div>
           </div>

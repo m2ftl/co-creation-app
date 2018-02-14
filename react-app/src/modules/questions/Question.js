@@ -44,14 +44,18 @@ class Question extends Component {
     }) || [];
 
     return (
-      <div className="list_ideas_block">
-        <h1>Question details</h1>
-        <div className="idea_item">
-          <h3 className="mt-5">{found_question.title}</h3>
-          <div className="idea_description">
-            <div>{found_question.description}</div>
-            <div className="mt-5">submitted by {found_question.first_name} {found_question.last_name}</div>
-          </div>
+        <div>
+        <div className="idea_page_global">
+          <div className="div_global_idea">
+            <h1>Question details</h1>
+            <div className="idea_item">
+              <h3 className="mt-5">{found_question.title}</h3>
+                <div className="idea_description">
+                <div>{found_question.description}</div>
+                <div className="mt-5">submitted by {found_question.first_name} {found_question.last_name}</div>
+                </div>
+              </div>
+            </div>
         </div>
         <form onSubmit={this.onSubmit}>
           <div> Write your answer</div>
