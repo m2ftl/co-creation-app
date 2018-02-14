@@ -18,6 +18,15 @@ export default function ideasActions(dispatch){
           dispatch({ type: "RETRIEVE_IDEAS_BY_LIKES", data: data })
         });
     },
+    retrieveUserIdeas: (user_id) => {
+      return fetch(`/viewideas/${user_id}`, {
+          method: 'GET',
+        })
+        .then(response => response.json())
+        .then(data => {
+          dispatch({ type: "RETRIEVE_USER_IDEAS", data: data })
+        });
+    },
     retrieveComments: (idea) => {
       return fetch(`/${idea}/comments`, {
           method: 'GET'
