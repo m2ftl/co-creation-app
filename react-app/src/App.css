@@ -643,11 +643,12 @@ img.pointer {cursor:pointer;}
 
 
 .topTitle {
-  font-family: "Impact", fantasy;
   color: #363636;
-  font-size: 40px;
-  text-shadow: 2px 2px 0 #DCDCDC;
-  padding: 10px 0 30px 0;
+  font-size: 30px;
+  padding: 8px 20px 8px 20px;
+  margin: 30px 0 10px 0;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  color: #363636;
 }
 
 .textareaset{
@@ -655,7 +656,7 @@ img.pointer {cursor:pointer;}
 }
 
 .formset {
-  margin-left:20px;
+  margin-left:5%;
   width: 90%;
 }
 
