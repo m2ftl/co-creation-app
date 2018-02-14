@@ -215,6 +215,27 @@ app.get("/viewideasall", function(req, res) {
     });
 });
 
+app.get("/viewideas/:user_id", function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  });
+  client.connect();
+  client
+    .query(
+      "SELECT ideas.id,title, description, users.first_name, users.last_name, ideas.id_owner, ideas.date, count(ideas.id) AS counter FROM ideas INNER JOIN like_ideas ON ideas.id = like_ideas.id_idea  INNER JOIN users ON ideas.id_owner=users.id WHERE id_owner = $1 GROUP BY (ideas.id,title, description, users.first_name, users.last_name, ideas.id_owner, ideas.date) ORDER BY counter DESC;",
+      [req.params.user_id]
+    )
+    .then(resSql => {
+      client.end();
+      res.json(resSql.rows);
+    })
+    .catch(error => {
+      client.end();
+      console.warn(error);
+    });
+});
+
 app.get("/:ideaid/comments", function(req, res) {
   const client = new PG.Client({
     connectionString: process.env.DATABASE_URL,

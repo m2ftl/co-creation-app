@@ -12,6 +12,7 @@ class ViewIdeas extends Component {
   componentDidMount() {
     this.props.retrieveIdeas();
     this.props.retrieveIdeasByLikes();
+    this.props.retrieveUserIdeas(this.props.useruuid);
   }
 
   render() {
@@ -61,18 +62,48 @@ class ViewIdeas extends Component {
       }
     });
 
+    let listUserIdeas = this.props.userIdeas.map((idea, index) => {
+      if(this.props.userIdeas.length !== 0){
+        return (
+          <Link key={index} to={'/viewidea/'+idea.id }>
+            <div className="list_ideas_item">
+              <h3>+ {idea.title}
+                <span className="counterbtn">{likebtnGrey}</span>
+                <span className="counter"> {idea.counter}</span>
+              </h3>
+              <div className="idea_description">
+                <div>{idea.description}</div>
+                <span>submitted by {idea.first_name} {idea.last_name}</span>
+              </div>
+            </div>
+          </Link>
+        )
+      } else {
+        return (
+          <div>
+            <p>Sorry, you did not create any idea yet </p>
+            <Link to={'/createidea/'}>
+              <p>Create my first idea !</p>
+            </Link>
+          </div>
+        )
+      }
+    });
+
     return (
       <div className="list_ideas_block">
         <h1>Ideas submitted</h1>
         <p className="subtitle_listIdeas">Please feel free to like and/or comment any idea</p>
           <Tabs>
-              <TabList>
-                <Tab>Most Liked ideas</Tab>
-                <Tab>Most Recent ideas</Tab>
-              </TabList>
-              <TabPanel>{listIdeasByLikes}</TabPanel>
-              <TabPanel>{listIdeas}</TabPanel>
-            </Tabs>
+            <TabList>
+              <Tab>Most Liked ideas</Tab>
+              <Tab>Most Recent ideas</Tab>
+              <Tab>My ideas</Tab>
+            </TabList>
+            <TabPanel>{listIdeasByLikes}</TabPanel>
+            <TabPanel>{listIdeas}</TabPanel>
+            <TabPanel>{listUserIdeas}</TabPanel>
+          </Tabs>
 
       </div>
     );
