@@ -1,6 +1,7 @@
 let initialState={
   countertests: '',
-  counterquestions: ''
+  counterquestions: '',
+  counterideas: ''
 };
 
 export default function dashboardReducer(state=initialState, action){
@@ -14,6 +15,11 @@ export default function dashboardReducer(state=initialState, action){
         return{
           ...state,
           countertests:action.data
+        }
+    case "RETRIEVE_COUNTERIDEAS":
+        return{
+            ...state,
+            counterideas:action.data
         }
     default:
       return state;

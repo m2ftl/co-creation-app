@@ -14,6 +14,7 @@ class Dashboard extends Component {
   componentDidMount() {
     this.props.retrieveQuestionsCounter(this.props.useruuid);
     this.props.retrieveTestsCounter(this.props.useruuid);
+    this.props.retrieveIdeasCounter(this.props.useruuid);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -22,6 +23,9 @@ class Dashboard extends Component {
     }
     if (nextProps.countertests) {
       this.props.retrieveTestsCounter(this.props.useruuid);
+    }
+    if (nextProps.counterideas) {
+      this.props.retrieveIdeasCounter(this.props.useruuid);
     }
   }
 
@@ -34,7 +38,7 @@ class Dashboard extends Component {
             <img src={dash_icons_got_idea} alt="logo" height={"50px"} />
             <div>
               <h5>New Idea</h5>
-              <p>Lorem Ipsum dolor sit amet</p>
+              <p className="mb-5">I have a dream</p>
               <Link to="/createidea">
                 <p className="btn dashboard_button">I have an idea!</p>
               </Link>
@@ -42,9 +46,10 @@ class Dashboard extends Component {
           </div>
           <div className="dashboard_item">
             <img src={dash_icons_view_ideas} alt="logo" height={"50px"} />
+            <div className="circle">{this.props.counterideas}</div>
             <div>
               <h5>View Ideas</h5>
-              <p>Lorem Ipsum dolor sit amet</p>
+              <p>And the winner is</p>
               <Link to="/viewideas">
                 <p className="btn dashboard_button">View all</p>
               </Link>
@@ -60,7 +65,7 @@ class Dashboard extends Component {
             </div>
             <div>
               <h5>Questions</h5>
-              <p>Lorem Ipsum dolor sit amet</p>
+              <p>To be or not to be</p>
               <Link to="/viewquestions">
                 <p className="btn dashboard_button">Questions</p>
               </Link>
@@ -71,7 +76,7 @@ class Dashboard extends Component {
             <div className="circle">{this.props.countertests}</div>
             <div>
               <h5>Tests</h5>
-              <p>Lorem Ipsum dolor sit amet</p>
+              <p>Test it, Post it</p>
               <Link to="/viewtests">
                 <p className="btn dashboard_button">Go!</p>
               </Link>

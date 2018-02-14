@@ -826,6 +826,23 @@ app.post("/editidea", function(req, res) {
   );
 });
 
+app.get('/viewideasallcounter/:id', function(req, res) {
+  const client = new PG.Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true,
+  });
+  client.connect();
+  client.query("SELECT COUNT (ideas.id) FROM ideas WHERE ideas.status='open' ",[])
+  .then(res1 => {
+    client.end();
+    res.send(res1.rows[0].count);
+  })
+  .catch(error => {
+    client.end();
+    console.warn(error);
+  });
+});
+
 app.get("*", (request, result) => {
   result.sendFile(path.join(__dirname, "react-app/build/index.html"));
 });
