@@ -37,7 +37,6 @@ class EditProfile extends React.Component {
     let selected_beginner = "";
     let selected_advanced = "";
     let selected_expert = "";
-    let selected_level_choose = "";
 
     if(this.props.user.level === "beginner") {
       selected_beginner = "selected";
@@ -45,8 +44,6 @@ class EditProfile extends React.Component {
       selected_advanced = "selected";
     } else if (this.props.user.level === "expert"){
       selected_expert = "selected";
-    } else {
-      selected_level_choose = "selected";
     }
 
 

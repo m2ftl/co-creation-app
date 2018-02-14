@@ -43,7 +43,7 @@ class Questionadmin extends Component {
 
     let listTopics = this.props.topics.map((topic, index) => {
       return (
-          <div>{topic.topic}</div>
+          <div key={index} >{topic.topic}</div>
       )
     });
 
