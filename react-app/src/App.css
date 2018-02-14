@@ -432,11 +432,21 @@ img.pointer {cursor:pointer;}
   height: 100px;
   margin: 10px;
   border: 1px solid #CECECE;
-  transition: height 1s;
+  transition: height 0.5s;
+}
+
+.question_answer {
+  overflow: hidden;
+  text-align: left;
+  padding-left: 25px;
+  padding-bottom: 8px;
+  width: 600px;
+  height: 400px;
+  margin: 10px;
 }
 
 .question_item:hover {
-  height: 160px;
+  height: 250px;
 }
 
 .question_item_display {
