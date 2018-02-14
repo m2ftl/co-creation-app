@@ -20,7 +20,7 @@ const renderField = ({
   type,
   meta: { touched, error }
 }) => (
-  <div>
+  <div className="form_field">
     <label className="topTitle">{label}</label>
     <input {...input} type={type} placeholder="Your Idea Title" className="form-control formset" />
     {touched &&
@@ -29,7 +29,7 @@ const renderField = ({
 )
 
 const renderTextArea = ({input,label, meta: { touched, error, warning }}) => (
-    <div>
+    <div className="form_field">
         <label className="topTitle">{label}</label>
         <div>
             <textarea {...input} className="form-control formset" placeholder="Describe your Idea" />
@@ -59,7 +59,7 @@ class Createideaform extends Component{
               />
             </div>
         </div>
-        <button type="submit" className="btn submitset" disabled={invalid || pristine || submitting}>
+        <button type="submit" className="btn submitset dashboard_button" disabled={invalid || pristine || submitting}>
             Submit
         </button>
       </form>

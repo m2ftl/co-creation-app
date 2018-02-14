@@ -93,7 +93,7 @@ class Createquestionform extends Component{
               </div>
 
         </div>
-        <button type="submit" className="btn submitset" disabled={invalid || pristine || submitting}>
+        <button type="submit" className="btn submitset dashboard_button" disabled={invalid || pristine || submitting}>
             Submit
         </button>
       </form>

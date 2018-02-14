@@ -127,7 +127,7 @@ class Idea extends Component {
         {this.props.useruuid === found_idea.id_owner && this.props.comments.length===0 &&
           <div>
           <Link to={"/editidea/"+this.props.match.params.id}>
-          <button className="btn" type="submit">Edit idea</button>
+          <button className="btn dashboard_button" type="submit">Edit idea</button>
           </Link>
           </div>
         }
