@@ -34,16 +34,16 @@ class Createquestion extends Component{
       }
 
       {this.state.questionfirsttime === false && this.state.questionsub &&
-        <div>
-        <div> Your question has been successfully created!!!! </div>
+        <div className="feedbacks">
+        <div className="feedback_baseline"> Your question has been successfully created!!!! </div>
         <Link to="/dashboard">
         <button className="btn dashboard_button">Dashboard</button>
         </Link>
         </div>
       }
       {this.state.questionfirsttime === false && this.state.questionsub === false &&
-        <div>
-        <div> Sorry we receive an error please try again later... </div>
+        <div className="feedbacks">
+        <div className="feedback_baseline"> Sorry we receive an error please try again later... </div>
         <Link to="/dashboard">
         <button className="btn dashboard_button">Dashboard</button>
         </Link>
