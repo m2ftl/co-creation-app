@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Profile from "./modules/profile/profile.js";
 import EditProfile from "./modules/profile/EditProfile.js";
+import ProfileEdited from "./modules/profile/ProfileEdited.js";
 import Header from './modules/header/Header';
 import Dashboard from './modules/dashboard/Dashboard';
 import CreateIdea from "./modules/ideas/Createidea";
@@ -85,6 +86,7 @@ class App extends Component {
           <Route path="/viewquestionadmin/:id" render={(routerProps) => <Questionadmin {...routerProps}/>} />
           <Route path="/success" render={() => <Success />} />
           <Route path="/failed" render={() => <Failed />} />
+          <Route path="/profile_edited" render={() => <ProfileEdited />} />
           <Route path="/viewtests" render={() => <ViewTests />} />
           <Route path="/viewtest/:id" render={(routerProps) => <Test {...routerProps}/>} />
           <Route path="/editquestionadmin/:id" render={(routerProps) => <Editquestion {...routerProps} onSubmit={this.submit}/>} />
