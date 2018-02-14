@@ -15,14 +15,24 @@ class ViewIdeas extends Component {
     this.props.retrieveUserIdeas(this.props.useruuid);
   }
 
+  formatDate(date) {
+    let format_date = new Date(date);
+    if (typeof date !== "undefined")  {
+      return format_date.getDate()+'/'+(format_date.getMonth()+1)+'/'+format_date.getFullYear();}
+    else {
+      return ""}
+  }
+
   render() {
 
     let listIdeas = this.props.ideas.map((idea, index) => {
+      let formated_date = this.formatDate(idea.date);
       if(this.props.ideas.length !== 0){
         return (
           <Link key={index} to={'/viewidea/'+idea.id}>
             <div className="list_ideas_item">
               <h3>+ {idea.title}</h3>
+              <span>{formated_date}</span>
               <div className="idea_description">
                 <div>{idea.description}</div>
                 <span>submitted by {idea.first_name} {idea.last_name}</span>
@@ -32,7 +42,12 @@ class ViewIdeas extends Component {
         )
       } else {
         return (
-          <div>Sorry, there is no idea for the moment</div>
+          <div>
+            <p>Sorry, there is no idea yet </p>
+            <Link to={'/createidea/'}>
+              <p>Create an idea !</p>
+            </Link>
+          </div>
         )
       }
     });
@@ -40,6 +55,7 @@ class ViewIdeas extends Component {
     let likebtnGrey = (<img src={likeBtnGrey} className="likeBtnGrey" alt="logo" width={'25px'} />);
 
     let listIdeasByLikes = this.props.ideasByLikes.map((idea, index) => {
+      let formated_date = this.formatDate(idea.date);
       if(this.props.ideasByLikes.length !== 0){
         return (
           <Link key={index} to={'/viewidea/'+idea.id}>
@@ -48,6 +64,7 @@ class ViewIdeas extends Component {
                 <span className="counterbtn">{likebtnGrey}</span>
                 <span className="counter"> {idea.counter}</span>
               </h3>
+              <span>{formated_date}</span>
               <div className="idea_description">
                 <div>{idea.description}</div>
                 <span>submitted by {idea.first_name} {idea.last_name}</span>
@@ -57,12 +74,18 @@ class ViewIdeas extends Component {
         )
       } else {
         return (
-          <div>Sorry, there is no idea for the moment</div>
+          <div>
+            <p>Sorry, there is no idea yet </p>
+            <Link to={'/createidea/'}>
+              <p>Create an idea !</p>
+            </Link>
+          </div>
         )
       }
     });
 
     let listUserIdeas = this.props.userIdeas.map((idea, index) => {
+      let formated_date = this.formatDate(idea.date);
       if(this.props.userIdeas.length !== 0){
         return (
           <Link key={index} to={'/viewidea/'+idea.id }>
@@ -71,6 +94,7 @@ class ViewIdeas extends Component {
                 <span className="counterbtn">{likebtnGrey}</span>
                 <span className="counter"> {idea.counter}</span>
               </h3>
+              <span>{formated_date}</span>
               <div className="idea_description">
                 <div>{idea.description}</div>
                 <span>submitted by {idea.first_name} {idea.last_name}</span>
