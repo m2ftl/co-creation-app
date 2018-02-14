@@ -37,7 +37,6 @@ class EditProfile extends React.Component {
     let selected_beginner = "";
     let selected_advanced = "";
     let selected_expert = "";
-    let selected_level_choose = "";
 
     if(this.props.user.level === "beginner") {
       selected_beginner = "selected";
@@ -45,8 +44,6 @@ class EditProfile extends React.Component {
       selected_advanced = "selected";
     } else if (this.props.user.level === "expert"){
       selected_expert = "selected";
-    } else {
-      selected_level_choose = "selected";
     }
 
 
@@ -96,7 +93,6 @@ class EditProfile extends React.Component {
             </div>
             <div className="edit_profile_row">
               <select name="Level" onChange={this.props.updateLevel}>
-                <option selected={selected_level_choose} value="">Select your Level</option>
                 <option selected={selected_beginner} value="beginner">Beginner</option>
                 <option selected={selected_advanced} value="advanced">Advanced</option>
                 <option selected={selected_expert} value="expert">Expert</option>
