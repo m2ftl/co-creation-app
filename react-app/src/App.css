@@ -136,6 +136,16 @@ html, body, #root, .App {
 }
 
 
+/* Sign in Google Button*/
+
+.navbar-center {
+  margin:20px auto;
+  width:161px;
+}
+
+/* End of Sign in Google Button */
+
+
 /* Dashboard */
 
 .container-global-dashboard {
