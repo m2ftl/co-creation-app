@@ -44,14 +44,14 @@ class Viewusers extends Component {
     if(this.props.userslist.length !== 0){
       return (
         <div key={index} className="user_item">
-          <h3> {user.first_name} {user.last_name}</h3>
+          <h4>{user.first_name} {user.last_name}</h4>
           <div className="user_description">
-            <div>Gender: {user.gender}</div>
-            <div>Email: {user.email}</div>
-            <div>Phone: {user.phone}</div>
-            <div>Level: {user.level}</div>
-            <div>Player index: {user.player_index}</div>
-            <div>Birthdate: {formated_date}</div>
+            <div><label>Gender:</label> {user.gender}</div>
+            <div><label>Email:</label> {user.email}</div>
+            <div><label>Phone:</label> {user.phone}</div>
+            <div><label>Level:</label> {user.level}</div>
+            <div><label>Player index:</label> {user.player_index}</div>
+            <div><label>Birthdate:</label> {formated_date}</div>
           </div>
         </div>
       )
@@ -66,7 +66,7 @@ class Viewusers extends Component {
       <div className="list_ideas_block">
         <h1>Users List</h1>
         <form onSubmit={this.onSubmit}>
-        <button className="btn dashboard_button" type="submit">Export User List</button>
+        <button className="btn dashboard_button mb-5" type="submit">Export User List</button>
         </form>
 
         <div className="stats_users">

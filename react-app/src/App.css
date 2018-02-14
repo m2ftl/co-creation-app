@@ -698,23 +698,29 @@ img.pointer {cursor:pointer;}
   text-align: left;
   padding-left: 25px;
   padding-bottom: 8px;
-  width: 600px;
-  height: 70px;
+  width: 80%;
+  height: 60px;
   margin: 10px;
   border: 1px solid #CECECE;
   transition: height 1s;
 }
 
 .user_item:hover {
-  height: 220px;
+  height: 240px;
+}
+
+.user_item h4 {
+  padding-top: 10px;
 }
 
 .user_description {
-  margin-top: 30px;
-  margin-left: 25px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-left: 15px;
   margin-right: 15px;
-  padding: 3px;
-  background-color: #CECECE;
+  padding: 7px;
+  background: linear-gradient(to right, #CECECE, white);
 }
 
 .user_description span {
@@ -723,6 +729,10 @@ img.pointer {cursor:pointer;}
   float:right;
   padding-right: 20px;
   margin-top: 5px;
+}
+
+.user_description label {
+  text-decoration: underline;
 }
 
 @keyframes App-logo-spin {
