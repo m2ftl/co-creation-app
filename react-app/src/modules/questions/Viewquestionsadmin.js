@@ -32,7 +32,7 @@ class ViewQuestionsadmin extends Component {
           </div>
           </Link>
         )
-      }
+      } else {return <div/>}
     });
 
     let listQuestionsClosed = this.props.questions.map((question, index) => {
@@ -52,7 +52,7 @@ class ViewQuestionsadmin extends Component {
           </div>
           </Link>
         )
-      }
+      } else {return <div/>}
     });
 
     return (
