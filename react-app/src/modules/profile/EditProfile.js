@@ -12,7 +12,7 @@ class EditProfile extends React.Component {
     this.props.UpdateProfile(this.props.user)
     .then((response) => {
       if(response) {
-        this.props.history.push('/success');
+        this.props.history.push('/profile_edited');
       } else {
         this.props.history.push('/failed');
       }
@@ -21,6 +21,34 @@ class EditProfile extends React.Component {
 
 
   render() {
+
+    let selected_male = "";
+    let selected_female = "";
+    let selected_gender_choose = "";
+
+    if(this.props.user.gender === "Male") {
+      selected_male = "selected";
+    } else if (this.props.user.gender === "Female") {
+      selected_female = "selected";
+    } else {
+      selected_gender_choose = "selected";
+    }
+
+    let selected_beginner = "";
+    let selected_advanced = "";
+    let selected_expert = "";
+    let selected_level_choose = "";
+
+    if(this.props.user.level === "beginner") {
+      selected_beginner = "selected";
+    } else if (this.props.user.level === "advanced") {
+      selected_advanced = "selected";
+    } else if (this.props.user.level === "expert"){
+      selected_expert = "selected";
+    } else {
+      selected_level_choose = "selected";
+    }
+
 
     return (
       <div className="edit_profile_page">
@@ -45,9 +73,9 @@ class EditProfile extends React.Component {
             </div>
             <div className="edit_profile_row">
               <select name="Gender" id="Gender" onChange={this.props.updateGender}>
-                <option value="">Select your Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
+                <option selected={selected_gender_choose} value="">Select your Gender</option>
+                <option selected={selected_male} value="Male">Male</option>
+                <option selected={selected_female} value="Female">Female</option>
               </select>
               </div>
             <div className="edit_profile_row">
@@ -78,9 +106,9 @@ class EditProfile extends React.Component {
             <div className="edit_profile_row">
               <select name="Level" onChange={this.props.updateLevel}>
                 <option value="">Select your Level</option>
-                <option value="beginner">Beginner</option>
-                <option value="advanced">Advanced</option>
-                <option value="expert">Expert</option>
+                <option selected={selected_beginner} value="beginner">Beginner</option>
+                <option selected={selected_advanced} value="advanced">Advanced</option>
+                <option selected={selected_expert} value="expert">Expert</option>
               </select>
               <input
                 placeholder="Index"

@@ -125,7 +125,7 @@ html, body, #root, .App {
   align-items: center;
 }
 
-  .item-navbar_empty {
+.item-navbar_empty {
   background-color: #363636;
   height: 70px;
 }
@@ -139,7 +139,7 @@ html, body, #root, .App {
 /* Dashboard */
 
 .container-global-dashboard {
-  background: url("./images/bckgd_dashboard.jpg");
+  background: url("./images/bckgrd_Inesis_without_logo.jpg");
   background-position-x: center;
   background-repeat:no-repeat;
   background-color: #12110C;
