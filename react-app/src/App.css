@@ -817,3 +817,33 @@ img.pointer {cursor:pointer;}
 }
 
 /* END OF REACT TABS */
+
+
+/* Test graph on Users View */
+
+.stats_users {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.stats_users_level {
+  margin-right: 30px;
+}
+
+.graph {
+  border: 1px solid #CECECE;
+  margin-bottom: 10px;
+}
+
+.stats_users_level .loader {
+  height: 20px;
+  width: 80px;
+  background-color: #FFDF00;
+}
+
+.stats_gender_level .loader {
+  height: 20px;
+  width: 80px;
+  background-color: MediumOrchid;
+}
