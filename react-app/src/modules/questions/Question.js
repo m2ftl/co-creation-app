@@ -56,11 +56,9 @@ class Question extends Component {
         <form onSubmit={this.onSubmit}>
           <div> Write your answer</div>
           <div className="question_answer">
-          <textarea className="form-control formset" onChange={this.handleInput}/>
+            <textarea className="form-control formset" onChange={this.handleInput}/>
           </div>
-          <div>
-          <button type="submit" className="btn mt-2">Send</button>
-          </div>
+          <button type="submit" className="btn btn-send mt-2">Send</button>
         </form>
       </div>
     );
