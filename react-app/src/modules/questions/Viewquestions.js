@@ -21,7 +21,7 @@ class ViewQuestions extends Component {
         return (
           <Link key={index} to={'/viewquestion/'+question.id}>
           <div className="question_item">
-            <h3><p href={"#quest"+index}>+</p> {question.title}</h3>
+            <h3>{question.title}</h3>
             <div>{formated_date}</div>
             <div id={"quest"+index} className="idea_description">
               <div>{question.description}</div>
