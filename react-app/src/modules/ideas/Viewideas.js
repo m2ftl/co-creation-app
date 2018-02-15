@@ -44,7 +44,8 @@ class ViewIdeas extends Component {
               <p className="topIdea_counterbtn">{likebtnTop}</p>
               <p className="topIdea_counter"> {this.props.ideasByLikes[0].counter}</p>
               <p className="topIdea_description">{this.props.ideasByLikes[0].description}</p>
-              <p className="topIdea_owner">Submitted by {this.props.ideasByLikes[0].first_name} {this.props.ideasByLikes[0].last_name}</p>
+<p className="topIdea_owner">Submitted by {this.props.ideasByLikes[0].first_name} {this.props.ideasByLikes[0].last_name} on {this.formatDate(this.props.ideasByLikes[0].date)}</p>
+<img src={this.props.ideasByLikes[0].avatar} className="user_pic2" alt="logo"/>
             </div>
           </div>
         </Link>
