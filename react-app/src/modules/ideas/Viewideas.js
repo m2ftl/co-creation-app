@@ -51,10 +51,8 @@ class ViewIdeas extends Component {
       )
     }
 
-
     let listIdeas = this.props.ideas.map((idea, index) => {
       let formated_date = this.formatDate(idea.date);
-      if(this.props.ideas.length !== 0){
         return (
           <Link className="link" key={index} to={'/viewidea/'+idea.id}>
             <div className="question_item">
@@ -67,23 +65,10 @@ class ViewIdeas extends Component {
             </div>
           </Link>
         )
-      } else {
-        return (
-          <div>
-            <p>Sorry, there is no idea yet </p>
-            <Link to={'/createidea/'}>
-              <p>Create an idea !</p>
-            </Link>
-          </div>
-        )
-      }
     });
-
-
 
     let listIdeasByLikes = this.props.ideasByLikes.map((idea, index) => {
       let formated_date = this.formatDate(idea.date);
-      if(this.props.ideasByLikes.length !== 0){
         return (
           <Link className="link" key={index} to={'/viewidea/'+idea.id}>
             <div className="question_item">
@@ -99,21 +84,10 @@ class ViewIdeas extends Component {
             </div>
           </Link>
         )
-      } else {
-        return (
-          <div>
-            <p>Sorry, there is no idea yet </p>
-            <Link to={'/createidea/'}>
-              <p>Create an idea !</p>
-            </Link>
-          </div>
-        )
-      }
     });
 
     let listUserIdeas = this.props.userIdeas.map((idea, index) => {
       let formated_date = this.formatDate(idea.date);
-      if(this.props.userIdeas.length !== 0){
         return (
           <Link className="link" key={index} to={'/viewidea/'+idea.id }>
             <div className="question_item">
@@ -129,36 +103,40 @@ class ViewIdeas extends Component {
             </div>
           </Link>
         )
-      } else {
-        return (
-          <div>
-            <p>Sorry, you did not create any idea yet </p>
-            <Link to={'/createidea/'}>
-              <p>Create my first idea !</p>
-            </Link>
-          </div>
-        )
-      }
     });
+
+    let noIdeaYet = <div>
+                      <p>Sorry, there is no idea yet </p>
+                      <Link to={'/createidea/'}>
+                        <p>Create an idea !</p>
+                      </Link>
+                    </div>
+
+    let noPersonalIdeaYet = <div>
+                              <p>Sorry, you did not create any idea yet </p>
+                              <Link to={'/createidea/'}>
+                                <p>Create my first idea !</p>
+                              </Link>
+                            </div>
 
     return (
       <div className="list_ideas_block">
         <h1>Ideas submitted</h1>
         <p className="subtitle_listIdeas">Please feel free to like and/or comment any idea</p>
-
         {top_idea}
-
           <Tabs>
             <TabList>
               <Tab>Most Liked ideas</Tab>
               <Tab>Most Recent ideas</Tab>
               <Tab>My ideas</Tab>
             </TabList>
-            <TabPanel>{listIdeasByLikes}</TabPanel>
-            <TabPanel>{listIdeas}</TabPanel>
-            <TabPanel>{listUserIdeas}</TabPanel>
+              <TabPanel> {this.props.ideasByLikes.length !== 0 ? listIdeasByLikes : noIdeaYet}
+              </TabPanel>
+              <TabPanel> {this.props.ideas.length !== 0 ? listIdeas : noIdeaYet}
+              </TabPanel>
+              <TabPanel > {this.props.userIdeas.length !== 0 ? listUserIdeas : noPersonalIdeaYet}
+              </TabPanel>
           </Tabs>
-
       </div>
     );
   }

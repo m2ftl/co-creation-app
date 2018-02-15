@@ -122,9 +122,16 @@ app.post("/createideanew", function(req, res) {
   client.connect();
   client
     .query(
-      "INSERT INTO ideas (id, title, description,status,date,id_owner) VALUES (uuid_generate_v4(),$1,$2,'open',Now(),$3)",
+      "INSERT INTO ideas (id, title, description,status,date,id_owner) VALUES (uuid_generate_v4(),$1,$2,'open',Now(),$3) RETURNING id",
       [req.body.title, req.body.description, req.body.uuid]
     )
+    .then(res1 => {
+      return client
+        .query(
+          "INSERT INTO like_ideas (id_idea, id_user) VALUES ($1, $2)",
+          [res1.rows[0].id, req.body.uuid]
+        )
+    })
     .then(res1 => {
       client.end();
       res.send({ result: "success" });
