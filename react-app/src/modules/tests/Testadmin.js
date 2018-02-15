@@ -70,7 +70,9 @@ class Testadmin extends Component {
             }
           })
         }}>
-        <button className="btn dashboard_button" type="submit">Reopen Test</button>
+        {found_test.status === "closed"
+          ? <button className="btn dashboard_button" type="submit">Reopen Test</button>
+          : null}
         </form></span>
         <span><form onSubmit={(e)=> {
           e.preventDefault();
@@ -83,10 +85,14 @@ class Testadmin extends Component {
             }
           })
         }}>
-        <button className= "btn dashboard_button mt-2" type="submit">Archive Test</button>
+        {found_test.status === "open"
+         ? <button className= "btn dashboard_button mt-2" type="submit">Archive Test</button>
+         : null}
         </form></span>
         <Link to={'/edittest/'+this.props.match.params.id}>
-        <button className="btn dashboard_button mt-2">Edit test</button>
+        {found_test.status === "open"
+         ? <button className="btn dashboard_button mt-2">Edit test</button>
+         : null}
         </Link>
       </div>
       </div>
