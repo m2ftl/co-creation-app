@@ -68,33 +68,90 @@ class Viewusers extends Component {
         <form onSubmit={this.onSubmit}>
         <button className="btn dashboard_button mb-2" type="submit">Export User List</button>
         </form>
-        <div className="stats_users">
-          <div className="stats_users_level">
-            <p>Beginners: {BeginnerUsers.length}/{this.props.userslist.length} users</p>
-            <div className="graph">
-              <div className="loader" style={{width: `${percentageBeginner}%`}}>{percentageBeginner}%</div>
-            </div>
-            <p>Advanced: {AdvancedUsers.length}/{this.props.userslist.length} users</p>
-            <div className="graph">
-              <div className="loader" style={{width: `${percentageAdvanced}%`}}>{percentageAdvanced}%</div>
-            </div>
-            <p>Expert: {ExpertUsers.length}/{this.props.userslist.length} users</p>
-            <div className="graph">
-              <div className="loader" style={{width: `${percentageExpert}%`}}>{percentageExpert}%</div>
-            </div>
-          </div>
-
-          <div className="stats_gender_level">
-            <p>Male: {MaleUsers.length}/{this.props.userslist.length} users</p>
-            <div className="graph">
-              <div className="loader" style={{width: `${percentageMale}%`}}>{percentageMale}%</div>
-            </div>
-            <p>Female: {FemaleUsers.length}/{this.props.userslist.length} users</p>
-            <div className="graph">
-              <div className="loader" style={{width: `${percentageFemale}%`}}>{percentageFemale}%</div>
-            </div>
-          </div>
+        <div className="TableStats">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Description</th>
+                <th scope="col">Stats</th>
+                <th scope="col">Percentage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Beginners</td>
+                <td>{BeginnerUsers.length}/{this.props.userslist.length} users </td>
+                <td>
+                <div class="progress">
+                  <div
+                  class="progress-bar bg-warning"
+                  role="progressbar"
+                  style={{width: `${percentageBeginner}%`}}
+                  aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Advanced</td>
+                <td>{AdvancedUsers.length}/{this.props.userslist.length} users</td>
+                <td>
+                <div class="progress">
+                  <div
+                  class="progress-bar bg-warning"
+                  role="progressbar"
+                  style={{width: `${percentageAdvanced}%`}}
+                  aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Expert</td>
+                <td>{ExpertUsers.length}/{this.props.userslist.length} users</td>
+                <td>
+                <div class="progress">
+                  <div
+                  class="progress-bar bg-warning"
+                  role="progressbar"
+                  style={{width: `${percentageExpert}%`}}
+                  aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td>Men</td>
+                <td>{MaleUsers.length}/{this.props.userslist.length} users</td>
+                <td>
+                <div class="progress">
+                  <div
+                  class="progress-bar bg-warning"
+                  role="progressbar"
+                  style={{width: `${percentageMale}%`}}
+                  aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </td>
+              </tr><tr>
+                <th scope="row">5</th>
+                <td>Women</td>
+                <td>{FemaleUsers.length}/{this.props.userslist.length} users</td>
+                <td>
+                <div class="progress">
+                  <div
+                  class="progress-bar bg-warning"
+                  role="progressbar"
+                  style={{width: `${percentageFemale}%`}}
+                  aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+      
 
         {listUsers}
       </div>

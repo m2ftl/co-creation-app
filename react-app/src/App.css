@@ -772,7 +772,7 @@ img.pointer {cursor:pointer;}
 }
 
 .user_item:hover {
-  height: 240px;
+  height: 255px;
 }
 
 .user_item h4 {
