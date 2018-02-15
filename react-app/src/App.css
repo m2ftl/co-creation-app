@@ -135,6 +135,13 @@ html, body, #root, .App {
   height: 60px;
 }
 
+.user_pic2 {
+  margin-right: 20px;
+  height: 30px;
+  width: 30px;
+  border-radius:30px;
+}
+
 
 /* Sign in Google Button*/
 
