@@ -84,7 +84,7 @@ class Idea extends Component {
       return (
         <div key={index} className="comment_description">
         <div className="answer">&laquo; {comment.comment} &raquo;</div>
-        <span>&nbsp; {formated_date} {comment.first_name} {comment.last_name}     <img src={comment.avatar} className="user_pic2" alt="logo"/></span>
+        <span>&nbsp; {formated_date} - {comment.first_name} {comment.last_name}     <img src={comment.avatar} className="user_pic2" alt="logo"/></span>
         </div>
       )
     });
@@ -100,6 +100,10 @@ class Idea extends Component {
       return element.id===this.props.match.params.id;
     }) || [];
 
+    let found_idea_date= new Date(found_idea.date);
+    let idea_date = found_idea_date.getDate()+'/'+(found_idea_date.getMonth()+1)+'/'+found_idea_date.getFullYear();
+
+
     return (
       <div className="idea_page_global">
 
@@ -111,7 +115,8 @@ class Idea extends Component {
             <div className="idea_item_details">
               <div className="idea_item_title">{found_idea.title}</div>
               <div className="idea_item_description">{found_idea.description}</div>
-              <div className="idea_description_owner">submitted by {found_idea.first_name} {found_idea.last_name}</div>
+              <img src={found_idea.avatar} className="user_pic_idea" alt="logo"/>
+              <div className="idea_description_owner"> {idea_date} - {found_idea.first_name} {found_idea.last_name}</div>
               <div className="like_block">
                 {this.state.authorized
                   ? likebtnYellow

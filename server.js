@@ -215,7 +215,7 @@ app.get("/viewideasall", function(req, res) {
   client.connect();
   client
     .query(
-      "SELECT ideas.id,title, description, users.first_name, users.last_name, ideas.id_owner, ideas.date FROM ideas INNER JOIN users ON ideas.id_owner=users.id ORDER BY ideas.date DESC"
+      "SELECT ideas.id,title, description, users.first_name, users.last_name, users.avatar, ideas.id_owner, ideas.date FROM ideas INNER JOIN users ON ideas.id_owner=users.id ORDER BY ideas.date DESC"
     )
     .then(res1 => {
       client.end();
@@ -235,7 +235,7 @@ app.get("/viewideas/:user_id", function(req, res) {
   client.connect();
   client
     .query(
-      "SELECT ideas.id,title, description, users.first_name, users.last_name, ideas.id_owner, ideas.date, count(ideas.id) AS counter FROM ideas INNER JOIN like_ideas ON ideas.id = like_ideas.id_idea  INNER JOIN users ON ideas.id_owner=users.id WHERE id_owner = $1 GROUP BY (ideas.id,title, description, users.first_name, users.last_name, ideas.id_owner, ideas.date) ORDER BY counter DESC;",
+      "SELECT ideas.id,title, description, users.first_name, users.last_name, users.avatar, ideas.id_owner, ideas.date, count(ideas.id) AS counter FROM ideas INNER JOIN like_ideas ON ideas.id = like_ideas.id_idea  INNER JOIN users ON ideas.id_owner=users.id WHERE id_owner = $1 GROUP BY (ideas.id,title, description, users.first_name, users.last_name, users.avatar , ideas.id_owner, ideas.date) ORDER BY counter DESC;",
       [req.params.user_id]
     )
     .then(resSql => {
@@ -297,7 +297,7 @@ app.get('/viewquestionsall/:id', function(req, res) {
     ssl: true,
   });
   client.connect();
-  client.query("SELECT DISTINCT questions.id,title, description, users1.first_name, users1.last_name,questions.status,questions.date,answers.id_owner FROM questions INNER JOIN users as users1 ON questions.id_owner=users1.id INNER JOIN question_topic as qt3 ON qt3.id_question=questions.id and qt3.topic=(SELECT level FROM users as users2 WHERE users2.id=$1) INNER JOIN question_topic as qt1 ON qt1.id_question=questions.id and qt1.topic=(SELECT id_index_category FROM users as users2 WHERE users2.id=$1) INNER JOIN question_topic as qt2 ON qt2.id_question=questions.id and qt2.topic IN (SELECT DISTINCT weather FROM user_weather WHERE user_weather.id_user=$1)  LEFT JOIN answers ON answers.id_question=questions.id  and answers.id_owner =$1 WHERE questions.status='open' and answers.id_owner is NULL ORDER BY date DESC",[req.params.id])
+  client.query("SELECT DISTINCT questions.id,title, description, users1.first_name, users1.last_name, users1.avatar, questions.status,questions.date,answers.id_owner FROM questions INNER JOIN users as users1 ON questions.id_owner=users1.id INNER JOIN question_topic as qt3 ON qt3.id_question=questions.id and qt3.topic=(SELECT level FROM users as users2 WHERE users2.id=$1) INNER JOIN question_topic as qt1 ON qt1.id_question=questions.id and qt1.topic=(SELECT id_index_category FROM users as users2 WHERE users2.id=$1) INNER JOIN question_topic as qt2 ON qt2.id_question=questions.id and qt2.topic IN (SELECT DISTINCT weather FROM user_weather WHERE user_weather.id_user=$1)  LEFT JOIN answers ON answers.id_question=questions.id  and answers.id_owner =$1 WHERE questions.status='open' and answers.id_owner is NULL ORDER BY date DESC",[req.params.id])
   .then(res1 => {
     client.end();
     res.send(res1.rows);
@@ -763,7 +763,7 @@ app.get("/viewideasallbylikes", function(req,res) {
   client.connect();
   client
     .query(
-      "SELECT ideas.id,title, description, users.first_name, users.last_name, ideas.id_owner, ideas.date, count(ideas.id) AS counter FROM ideas INNER JOIN like_ideas ON ideas.id = like_ideas.id_idea INNER JOIN users ON ideas.id_owner=users.id GROUP BY (ideas.id,title, description, users.first_name, users.last_name, ideas.id_owner, ideas.date) ORDER BY counter DESC"
+      "SELECT ideas.id,title, description, users.first_name, users.last_name, users.avatar, ideas.id_owner, ideas.date, count(ideas.id) AS counter FROM ideas INNER JOIN like_ideas ON ideas.id = like_ideas.id_idea INNER JOIN users ON ideas.id_owner=users.id GROUP BY (ideas.id,title, description, users.first_name, users.last_name, users.avatar, ideas.id_owner, ideas.date) ORDER BY counter DESC"
     )
     .then(res1 => {
       client.end();

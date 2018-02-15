@@ -52,6 +52,7 @@ class Question extends Component {
               <h3 className="mt-5">{found_question.title}</h3>
                 <div className="idea_description">
                 <div>{found_question.description}</div>
+                <img src={found_question.avatar} className="user_pic_idea" alt="logo"/>
                 <div className="mt-5">submitted by {found_question.first_name} {found_question.last_name}</div>
                 </div>
               </div>
