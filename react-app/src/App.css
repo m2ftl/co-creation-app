@@ -449,7 +449,7 @@ img.pointer {cursor:pointer;}
 .question_item {
   overflow: hidden;
   text-align: left;
-  padding: 20px 20px 8px 20px;
+  padding: 0 20px 8px 20px;
   height: 90px;
   margin: 10px auto;
   border: 1px solid #CECECE;
@@ -633,7 +633,7 @@ img.pointer {cursor:pointer;}
   display: grid;
   grid-template-columns: 45% 50% 5%;
   width: 700px;
-  height: 300px;
+  height: 350px;
   margin-top: 50px;
   background-image: url(./images/bckgrd-color_test_answer.jpg);
   background-repeat: no-repeat;
@@ -689,7 +689,7 @@ img.pointer {cursor:pointer;}
   flex-direction: column;
   justify-content: center;
   background-color: white;
-  height: 300px;
+  height: 350px;
   border: 1px solid #363636;
   text-align: left;
   color: black;

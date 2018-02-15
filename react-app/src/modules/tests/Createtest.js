@@ -36,7 +36,7 @@ class Createtest extends Component{
       {this.state.testfirsttime === false && this.state.testsub &&
         <div className="feedbacks">
         <div className="feedback_baseline"> Your test has been successfully created!!!! </div>
-        <Link to="/viewtests">
+        <Link to="/viewtests" style={{ textDecoration: 'none' }}>
         <button className="btn dashboard_button">View Tests</button>
         </Link>
         </div>
@@ -44,7 +44,7 @@ class Createtest extends Component{
       {this.state.testfirsttime === false && this.state.testsub === false &&
         <div className="feedbacks">
         <div className="feedback_baseline"> Sorry we receive an error please try again later... </div>
-        <Link to="/dashboard">
+        <Link to="/dashboard" style={{ textDecoration: 'none' }}>
         <button className="btn dashboard_button">Dashboard</button>
         </Link>
         </div>

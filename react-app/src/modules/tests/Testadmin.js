@@ -88,7 +88,7 @@ class Testadmin extends Component {
          ? <button className= "btn dashboard_button mt-2" type="submit">Archive Test</button>
          : null}
         </form></span>
-        <Link to={'/edittest/'+this.props.match.params.id}>
+        <Link to={'/edittest/'+this.props.match.params.id} style={{ textDecoration: 'none' }}>
         {found_test.status === "open"
          ? <button className="btn dashboard_button mt-2 mb-2">Edit test</button>
          : null}
