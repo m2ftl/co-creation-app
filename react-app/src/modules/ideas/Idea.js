@@ -81,11 +81,30 @@ class Idea extends Component {
       let format_date = new Date(comment.date);
       let formated_date = format_date.getDate()+'/'+(format_date.getMonth()+1)+'/'+format_date.getFullYear();
 
+      console.log(comment);
+      console.log(this.props.useruuid);
+
+      let commentClass = "";
+
+      if(comment.id_owner === this.props.useruuid){
+        commentClass = (
+          <div key={index} className="comment_description own_comment">
+            <span><img src={comment.avatar} className="user_pic2" alt="logo"/>
+              &nbsp; {formated_date} - {comment.first_name} {comment.last_name}
+            </span>
+            <div className="own_answer">&laquo; {comment.comment} &raquo;</div>
+          </div>)
+      } else {
+        commentClass = (
+          <div key={index} className="comment_description">
+            <div className="answer">&laquo; {comment.comment} &raquo;</div>
+            <span>&nbsp; {formated_date} - {comment.first_name} {comment.last_name}
+            <img src={comment.avatar} className="user_pic2" alt="logo"/></span>
+          </div>)
+      }
+
       return (
-        <div key={index} className="comment_description">
-        <div className="answer">&laquo; {comment.comment} &raquo;</div>
-        <span>&nbsp; {formated_date} - {comment.first_name} {comment.last_name}     <img src={comment.avatar} className="user_pic2" alt="logo"/></span>
-        </div>
+        commentClass
       )
     });
 

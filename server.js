@@ -256,7 +256,7 @@ app.get("/:ideaid/comments", function(req, res) {
   client.connect();
   client
     .query(
-      "SELECT comment, comments.status, users.first_name, users.last_name, users.avatar, comments.date FROM comments INNER JOIN users ON comments.id_owner=users.id WHERE comments.id_idea=$1 ORDER BY comments.date DESC;",
+      "SELECT comment, comments.id_owner, comments.status, users.first_name, users.last_name, users.avatar, comments.date FROM comments INNER JOIN users ON comments.id_owner=users.id WHERE comments.id_idea=$1 ORDER BY comments.date DESC;",
       [req.params.ideaid]
     )
     .then(res1 => {
