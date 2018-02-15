@@ -353,6 +353,12 @@ html, body, #root, .App {
   color: #FFDF00;
 }
 
+.question_item_title {
+  margin-top: 20px;
+  font-size: 20px;
+  color: #FFDF00;
+}
+
 .idea_item_description {
   padding-top: 10px;
   padding-left: 10px;
@@ -416,6 +422,15 @@ img.pointer {cursor:pointer;}
 .idea_background_picture {
   height: 300px;
   background-image: url(./images/bckgrd_tests_004.jpg);
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.6);
+}
+
+.question_background_picture {
+  height: 300px;
+  background-image: url(./images/bckgrd_questions_001.jpg);
   background-size: 100%;
   background-position: center;
   background-repeat: no-repeat;
