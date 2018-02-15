@@ -17,7 +17,6 @@ class ViewQuestions extends Component {
       let format_date = new Date(question.date);
       let formated_date = format_date.getDate()+'/'+(format_date.getMonth()+1)+'/'+format_date.getFullYear();
 
-      if(this.props.questions.length !== 0){
         return (
           <Link className="link" key={index} to={'/viewquestion/'+question.id}>
           <div className="question_item">
@@ -30,19 +29,14 @@ class ViewQuestions extends Component {
           </div>
           </Link>
         )
-      } else {
-        return (
-          <div>Sorry, there is no question for the moment</div>
-        )
-      }
-    });
+      });
 
 
     return (
       <div className="list_questions_block">
         <h1>Questions submitted</h1>
         <p className="subtitle_listIdeas">We need your answer to develop <Link to={"/c25a5bc5-dd78-4820-9a03-c71bbd4a7690"}>better</Link> products</p>
-        {listQuestions}
+        {this.props.questions.length !== 0 ? listQuestions : <div>Sorry, there is no question for the moment</div>}
       </div>
     );
   }
