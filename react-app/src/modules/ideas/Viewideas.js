@@ -34,18 +34,20 @@ class ViewIdeas extends Component {
 
     if(this.props.ideasByLikes[0] !== undefined){
       top_idea = (
-        <div className="top_idea_global">
-          <div className="top_idea_pics">
-            <img src={lightbulb} alt="lightbulb"/>
+        <Link className="link" to={'/viewidea/'+this.props.ideasByLikes[0].id}>
+          <div className="top_idea_global">
+            <div className="top_idea_pics">
+              <img src={lightbulb} alt="lightbulb"/>
+            </div>
+            <div className="top_idea">
+              <p className="topIdea_title">{this.props.ideasByLikes[0].title}</p>
+              <p className="topIdea_counterbtn">{likebtnTop}</p>
+              <p className="topIdea_counter"> {this.props.ideasByLikes[0].counter}</p>
+              <p className="topIdea_description">{this.props.ideasByLikes[0].description}</p>
+              <p className="topIdea_owner">Submitted by {this.props.ideasByLikes[0].first_name} {this.props.ideasByLikes[0].last_name}</p>
+            </div>
           </div>
-          <div className="top_idea">
-            <p className="topIdea_title">{this.props.ideasByLikes[0].title}</p>
-            <p className="topIdea_counterbtn">{likebtnTop}</p>
-            <p className="topIdea_counter"> {this.props.ideasByLikes[0].counter}</p>
-            <p className="topIdea_description">{this.props.ideasByLikes[0].description}</p>
-            <p className="topIdea_owner">Submitted by {this.props.ideasByLikes[0].first_name} {this.props.ideasByLikes[0].last_name}</p>
-          </div>
-        </div>
+        </Link>
       )
     }
 
