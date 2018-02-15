@@ -30,3 +30,7 @@ div.sep_admin_menu {
   margin: 0 auto;
   width: 600px;
 }
+
+.question_item h3::first-letter { text-transform: capitalize;}
+
+.idea_description div::first-letter { text-transform: capitalize;}
