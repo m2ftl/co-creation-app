@@ -131,24 +131,17 @@ html, body, #root, .App {
 }
 
 .user_pic {
-  height: 64px;
-  width: 64px;
-  border-radius:54px;
+  height: 60px;
+  border-radius:30px;
   align-self: flex-end;
-  padding-right: 16px;
-  padding-top: 8px;
+  margin: 0 10px 0 0;
 }
 
 .user_pic2 {
-  margin-top: -20px;
-  margin-left: 10px;
-  margin-bottom: 10px;
   height: 40px;
   width: 40px;
   border-radius:30px;
   align-self: flex-end;
-  padding-right: 10px;
-  padding-top: 5px;
 }
 
 .user_pic_idea {
@@ -514,7 +507,7 @@ img.pointer {cursor:pointer;}
 .question_item {
   overflow: hidden;
   text-align: left;
-  padding: 0 20px 8px 20px;
+  padding: 10px 20px 8px 20px;
   height: 90px;
   margin: 10px auto;
   border: 1px solid #CECECE;
@@ -954,7 +947,6 @@ img.pointer {cursor:pointer;}
 
 .react-tabs__tab-panel {
   display: none;
-  margin: 0 380px;
 }
 
 .react-tabs__tab-panel--selected {
