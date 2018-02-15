@@ -3,7 +3,7 @@ import { configure, mount } from "enzyme";
 import Adapter from 'enzyme-adapter-react-16';
 import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
-import ViewIdeas from "./modules/ideas/Viewideas";
+import Viewusers from "./modules/profile/Viewusers";
 import { BrowserRouter} from "react-router-dom";
 
 
@@ -11,77 +11,38 @@ beforeAll(() => {
   configure({ adapter: new Adapter()});
 })
 
+const userslist = [
+  {id: "id1", first_name: "Fname1", last_name: "Lname1", gender: "male", email: "email1", phone: "phone1", player_index: "index1", id_google: "google1", id_index_category: "cat1", birthdate: "birthdate1", is_admin: "true", level: "level1"},
+  {id: "id2", first_name: "Fname2", last_name: "Lname2", gender: "female", email: "email2", phone: "phone2", player_index: "index2", id_google: "google2", id_index_category: "cat2", birthdate: "birthdate2", is_admin: "false", level: "level2"}
+];
 
-test("all questions are displayed in a div", () => {
-
-  const questions = [
-    {date: "date1", description: "descr1", first_name: "Fname1", id: "id1", id_owner: "owner1", last_name: "Lname1", status: "open", title: "Quest1" },
-    {date: "date2", description: "descr2", first_name: "Fname2", id: "id2", id_owner: "owner2", last_name: "Lname2", status: "open", title: "Quest2" }
-  ];
-
-  const reducers = combineReducers({
-    questionsReducer: () => ({questions: questions}),
-    profileReducer: () => ({id_user: "toto"})
-  });
-
-  const fakeStore = createStore(reducers);
-
-  fetch = jest.fn()
-    .mockImplementation(() =>{
-      return Promise.resolve({
-        json: () => Promise.resolve(questions)
-      })}
-    )
-
-  const wrapper = mount(
-    <Provider store={fakeStore}>
-      <BrowserRouter>
-        <ViewQuestions />
-      </BrowserRouter>
-    </Provider>
-  )
-
-  expect.assertions(4);
-
-  expect(wrapper.find('div.question_item').length).toBe(2);
-  expect(wrapper.find('div.idea_description').length).toBe(2);
-
-  expect(wrapper.find('div.question_item h3').at(0).text()).toEqual('Quest1');
-  expect(wrapper.find('div.question_item h3').at(1).text()).toEqual('Quest2');
+const reducers = combineReducers({
+  profileReducer: () => ({userslist: userslist}),
+  googleUserReducer: () => ({user: {isAdmin: "true"}})
 });
 
+const fakeStore = createStore(reducers);
+
+fetch = jest.fn()
+  .mockImplementation(() =>{
+    return Promise.resolve({
+      json: () => Promise.resolve(userslist)
+    })}
+  )
 
 
-
-
-test("if there is no questions, a 'sorry' div is displayed", () => {
-
-  const questions = [];
-
-  const reducers = combineReducers({
-    questionsReducer: () => ({questions: questions}),
-    profileReducer: () => ({id_user: "toto"})
-  });
-
-  const fakeStore = createStore(reducers);
-
-  fetch = jest.fn()
-    .mockImplementation(() =>{
-      return Promise.resolve({
-        json: () => Promise.resolve(questions)
-      })}
-    )
+test("all users are displayed in a div", () => {
 
   const wrapper = mount(
     <Provider store={fakeStore}>
       <BrowserRouter>
-        <ViewQuestions />
+        <Viewusers />
       </BrowserRouter>
     </Provider>
   )
 
   expect.assertions(2);
 
-  expect(wrapper.find('div').length).toBe(2);
-  expect(wrapper.find('div').at(1).text()).toEqual('Sorry, there is no question for the moment');
+  expect(wrapper.find('h4').length).toBe(2);
+  expect(wrapper.find('h4').at(0).text()).toEqual('Fname1 Lname1');
 });

@@ -69,7 +69,7 @@ class Viewusers extends Component {
         <button className="btn dashboard_button mb-2" type="submit">Export User List</button>
         </form>
         <div className="TableStats">
-          <table class="table">
+          <table className="table">
             <thead>
               <tr>
                 <th scope="col">#</th>
@@ -84,9 +84,9 @@ class Viewusers extends Component {
                 <td>Beginners</td>
                 <td>{BeginnerUsers.length}/{this.props.userslist.length} users </td>
                 <td>
-                <div class="progress">
+                <div className="progress">
                   <div
-                  class="progress-bar bg-warning"
+                  className="progress-bar bg-warning"
                   role="progressbar"
                   style={{width: `${percentageBeginner}%`}}
                   aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
@@ -98,9 +98,9 @@ class Viewusers extends Component {
                 <td>Advanced</td>
                 <td>{AdvancedUsers.length}/{this.props.userslist.length} users</td>
                 <td>
-                <div class="progress">
+                <div className="progress">
                   <div
-                  class="progress-bar bg-warning"
+                  className="progress-bar bg-warning"
                   role="progressbar"
                   style={{width: `${percentageAdvanced}%`}}
                   aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
@@ -112,9 +112,9 @@ class Viewusers extends Component {
                 <td>Expert</td>
                 <td>{ExpertUsers.length}/{this.props.userslist.length} users</td>
                 <td>
-                <div class="progress">
+                <div className="progress">
                   <div
-                  class="progress-bar bg-warning"
+                  className="progress-bar bg-warning"
                   role="progressbar"
                   style={{width: `${percentageExpert}%`}}
                   aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
@@ -126,9 +126,9 @@ class Viewusers extends Component {
                 <td>Men</td>
                 <td>{MaleUsers.length}/{this.props.userslist.length} users</td>
                 <td>
-                <div class="progress">
+                <div className="progress">
                   <div
-                  class="progress-bar bg-warning"
+                  className="progress-bar bg-warning"
                   role="progressbar"
                   style={{width: `${percentageMale}%`}}
                   aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
@@ -139,9 +139,9 @@ class Viewusers extends Component {
                 <td>Women</td>
                 <td>{FemaleUsers.length}/{this.props.userslist.length} users</td>
                 <td>
-                <div class="progress">
+                <div className="progress">
                   <div
-                  class="progress-bar bg-warning"
+                  className="progress-bar bg-warning"
                   role="progressbar"
                   style={{width: `${percentageFemale}%`}}
                   aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
@@ -151,7 +151,7 @@ class Viewusers extends Component {
             </tbody>
           </table>
         </div>
-      
+
 
         {listUsers}
       </div>
