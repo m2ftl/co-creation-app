@@ -55,7 +55,7 @@ class ViewTestsadmin extends Component {
             </div>
             <h3>{test.title}</h3>
             <div className="viewtest_item_date">submitted: &nbsp;{formated_date}</div>
-            <Link to={"/viewtesxtadmin/"+test.id}>
+            <Link to={"/viewtestadmin/"+test.id}>
               <div className="viewtest_item_button">Test Report</div>
             </Link>
             <form onSubmit={(e)=> {
