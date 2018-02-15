@@ -478,6 +478,7 @@ img.pointer {cursor:pointer;}
   margin: 10px auto;
   border: 1px solid #CECECE;
   transition: height 0.5s;
+  border-radius: 5px;
 }
 
 .link {
@@ -795,6 +796,7 @@ img.pointer {cursor:pointer;}
   margin: 10px auto;
   border: 1px solid #CECECE;
   transition: height 1s;
+  border-radius:5px;
 }
 
 .user_item:hover {
