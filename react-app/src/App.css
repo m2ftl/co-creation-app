@@ -294,14 +294,21 @@ html, body, #root, .App {
   margin-top: 20px;
 }
 
+.center_top_idea {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .top_idea_global {
   display: flex;
   justify-content: center;
   margin-top: 20px;
   margin-bottom: 30px;
   padding: 10px;
-  width: auto;
+  max-width: 500px;
   border: 3px solid #FFDF00;
+  border-radius: 20px;
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.6);
   color: #363636;
 }
@@ -328,7 +335,7 @@ html, body, #root, .App {
   display: grid;
   grid-template-columns: 55% 42% 3%;
   width: 700px;
-  height: 300px;
+  height: auto;
   margin-top: 20px;
   background-image: url(./images/bckgrd-color_test_answer.jpg);
   background-repeat: no-repeat;
@@ -420,7 +427,7 @@ img.pointer {cursor:pointer;}
 
 
 .idea_background_picture {
-  height: 300px;
+  height: auto;
   background-image: url(./images/bckgrd_tests_004.jpg);
   background-size: 100%;
   background-position: center;
