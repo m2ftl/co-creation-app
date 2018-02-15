@@ -49,12 +49,15 @@ class Testadmin extends Component {
         <div className="test_item">
 
           <div className="description_test_for_answer">
-            <div className="vt_prdct_pict"><img src={""+found_test.picture+""} alt="product_picture" /></div>
             <div className="vt_test_title">{found_test.title}</div>
             <div className="vt_test_title">{found_test.status}</div>
             <div className="vt_test_descr">{found_test.description}</div>
             {total_rating}
             <div className="vt_test_question"> {found_test.question}</div>
+          </div>
+
+          <div className="test_report_pic">
+            <img src={""+found_test.picture+""} alt="product_picture"/>
           </div>
         </div>
       </div>

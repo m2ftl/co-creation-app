@@ -490,6 +490,7 @@ img.pointer {cursor:pointer;}
   color: #363636;
   float:left;
   margin-top: 30px;
+  padding-left: 15px;
 }
 
 .answer {
@@ -758,6 +759,18 @@ img.pointer {cursor:pointer;}
   margin-left: 10px;
   padding-left: 25px;
   padding-right: 25px;
+}
+
+.test_report_pic {
+  background-color: white;
+  height: 350px;
+  border: 1px solid #363636;
+  margin-left: 10px;
+}
+
+.test_report_pic img {
+  width: 90%;
+  margin: 15px;
 }
 
 .label_test_answer {
