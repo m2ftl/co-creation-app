@@ -28,7 +28,7 @@ class Testadmin extends Component {
         <div key={index} className="comment_description mb-5">
           <div className="answer">{answer.answer}</div>
           <ReactStars count={5} value={answer.rating} size={15} edit={false} color2={"#ffdf00"} />
-          <span>{formated_date} {answer.first_name} {answer.last_name}</span>
+          <span>{formated_date} {answer.first_name} {answer.last_name} <img src={answer.avatar} className="user_pic2" alt="logo"/></span>
         </div>
       )
     });

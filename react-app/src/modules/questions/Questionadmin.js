@@ -39,7 +39,7 @@ class Questionadmin extends Component {
       return (
         <div className="comment_description">
           <div className="answer">{answer.answer}</div>
-          <span>{formated_date} {answer.first_name} {answer.last_name}</span>
+          <span>{formated_date} {answer.first_name} {answer.last_name} <img src={answer.avatar} className="user_pic2" alt="logo"/></span>
         </div>
       )
     });

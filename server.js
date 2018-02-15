@@ -403,7 +403,7 @@ app.get('/:id/answers', function(req, res) {
     ssl: true,
   });
   client.connect();
-  client.query("SELECT answer, answers.status, users.first_name, users.last_name, answers.date FROM answers INNER JOIN users ON answers.id_owner=users.id WHERE answers.id_question=$1;", [req.params.id])
+  client.query("SELECT answer, answers.status, users.first_name, users.last_name, users.avatar, answers.date FROM answers INNER JOIN users ON answers.id_owner=users.id WHERE answers.id_question=$1;", [req.params.id])
   .then(res1 => {
     client.end();
     res.send(res1.rows);
@@ -630,7 +630,7 @@ app.get('/:id/answerstests', function(req, res) {
     ssl: true,
   });
   client.connect();
-  client.query("SELECT answer, rating, status, users.first_name, users.last_name, test_answers.date FROM test_answers INNER JOIN users ON test_answers.id_owner=users.id WHERE test_answers.id_test=$1 ORDER BY test_answers.date DESC;", [req.params.id])
+  client.query("SELECT answer, rating, status, users.first_name, users.last_name, users.avatar, test_answers.date FROM test_answers INNER JOIN users ON test_answers.id_owner=users.id WHERE test_answers.id_test=$1 ORDER BY test_answers.date DESC;", [req.params.id])
   .then(res1 => {
     client.end();
     res.send(res1.rows);
