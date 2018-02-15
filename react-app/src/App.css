@@ -204,15 +204,13 @@ html, body, #root, .App {
   color: #ffdf00;
 }
 
-.dashboard_item a {
-  margin-top: 20px;
-  color: #ffdf00;
+.dashboard_button:hover {
+  color: #fff;
 }
 
 .dashboard_item img {
   margin-bottom:10px;
 }
-
 
 /* View Ideas */
 
