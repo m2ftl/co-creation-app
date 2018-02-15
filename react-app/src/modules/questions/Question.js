@@ -43,20 +43,24 @@ class Question extends Component {
       return element.id===this.props.match.params.id;
     }) || [];
 
+    let found_question_date= new Date(found_question.date);
+    let question_date = found_question_date.getDate()+'/'+(found_question_date.getMonth()+1)+'/'+found_question_date.getFullYear();
+
     return (
-        <div>
         <div className="idea_page_global">
-          <div className="div_global_idea">
-            <h1>Question details</h1>
-            <div className="idea_item">
-              <h3 className="mt-5">{found_question.title}</h3>
-                <div className="idea_description">
-                <div>{found_question.description}</div>
-                <img src={found_question.avatar} className="user_pic_idea" alt="logo"/>
-                <div className="mt-5">submitted by {found_question.first_name} {found_question.last_name}</div>
-                </div>
-              </div>
+        <h1>Question details</h1>
+        <div className="div_global_idea">
+          <div className="idea_item">
+            <div className="idea_item_details">
+              <div className="idea_item_title">{found_question.title}</div>
+              <div className="idea_item_description">{found_question.description}</div>
+              <img src={found_question.avatar} className="user_pic_idea" alt="logo"/>
+              <div className="idea_description_owner"> {question_date} - {found_question.first_name} {found_question.last_name}</div>
             </div>
+            <div className="question_background_picture">
+            </div>
+          </div>
+
         </div>
         <form onSubmit={this.onSubmit}>
           <div> Write your answer</div>
