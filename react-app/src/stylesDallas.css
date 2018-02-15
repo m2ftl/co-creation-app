@@ -2,9 +2,31 @@ html, body, #root, .App {
       font-family: 'Open Sans', sans-serif;
 }
 
-.burgerLink:hover {
+div.burgerLink:hover {
   color:#FFDF00;
   text-decoration: none;
 }
 
 .user_pic {border-radius:30px}
+
+div.sep_admin_menu {
+    padding: 4px;
+    background-color: #FFDF00;
+    font-weight: bold;
+    color: black;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    font-style: normal;
+}
+
+.stats_users {
+  margin: 0 auto;
+  width: 600px;
+  background: #ccc;
+}
+
+.TableStats {
+  margin: 0 auto;
+  width: 600px;
+}
