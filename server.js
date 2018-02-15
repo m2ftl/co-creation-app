@@ -314,7 +314,7 @@ app.get('/viewquestionsalladmin', function(req, res) {
     ssl: true,
   });
   client.connect();
-  client.query("SELECT questions.id,title, description, users.first_name, users.last_name,status,date FROM questions INNER JOIN users ON questions.id_owner=users.id ORDER BY status DESC,date DESC")
+  client.query("SELECT questions.id,title, description, users.first_name, users.last_name,users.avatar,status,date FROM questions INNER JOIN users ON questions.id_owner=users.id ORDER BY status DESC,date DESC")
   .then(res1 => {
     client.end();
     res.send(res1.rows);

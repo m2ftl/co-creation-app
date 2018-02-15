@@ -770,6 +770,7 @@ img.pointer {cursor:pointer;}
 .answer_test textarea {
   width: 100%;
   height: 150px;
+  resize:none;
 }
 
 .answer_test button {
