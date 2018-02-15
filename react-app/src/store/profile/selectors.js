@@ -14,7 +14,8 @@ export const getUser= (state) => {
       id_google:state.profileReducer.id_google,
       completedProfile:state.profileReducer.completedProfile,
       loggedIn:state.profileReducer.loggedIn,
-      isAdmin:state.googleUserReducer.isAdmin
+      isAdmin:state.googleUserReducer.isAdmin,
+      avatar: state.googleUserReducer.avatar,
     },
     userslist:state.profileReducer.userslist,
   }
