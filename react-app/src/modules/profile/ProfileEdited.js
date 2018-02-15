@@ -8,7 +8,7 @@ class ProfileEdited extends Component{
     return (
         <div className="feedbacks">
           <div className="feedback_baseline">Your profile has been updated</div>
-          <Link to="/dashboard">
+          <Link to="/dashboard" style={{ textDecoration: 'none' }}>
           <button className="btn dashboard_button">Dashboard</button>
           </Link>
         </div>

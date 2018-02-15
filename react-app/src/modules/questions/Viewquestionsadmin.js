@@ -21,7 +21,7 @@ class ViewQuestionsadmin extends Component {
 
       if(this.props.questions.length !== 0 && question.status === "open"){
         return (
-          <Link key={index} to={'/viewquestionadmin/'+question.id}>
+          <Link key={index} to={'/viewquestionadmin/'+question.id} style={{ textDecoration: 'none' }}>
           <div className="question_item">
             <h3> {question.title}</h3>
             <div>{formated_date}</div>
@@ -41,7 +41,7 @@ class ViewQuestionsadmin extends Component {
 
       if(this.props.questions.length !== 0 && question.status === "closed"){
         return (
-          <Link key={index} to={'/viewquestionadmin/'+question.id}>
+          <Link key={index} to={'/viewquestionadmin/'+question.id} style={{ textDecoration: 'none' }}>
           <div className="question_item">
             <h3> {question.title}</h3>
             <div>{formated_date}</div>

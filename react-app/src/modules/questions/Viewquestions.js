@@ -18,7 +18,7 @@ class ViewQuestions extends Component {
       let formated_date = format_date.getDate()+'/'+(format_date.getMonth()+1)+'/'+format_date.getFullYear();
 
         return (
-          <Link className="link" key={index} to={'/viewquestion/'+question.id}>
+          <Link className="link" key={index} to={'/viewquestion/'+question.id} style={{ textDecoration: 'none' }}>
           <div className="question_item">
             <h3>{question.title}</h3>
             <div>{formated_date}</div>

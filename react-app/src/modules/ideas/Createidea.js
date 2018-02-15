@@ -36,7 +36,7 @@ class Createidea extends Component{
       {this.state.ideafirsttime === false && this.state.ideasub &&
         <div className="feedbacks">
         <div className="feedback_baseline"> Your idea has been successfully created!!!! </div>
-        <Link to="/viewideas">
+        <Link to="/viewideas" style={{ textDecoration: 'none' }}>
         <button className="btn dashboard_button">View Ideas</button>
         </Link>
         </div>
@@ -44,7 +44,7 @@ class Createidea extends Component{
       {this.state.ideafirsttime === false && this.state.ideasub === false &&
         <div className="feedbacks">
         <div className="feedback_baseline"> Sorry we receive an error please try again later... </div>
-        <Link to="/dashboard">
+        <Link to="/dashboard" style={{ textDecoration: 'none' }}>
         <button className="btn dashboard_button">Dashboard</button>
         </Link>
         </div>

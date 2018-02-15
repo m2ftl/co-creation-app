@@ -98,7 +98,7 @@ class Questionadmin extends Component {
       }
         </form></span>
         {found_question.status === "open"
-        ? <Link to={'/editquestionadmin/'+this.props.match.params.id}>
+        ? <Link to={'/editquestionadmin/'+this.props.match.params.id} style={{ textDecoration: 'none' }}>
         <button className="btn dashboard_button mt-2 mb-2">Edit question</button>
         </Link>
         : null
@@ -113,7 +113,7 @@ class Questionadmin extends Component {
           : null
         }
         {found_question.status === "open"
-        ? <Link to={'/editquestiontopicsadmin/'+this.props.match.params.id}>
+        ? <Link to={'/editquestiontopicsadmin/'+this.props.match.params.id} style={{ textDecoration: 'none' }}>
           <button className="btn dashboard_button mt-2 mb-2">Edit question topics</button>
           </Link>
         : null

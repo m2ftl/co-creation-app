@@ -34,7 +34,7 @@ class ViewIdeas extends Component {
 
     if(this.props.ideasByLikes[0] !== undefined){
       top_idea = (
-        <Link className="link" to={'/viewidea/'+this.props.ideasByLikes[0].id}>
+        <Link className="link" to={'/viewidea/'+this.props.ideasByLikes[0].id} style={{ textDecoration: 'none' }}>
           <div className="top_idea_global">
             <div className="top_idea_pics">
               <img src={lightbulb} alt="lightbulb"/>
@@ -54,7 +54,7 @@ class ViewIdeas extends Component {
     let listIdeas = this.props.ideas.map((idea, index) => {
       let formated_date = this.formatDate(idea.date);
         return (
-          <Link className="link" key={index} to={'/viewidea/'+idea.id}>
+          <Link className="link" key={index} to={'/viewidea/'+idea.id} style={{ textDecoration: 'none' }}>
             <div className="question_item">
               <h3>{idea.title}</h3>
               <span>{formated_date}</span>
@@ -70,7 +70,7 @@ class ViewIdeas extends Component {
     let listIdeasByLikes = this.props.ideasByLikes.map((idea, index) => {
       let formated_date = this.formatDate(idea.date);
         return (
-          <Link className="link" key={index} to={'/viewidea/'+idea.id}>
+          <Link className="link" key={index} to={'/viewidea/'+idea.id} style={{ textDecoration: 'none' }}>
             <div className="question_item">
               <h3>{idea.title}
                 <span className="counterbtn">{likebtnGrey}</span>
@@ -89,7 +89,7 @@ class ViewIdeas extends Component {
     let listUserIdeas = this.props.userIdeas.map((idea, index) => {
       let formated_date = this.formatDate(idea.date);
         return (
-          <Link className="link" key={index} to={'/viewidea/'+idea.id }>
+          <Link className="link" key={index} to={'/viewidea/'+idea.id } style={{ textDecoration: 'none' }}>
             <div className="question_item">
               <h3>{idea.title}
                 <span className="counterbtn">{likebtnGrey}</span>
@@ -107,14 +107,14 @@ class ViewIdeas extends Component {
 
     let noIdeaYet = <div>
                       <p>Sorry, there is no idea yet </p>
-                      <Link to={'/createidea/'}>
+                      <Link to={'/createidea/'} style={{ textDecoration: 'none' }}>
                         <p>Create an idea !</p>
                       </Link>
                     </div>
 
     let noPersonalIdeaYet = <div>
                               <p>Sorry, you did not create any idea yet </p>
-                              <Link to={'/createidea/'}>
+                              <Link to={'/createidea/'} style={{ textDecoration: 'none' }}>
                                 <p>Create my first idea !</p>
                               </Link>
                             </div>

@@ -129,7 +129,7 @@ class Idea extends Component {
         </div>
         {this.props.useruuid === found_idea.id_owner && this.props.comments.length===0 &&
           <div>
-          <Link to={"/editidea/"+this.props.match.params.id}>
+          <Link to={"/editidea/"+this.props.match.params.id} style={{ textDecoration: 'none' }}>
           <button className="btn dashboard_button" type="submit">Edit idea</button>
           </Link>
           </div>

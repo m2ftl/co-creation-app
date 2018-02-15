@@ -36,7 +36,7 @@ class Createquestion extends Component{
       {this.state.questionfirsttime === false && this.state.questionsub &&
         <div className="feedbacks">
         <div className="feedback_baseline"> Your question has been successfully created!!!! </div>
-        <Link to="/viewquestionsadmin">
+        <Link to="/viewquestionsadmin" style={{ textDecoration: 'none' }}>
         <button className="btn dashboard_button">View Questions</button>
         </Link>
         </div>
@@ -44,7 +44,7 @@ class Createquestion extends Component{
       {this.state.questionfirsttime === false && this.state.questionsub === false &&
         <div className="feedbacks">
         <div className="feedback_baseline"> Sorry we receive an error please try again later... </div>
-        <Link to="/dashboard">
+        <Link to="/dashboard" style={{ textDecoration: 'none' }}>
         <button className="btn dashboard_button">Dashboard</button>
         </Link>
         </div>
