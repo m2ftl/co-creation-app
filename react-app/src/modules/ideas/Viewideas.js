@@ -123,7 +123,7 @@ class ViewIdeas extends Component {
       <div className="list_ideas_block">
         <h1>Ideas submitted</h1>
         <p className="subtitle_listIdeas">Please feel free to like and/or comment any idea</p>
-        {top_idea}
+        <div className="center_top_idea">{top_idea}</div>
           <Tabs>
             <TabList>
               <Tab>Most Liked ideas</Tab>
