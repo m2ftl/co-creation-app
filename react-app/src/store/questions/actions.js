@@ -6,7 +6,6 @@ export default function questionsActions(dispatch){
         })
         .then(response => response.json())
         .then(data => {
-          console.log(data);
           dispatch({ type: "RETRIEVE_QUESTIONS", data: data })
         });
     },
