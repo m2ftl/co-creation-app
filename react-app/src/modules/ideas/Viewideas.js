@@ -56,7 +56,10 @@ class ViewIdeas extends Component {
         return (
           <Link className="link" key={index} to={'/viewidea/'+idea.id} style={{ textDecoration: 'none' }}>
             <div className="question_item">
-              <h3>{idea.title}</h3>
+              <h3>{idea.title}
+              <span className="counterbtn">{likebtnGrey}</span>
+              <span className="counter"> {idea.counter}</span>
+              </h3>
               <span>{formated_date}</span>
               <div className="idea_description">
                 <div>{idea.description}</div>

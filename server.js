@@ -215,7 +215,7 @@ app.get("/viewideasall", function(req, res) {
   client.connect();
   client
     .query(
-      "SELECT ideas.id,title, description, users.first_name, users.last_name, users.avatar, ideas.id_owner, ideas.date FROM ideas INNER JOIN users ON ideas.id_owner=users.id ORDER BY ideas.date DESC"
+      "SELECT ideas.id,title, description, users.first_name, users.last_name, users.avatar, ideas.id_owner, ideas.date, count(ideas.id) AS counter FROM ideas INNER JOIN like_ideas ON ideas.id = like_ideas.id_idea INNER JOIN users ON ideas.id_owner=users.id GROUP BY (ideas.id,title, description, users.first_name, users.last_name, users.avatar, ideas.id_owner, ideas.date) ORDER BY ideas.date DESC"
     )
     .then(res1 => {
       client.end();
