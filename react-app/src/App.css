@@ -444,6 +444,10 @@ img.pointer {cursor:pointer;}
   margin-top: 15px;
 }
 
+.answer {
+  text-align: left;
+}
+
 .question_item {
   overflow: hidden;
   text-align: left;

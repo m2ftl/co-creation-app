@@ -33,10 +33,13 @@ class Questionadmin extends Component {
   render() {
 
     let listComments = this.props.answers.map((answer, index) => {
+      let format_date = new Date(answer.date);
+      let formated_date = format_date.getDate()+'/'+(format_date.getMonth()+1)+'/'+format_date.getFullYear();
+
       return (
         <div className="comment_description">
-          <div>{answer.answer}</div>
-          <span>submitted by {answer.first_name} {answer.last_name}</span>
+          <div className="answer">{answer.answer}</div>
+          <span>{formated_date} {answer.first_name} {answer.last_name}</span>
         </div>
       )
     });
@@ -96,7 +99,7 @@ class Questionadmin extends Component {
         </form></span>
         {found_question.status === "open"
         ? <Link to={'/editquestionadmin/'+this.props.match.params.id}>
-        <button className="btn dashboard_button mt-2">Edit question</button>
+        <button className="btn dashboard_button mt-2 mb-2">Edit question</button>
         </Link>
         : null
       }
@@ -111,7 +114,7 @@ class Questionadmin extends Component {
         }
         {found_question.status === "open"
         ? <Link to={'/editquestiontopicsadmin/'+this.props.match.params.id}>
-          <button className="btn dashboard_button mt-2">Edit question topics</button>
+          <button className="btn dashboard_button mt-2 mb-2">Edit question topics</button>
           </Link>
         : null
       }

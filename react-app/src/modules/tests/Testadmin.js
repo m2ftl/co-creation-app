@@ -26,10 +26,9 @@ class Testadmin extends Component {
       let formated_date = format_date.getDate()+'/'+(format_date.getMonth()+1)+'/'+format_date.getFullYear();
       return (
         <div key={index} className="comment_description mb-5">
-          <div>{answer.answer}</div>
+          <div className="answer">{answer.answer}</div>
           <ReactStars count={5} value={answer.rating} size={15} edit={false} color2={"#ffdf00"} />
-          <div>{formated_date}</div>
-          <span>submitted by {answer.first_name} {answer.last_name}</span>
+          <span>{formated_date} {answer.first_name} {answer.last_name}</span>
         </div>
       )
     });
@@ -91,7 +90,7 @@ class Testadmin extends Component {
         </form></span>
         <Link to={'/edittest/'+this.props.match.params.id}>
         {found_test.status === "open"
-         ? <button className="btn dashboard_button mt-2">Edit test</button>
+         ? <button className="btn dashboard_button mt-2 mb-2">Edit test</button>
          : null}
         </Link>
       </div>
