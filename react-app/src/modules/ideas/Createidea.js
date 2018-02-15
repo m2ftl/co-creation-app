@@ -36,8 +36,8 @@ class Createidea extends Component{
       {this.state.ideafirsttime === false && this.state.ideasub &&
         <div className="feedbacks">
         <div className="feedback_baseline"> Your idea has been successfully created!!!! </div>
-        <Link to="/dashboard">
-        <button className="btn dashboard_button">Dashboard</button>
+        <Link to="/viewideas">
+        <button className="btn dashboard_button">View Ideas</button>
         </Link>
         </div>
       }
