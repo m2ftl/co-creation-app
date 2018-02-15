@@ -64,7 +64,7 @@ class ViewIdeas extends Component {
               <span>{formated_date}</span>
               <div className="idea_description">
                 <div>{idea.description}</div>
-                <span>submitted by {idea.first_name} {idea.last_name}</span>
+                <span>submitted by {idea.first_name} {idea.last_name} <img src={idea.avatar} className="user_pic2" alt="logo"/></span>
               </div>
             </div>
           </Link>
@@ -83,7 +83,7 @@ class ViewIdeas extends Component {
               <span>{formated_date}</span>
               <div className="idea_description">
                 <div>{idea.description}</div>
-                <span>submitted by {idea.first_name} {idea.last_name}</span>
+                <span>submitted by {idea.first_name} {idea.last_name} <img src={idea.avatar} className="user_pic2" alt="logo"/></span>
               </div>
             </div>
           </Link>
@@ -102,7 +102,7 @@ class ViewIdeas extends Component {
               <span>{formated_date}</span>
               <div className="idea_description">
                 <div>{idea.description}</div>
-                <span>submitted by {idea.first_name} {idea.last_name}</span>
+                <span>submitted by {idea.first_name} {idea.last_name} <img src={idea.avatar} className="user_pic2" alt="logo"/></span>
               </div>
             </div>
           </Link>

@@ -21,10 +21,10 @@ class ViewQuestions extends Component {
           <Link className="link" key={index} to={'/viewquestion/'+question.id} style={{ textDecoration: 'none' }}>
           <div className="question_item">
             <h3>{question.title}</h3>
-            <div>{formated_date}</div>
+            <span>{formated_date}</span>
             <div id={"quest"+index} className="idea_description">
               <div>{question.description}</div>
-              <span>submitted by {question.first_name} {question.last_name}</span>
+              <span>submitted by {question.first_name} {question.last_name} <img src={question.avatar} className="user_pic2" alt="logo"/></span>
             </div>
           </div>
           </Link>

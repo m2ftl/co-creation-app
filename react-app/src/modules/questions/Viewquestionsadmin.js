@@ -27,7 +27,7 @@ class ViewQuestionsadmin extends Component {
             <div>{formated_date}</div>
             <div className="idea_description">
               <div>{question.description}</div>
-              <span>submitted by {question.first_name} {question.last_name}</span>
+              <span>submitted by {question.first_name} {question.last_name} <img src={question.avatar} className="user_pic2" alt="logo"/></span>
             </div>
           </div>
           </Link>
@@ -47,7 +47,7 @@ class ViewQuestionsadmin extends Component {
             <div>{formated_date}</div>
             <div className="idea_description">
               <div>{question.description}</div>
-              <span>submitted by {question.first_name} {question.last_name}</span>
+              <span>submitted by {question.first_name} {question.last_name} <img src={question.avatar} className="user_pic2" alt="logo"/></span>
             </div>
           </div>
           </Link>
