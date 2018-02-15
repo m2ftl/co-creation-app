@@ -260,8 +260,8 @@ html, body, #root, .App {
   margin-top: 30px;
   margin-left: 25px;
   margin-right: 15px;
-  padding: 3px;
-  background-color: #CECECE;
+  padding: 10px;
+  background: linear-gradient(to right, #efefef, white);
 }
 
 .idea_description span {
@@ -269,7 +269,7 @@ html, body, #root, .App {
   color: #CECECE;
   float:right;
   padding-right: 20px;
-  margin-top: 5px;
+  margin-top: 20px;
 }
 
 .top_idea_global {
@@ -789,8 +789,8 @@ img.pointer {cursor:pointer;}
   margin-top: 20px;
   margin-left: 15px;
   margin-right: 15px;
-  padding: 7px;
-  background: linear-gradient(to right, #CECECE, white);
+  padding: 10px;
+  background: linear-gradient(to right, #efefef, white);
 }
 
 .user_description span {
@@ -798,7 +798,7 @@ img.pointer {cursor:pointer;}
   color: #CECECE;
   float:right;
   padding-right: 20px;
-  margin-top: 5px;
+  margin-top: 20px;
 }
 
 .user_description label {
