@@ -56,7 +56,7 @@ app.post("/api/profile/create", function(req, res) {
   });
   client.connect();
   client.query(
-      "INSERT INTO users (id,first_name,last_name,email,birthdate,gender,phone,player_index,id_google, level, is_admin, id_index_category) VALUES (uuid_generate_v4(),$1,$2,$3,$4,$5,$6,$7,$8,$9,false,$10) RETURNING id",
+      "INSERT INTO users (id,first_name,last_name,email,birthdate,gender,phone,player_index,id_google, level, is_admin, id_index_category, avatar) VALUES (uuid_generate_v4(),$1,$2,$3,$4,$5,$6,$7,$8,$9,false,$10, $11) RETURNING id",
       [
         req.body.firstName,
         req.body.lastName,
@@ -67,7 +67,8 @@ app.post("/api/profile/create", function(req, res) {
         req.body.index,
         req.body.id_google,
         req.body.level,
-        indexCategory
+        indexCategory,
+        req.body.avatar,
       ]
     )
     .then(resSQL => {
@@ -255,7 +256,7 @@ app.get("/:ideaid/comments", function(req, res) {
   client.connect();
   client
     .query(
-      "SELECT comment, comments.status, users.first_name, users.last_name, comments.date FROM comments INNER JOIN users ON comments.id_owner=users.id WHERE comments.id_idea=$1 ORDER BY comments.date DESC;",
+      "SELECT comment, comments.status, users.first_name, users.last_name, users.avatar, comments.date FROM comments INNER JOIN users ON comments.id_owner=users.id WHERE comments.id_idea=$1 ORDER BY comments.date DESC;",
       [req.params.ideaid]
     )
     .then(res1 => {

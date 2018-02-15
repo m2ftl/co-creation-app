@@ -83,8 +83,8 @@ class Idea extends Component {
 
       return (
         <div key={index} className="comment_description">
-          <div className="answer">&laquo; {comment.comment} &raquo;</div>
-          <span>&nbsp; {formated_date} {comment.first_name} {comment.last_name}</span>
+        <div className="answer">&laquo; {comment.comment} &raquo;</div>
+        <span>&nbsp; {formated_date} {comment.first_name} {comment.last_name}     <img src={comment.avatar} className="user_pic_comment" alt="logo"/></span>
         </div>
       )
     });

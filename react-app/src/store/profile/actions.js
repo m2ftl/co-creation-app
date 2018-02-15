@@ -17,7 +17,8 @@ export function profileActions(dispatch) {
           level: user.level,
           index: user.index,
           weather: user.weather,
-          id_google: user.id_google
+          id_google: user.id_google,
+          avatar: user.avatar,
         })
       })
         .then(res => res.json())
