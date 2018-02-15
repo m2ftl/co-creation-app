@@ -18,8 +18,6 @@ app.use(
   express.static(path.join(__dirname, "react-app/build/static"))
 );
 
-app.use(express.static(path.join(__dirname, "react-app/build/favicon.ico")));
-
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*"); // Put an origin here, * means everything which is bad.
   res.header(
@@ -29,6 +27,10 @@ app.use(function(req, res, next) {
   next();
 });
 
+
+app.get("/favicon.ico", function (req, res) {
+  res.sendFile(path.join(__dirname, "react-app/build/favicon.ico"));
+});
 // Listen to POST requests.
 
 // new profile
