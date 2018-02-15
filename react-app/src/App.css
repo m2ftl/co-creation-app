@@ -599,6 +599,7 @@ img.pointer {cursor:pointer;}
 
 /* View Tests */
 
+
 .div_glob_tests {
   display: flex;
   flex-direction: row;
@@ -608,12 +609,14 @@ img.pointer {cursor:pointer;}
   padding-right: 200px;
 }
 
+
 .viewtest_item_bckgrd {
   background-image: url(./images/bckgrd_tests_015.jpg);
   background-repeat: no-repeat;
   background-size: 100% 90%;
   width: 270px;
   margin: 30px;
+  float: left;
 }
 
 .viewtest_item_content {
@@ -932,6 +935,7 @@ img.pointer {cursor:pointer;}
 
 .react-tabs__tab-panel {
   display: none;
+  margin: 0 380px;
 }
 
 .react-tabs__tab-panel--selected {

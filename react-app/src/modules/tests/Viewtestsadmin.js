@@ -75,7 +75,7 @@ class ViewTestsadmin extends Component {
     return (
       <div className="ideas_block">
         <h1>Tests Reports</h1>
-        <div className="div_glob_tests">
+        <div className="div_glob_tests_admin">
           <Tabs>
             <TabList>
               <Tab>Opened Tests</Tab>
