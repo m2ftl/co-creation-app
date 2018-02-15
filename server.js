@@ -780,15 +780,23 @@ app.post("/update_profile", function(req, res) {
   const values = Object.keys(req.body.weather).filter(
     key => req.body.weather[key] === true
   );
-
   const client = new PG.Client({
     connectionString: process.env.DATABASE_URL,
     ssl: true
   });
 
+  function calculateCategory(index){
+  if (index <=4.4){ return 'category1'}
+  else if (index <= 11.4){ return 'category2'}
+  else if (index <=18.4){ return 'category3'}
+  else if (index <=26.4){ return 'category4'}
+  else if (index <=36){ return 'category5'}
+  else {return'category6'}
+}
+  const indexCategory=calculateCategory(req.body.index)
   client.connect();
   client.query(
-    "UPDATE users SET first_name=$1, last_name=$2, email=$3, birthdate=$4, gender=$5, phone=$6, player_index=$7, level=$8 WHERE id=$9",
+    "UPDATE users SET first_name=$1, last_name=$2, email=$3, birthdate=$4, gender=$5, phone=$6, player_index=$7, level=$8, id_index_category=$9 WHERE id=$10",
     [
       req.body.firstName,
       req.body.lastName,
@@ -798,6 +806,7 @@ app.post("/update_profile", function(req, res) {
       req.body.phone,
       req.body.index,
       req.body.level,
+      indexCategory,
       req.body.id
     ],
     function(error, res1) {
