@@ -474,9 +474,8 @@ img.pointer {cursor:pointer;}
 .comment_description {
   width: 450px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  padding-bottom: 5px;
+  padding-bottom: 15px;
   margin: auto;
-  margin-bottom: 15px;
 }
 
 .comment_description span {
@@ -488,8 +487,28 @@ img.pointer {cursor:pointer;}
   margin-top: 15px;
 }
 
+.own_comment {
+  background: linear-gradient(to right, #CECECE, white);
+}
+
+.own_comment span {
+  font-size: 12px;
+  font-style: italic;
+  color: #363636;
+  float:left;
+  margin-top: 30px;
+}
+
 .answer {
   text-align: left;
+  margin-left: 15px;
+  margin-top: 10px;
+}
+
+.own_answer {
+  text-align: right;
+  margin-right: 15px;
+  margin-top: 10px;
 }
 
 .question_item {
