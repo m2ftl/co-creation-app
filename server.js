@@ -18,6 +18,8 @@ app.use(
   express.static(path.join(__dirname, "react-app/build/static"))
 );
 
+app.use(express.static(path.join(__dirname, "react-app/build/favicon.ico")));
+
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*"); // Put an origin here, * means everything which is bad.
   res.header(
