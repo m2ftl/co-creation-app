@@ -6,3 +6,5 @@ html, body, #root, .App {
   color:#FFDF00;
   text-decoration: none;
 }
+
+.user_pic {border-radius:30px}
